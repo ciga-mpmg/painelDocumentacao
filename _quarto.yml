@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "Documentação do Painel CIGA-MPMG"
+  author: "R6"
+  date: "1/26/2024"
+  chapters:
+    - index.qmd
+    - referencias.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  # pdf:
+  #   documentclass: scrreprt
+
+editor: visual
+
+lang: pt
+language: 
+  title-block-author-single: "Autoria"
+  title-block-published: "Atualizado em"
