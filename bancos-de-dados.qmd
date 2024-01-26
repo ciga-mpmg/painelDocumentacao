@@ -63,8 +63,7 @@ O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usa
 -   `geotechnical_structures`: Estruturas geotécnicas.
     - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório [`ciga-mpmg/ciga2.0`](https://github.com/ciga-mpmg/ciga2.0).
     - Utilizada em: Painel Descaracterização. 
-    
-
+  
     
 -   `tac_decharacterisations`: Tacs de descaracterização de estruturas geotécnicas.
     - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. 
@@ -73,3 +72,94 @@ O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usa
 -   `tacs`: Tacs de estruturas geotécnicas (não são de descaracterização).
     - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório [`ciga-mpmg/ciga2.0`](https://github.com/ciga-mpmg/ciga2.0).
     - Utilizada em: Painel Recomendações.       
+
+
+## Banco de dados "aecom_ciga_homolog"
+
+O banco de dados `aecom_ciga_homolog` contém diversas bases de dados de temas como: recomendações, sigbm, tabelas que deverão ser deletadas após parar de usar o Shinyapps, entre outros.
+
+::: {.callout-important}
+Esse banco de dados tem "AECOM" no nome. O Rubem disse que isso não é desejável. Checar com a equipe da AECOM o que fazer sobre isso.
+:::
+
+
+Esse banco de dados é utilizado nos seguintes repositórios:
+
+<!-- - Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes) -->
+
+<!-- - Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao) -->
+
+
+```{r}
+# con_recomendacoes <- DBI::dbConnect(
+#   drv = RPostgres::Postgres(),
+#   host = Sys.getenv("CIGA_SQL_HOST"),
+#   dbname = 'aecom_ciga_homolog',
+#   user = Sys.getenv("CIGA_SQL_USER"),
+#   port = Sys.getenv("CIGA_SQL_PORT"),
+#   password = Sys.getenv("CIGA_SQL_PASSWORD"),
+# )
+# 
+# tabelas_no_bd_reco <- RSQLite::dbListTables(con_recomendacoes)
+# 
+# tabelas_no_bd_reco |>
+#   sort() |>
+#   writeLines()
+```
+
+### Tabelas do banco de dados "aecom_ciga_homolog"
+
+```{r}
+# dplyr::tbl(con_recomendacoes, "geography_columns") |>
+#   dplyr::collect()
+```
+
+**Tabelas não utilizadas** (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto): 
+
+`geography_columns`, `geometry_columns`, `pg_stat_statements`, `pg_stat_statements_info`, `spatial_ref_sys`.  
+
+
+**Tabelas utilizadas**:
+
+  - `comarcasTJMG`: ...
+  
+  - `dados_recomendacoes_sigbm`: ...
+  
+  - `dados_recomendacoes_sigbm_complexo_minerario`: ...
+  
+  - `dados_sigbm_atualizacao_mensal`: ...
+  
+  - `dados_sigbm_linha_do_tempo`: ...
+  
+  - `full_recommendations`: ...
+  
+  - `ide_sisema`: ...
+  
+  - `metadados_documentos_tacs`: ...
+  
+  - `metadados_imagens_satelite_bucket`: ...
+  
+  - `metadados_mascaras_imagens_satelite_bucket`: ...
+  
+  - `metadados_relatorios_gerenciais`: ...
+  
+  - `recommendations3`: ...
+  
+  - `sigbm`: ...
+  
+  - `sigbm_atual`: ...
+  
+  - `sigbm_dados_cadastrais`: ...
+  
+  - `sigbm_dados_cadastrais_atual`: ...
+  
+
+**Tabelas que deverão ser deletadas após parar de usar o Shinyapps**:
+
+  - `entrepreneurs` cópia antiga da tabela presente no banco de dados `cadastro-tacs`.
+
+  - `geotechnical_structures` cópia antiga da tabela presente no banco de dados `cadastro-tacs`.
+
+  - `tac_decharacterisations` cópia antiga da tabela presente no banco de dados `cadastro-tacs`.
+
+  - `tacs` cópia antiga da tabela presente no banco de dados     `cadastro-tacs`.

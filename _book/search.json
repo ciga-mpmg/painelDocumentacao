@@ -28,5 +28,15 @@
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Bancos de dados</span>"
     ]
+  },
+  {
+    "objectID": "bancos-de-dados.html#banco-de-dados-aecom_ciga_homolog",
+    "href": "bancos-de-dados.html#banco-de-dados-aecom_ciga_homolog",
+    "title": "2  Bancos de dados",
+    "section": "2.2 Banco de dados “aecom_ciga_homolog”",
+    "text": "2.2 Banco de dados “aecom_ciga_homolog”\nO banco de dados aecom_ciga_homolog contém diversas bases de dados de temas como: recomendações, sigbm, tabelas que deverão ser deletadas após parar de usar o Shinyapps, entre outros.\n\n\n\n\n\n\nImportante\n\n\n\nEsse banco de dados tem “AECOM” no nome. O Rubem disse que isso não é desejável. Checar com a equipe da AECOM o que fazer sobre isso.\n\n\nEsse banco de dados é utilizado nos seguintes repositórios:\n\n\n\n# con_recomendacoes &lt;- DBI::dbConnect(\n#   drv = RPostgres::Postgres(),\n#   host = Sys.getenv(\"CIGA_SQL_HOST\"),\n#   dbname = 'aecom_ciga_homolog',\n#   user = Sys.getenv(\"CIGA_SQL_USER\"),\n#   port = Sys.getenv(\"CIGA_SQL_PORT\"),\n#   password = Sys.getenv(\"CIGA_SQL_PASSWORD\"),\n# )\n# \n# tabelas_no_bd_reco &lt;- RSQLite::dbListTables(con_recomendacoes)\n# \n# tabelas_no_bd_reco |&gt;\n#   sort() |&gt;\n#   writeLines()\n\n\n2.2.1 Tabelas do banco de dados “aecom_ciga_homolog”\n\n# dplyr::tbl(con_recomendacoes, \"geography_columns\") |&gt;\n#   dplyr::collect()\n\nTabelas não utilizadas (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto):\ngeography_columns, geometry_columns, pg_stat_statements, pg_stat_statements_info, spatial_ref_sys.\nTabelas utilizadas:\n\ncomarcasTJMG: …\ndados_recomendacoes_sigbm: …\ndados_recomendacoes_sigbm_complexo_minerario: …\ndados_sigbm_atualizacao_mensal: …\ndados_sigbm_linha_do_tempo: …\nfull_recommendations: …\nide_sisema: …\nmetadados_documentos_tacs: …\nmetadados_imagens_satelite_bucket: …\nmetadados_mascaras_imagens_satelite_bucket: …\nmetadados_relatorios_gerenciais: …\nrecommendations3: …\nsigbm: …\nsigbm_atual: …\nsigbm_dados_cadastrais: …\nsigbm_dados_cadastrais_atual: …\n\nTabelas que deverão ser deletadas após parar de usar o Shinyapps:\n\nentrepreneurs cópia antiga da tabela presente no banco de dados cadastro-tacs.\ngeotechnical_structures cópia antiga da tabela presente no banco de dados cadastro-tacs.\ntac_decharacterisations cópia antiga da tabela presente no banco de dados cadastro-tacs.\ntacs cópia antiga da tabela presente no banco de dados cadastro-tacs.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Bancos de dados</span>"
+    ]
   }
 ]
