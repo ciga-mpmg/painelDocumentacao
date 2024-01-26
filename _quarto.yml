@@ -7,6 +7,8 @@ book:
   date: "1/26/2024"
   chapters:
     - index.qmd
+    - paineis.qmd
+    - bancos-de-dados.qmd
     - referencias.qmd
 
 bibliography: references.bib

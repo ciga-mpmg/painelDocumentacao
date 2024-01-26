@@ -4,9 +4,29 @@
     "href": "index.html",
     "title": "Documentação do Painel CIGA-MPMG",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2",
+    "text": "Introdução\nEste documento apresenta a documentação do Painel desenvolvido para o CIGA-MPMG.\nDevido à complexidade do painel, o projeto está estruturado em diferentes partes, cada um com um propósito específico.\nOs softwares foram desenvolvidos e versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.",
     "crumbs": [
-      "Preface"
+      "Introdução"
+    ]
+  },
+  {
+    "objectID": "bancos-de-dados.html",
+    "href": "bancos-de-dados.html",
+    "title": "2  Bancos de dados",
+    "section": "",
+    "text": "2.1 Banco de dados “cadastro-tacs”\nO banco de dados cadastro-tacs contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.\nEsse banco de dados é utilizado nos seguintes repositórios:\n# con_cadastro_tacs &lt;- DBI::dbConnect(\n#   drv = RPostgres::Postgres(),\n#   host = Sys.getenv(\"CIGA_SQL_HOST\"),\n#   dbname = 'cadastro_tacs',\n#   user = Sys.getenv(\"CIGA_SQL_USER\"),\n#   port = Sys.getenv(\"CIGA_SQL_PORT\"),\n#   password = Sys.getenv(\"CIGA_SQL_PASSWORD\"),\n# )\n# \n# tabelas_cadastro_tacs &lt;- RSQLite::dbListTables(con_cadastro_tacs)\n\n# tabelas_cadastro_tacs |&gt; \n#   sort() |&gt; \n#   writeLines()",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Bancos de dados</span>"
+    ]
+  },
+  {
+    "objectID": "bancos-de-dados.html#banco-de-dados-cadastro-tacs",
+    "href": "bancos-de-dados.html#banco-de-dados-cadastro-tacs",
+    "title": "2  Bancos de dados",
+    "section": "",
+    "text": "Painel Recomendações (ciga-mpmg/painelRecomendacoes)\nPainel Descaracterização (ciga-mpmg/painelDescaracterizacao)\n\n\n\n\n\n\n\nImportante\n\n\n\nO painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.\n\n\n\n\n2.1.1 Tabelas do banco de dados “cadastro-tacs”\n\n# dplyr::tbl(con_cadastro_tacs, \"tac_amendments\") |&gt;\n#   dplyr::collect()\n\nTabelas não utilizadas (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto):\nactive_storage_attachments, active_storage_blobs, active_storage_variant_records, ar_internal_metadata, schema_migrations, users, pg_search_documents.\nTabelas vazias (conferir com a equipe da AECOM):\n\namendment_geotechnical_structures.\ntac_amendments.\n\nTabelas utilizadas:\n\nentrepreneurs: Empreendedores de estruturas geotécnicas.\n\nTabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório ciga-mpmg/ciga2.0.\nUtilizada em: Painel Descaracterização.\n\ngeotechnical_structures: Estruturas geotécnicas.\n\nTabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório ciga-mpmg/ciga2.0.\nUtilizada em: Painel Descaracterização.\n\ntac_decharacterisations: Tacs de descaracterização de estruturas geotécnicas.\n\nTabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6.\nUtilizada em: Painel Descaracterização.\n\ntacs: Tacs de estruturas geotécnicas (não são de descaracterização).\n\nTabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório ciga-mpmg/ciga2.0.\nUtilizada em: Painel Recomendações.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Bancos de dados</span>"
     ]
   }
 ]

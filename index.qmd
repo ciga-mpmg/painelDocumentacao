@@ -1,9 +1,8 @@
-# Preface {.unnumbered}
+# Introdução {.unnumbered}
 
-This is a Quarto book.
+Este documento apresenta a documentação do Painel desenvolvido para o CIGA-MPMG.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+Devido à complexidade do painel, o projeto está estruturado em diferentes partes, cada um com um propósito específico.
 
-```{r}
-1 + 1
-```
+Os softwares foram desenvolvidos e versionados utilizando o sistema de controle de versão [Git](https://git-scm.com/) e estão disponíveis em repositórios privados no [GitHub](https://github.com/).
+
