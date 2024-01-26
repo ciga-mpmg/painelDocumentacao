@@ -140,14 +140,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#banco-de-dados-cadastro-tacs" id="toc-banco-de-dados-cadastro-tacs" class="nav-link active" data-scroll-target="#banco-de-dados-cadastro-tacs"><span class="header-section-number">2.1</span> Banco de dados “cadastro-tacs”</a>
-  <ul class="collapse">
-  <li><a href="#tabelas-do-banco-de-dados-cadastro-tacs" id="toc-tabelas-do-banco-de-dados-cadastro-tacs" class="nav-link" data-scroll-target="#tabelas-do-banco-de-dados-cadastro-tacs"><span class="header-section-number">2.1.1</span> Tabelas do banco de dados “cadastro-tacs”</a></li>
-  </ul></li>
-  <li><a href="#banco-de-dados-aecom_ciga_homolog" id="toc-banco-de-dados-aecom_ciga_homolog" class="nav-link" data-scroll-target="#banco-de-dados-aecom_ciga_homolog"><span class="header-section-number">2.2</span> Banco de dados “aecom_ciga_homolog”</a>
-  <ul class="collapse">
-  <li><a href="#tabelas-do-banco-de-dados-aecom_ciga_homolog" id="toc-tabelas-do-banco-de-dados-aecom_ciga_homolog" class="nav-link" data-scroll-target="#tabelas-do-banco-de-dados-aecom_ciga_homolog"><span class="header-section-number">2.2.1</span> Tabelas do banco de dados “aecom_ciga_homolog”</a></li>
-  </ul></li>
+  <li><a href="#banco-de-dados-aecom_ciga_homolog" id="toc-banco-de-dados-aecom_ciga_homolog" class="nav-link active" data-scroll-target="#banco-de-dados-aecom_ciga_homolog"><span class="header-section-number">2.1</span> Banco de dados “aecom_ciga_homolog”</a></li>
+  <li><a href="#banco-de-dados-externo" id="toc-banco-de-dados-externo" class="nav-link" data-scroll-target="#banco-de-dados-externo"><span class="header-section-number">2.2</span> Banco de dados externo</a></li>
   </ul>
 </nav>
     </div>
@@ -174,63 +168,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Nesta seção, o objetivo é apresentar quais são os bancos de dados utilizados no projeto, bem como as tabelas utilizadas, e em quais partes do projeto é utilizado.</p>
-<section id="banco-de-dados-cadastro-tacs" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="banco-de-dados-cadastro-tacs"><span class="header-section-number">2.1</span> Banco de dados “cadastro-tacs”</h2>
-<p>O banco de dados <code>cadastro-tacs</code> contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.</p>
-<p>Esse banco de dados é utilizado nos seguintes repositórios:</p>
-<ul>
-<li><p>Painel Recomendações <a href="https://github.com/ciga-mpmg/painelRecomendacoes">(<code>ciga-mpmg/painelRecomendacoes</code>)</a></p></li>
-<li><p>Painel Descaracterização <a href="https://github.com/ciga-mpmg/painelDescaracterizacao">(<code>ciga-mpmg/painelDescaracterizacao</code>)</a></p></li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Importante
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.</p>
-</div>
-</div>
-<section id="tabelas-do-banco-de-dados-cadastro-tacs" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="tabelas-do-banco-de-dados-cadastro-tacs"><span class="header-section-number">2.1.1</span> Tabelas do banco de dados “cadastro-tacs”</h3>
-<p><strong>Tabelas não utilizadas</strong> (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto):</p>
-<p><code>active_storage_attachments</code>, <code>active_storage_blobs</code>, <code>active_storage_variant_records</code>, <code>ar_internal_metadata</code>, <code>schema_migrations</code>, <code>users</code>, <code>pg_search_documents</code>.</p>
-<p><strong>Tabelas vazias</strong> (conferir com a equipe da AECOM):</p>
-<ul>
-<li><p><code>amendment_geotechnical_structures</code>.</p></li>
-<li><p><code>tac_amendments</code>.</p></li>
-</ul>
-<p><strong>Tabelas utilizadas</strong>:</p>
-<ul>
-<li><code>entrepreneurs</code>: Empreendedores de estruturas geotécnicas.
-<ul>
-<li>Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório <a href="https://github.com/ciga-mpmg/ciga2.0"><code>ciga-mpmg/ciga2.0</code></a>.</li>
-<li>Utilizada em: Painel Descaracterização.</li>
-</ul></li>
-<li><code>geotechnical_structures</code>: Estruturas geotécnicas.
-<ul>
-<li>Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório <a href="https://github.com/ciga-mpmg/ciga2.0"><code>ciga-mpmg/ciga2.0</code></a>.</li>
-<li>Utilizada em: Painel Descaracterização.</li>
-</ul></li>
-<li><code>tac_decharacterisations</code>: Tacs de descaracterização de estruturas geotécnicas.
-<ul>
-<li>Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6.</li>
-<li>Utilizada em: Painel Descaracterização.</li>
-</ul></li>
-<li><code>tacs</code>: Tacs de estruturas geotécnicas (não são de descaracterização).
-<ul>
-<li>Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório <a href="https://github.com/ciga-mpmg/ciga2.0"><code>ciga-mpmg/ciga2.0</code></a>.</li>
-<li>Utilizada em: Painel Recomendações.</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="banco-de-dados-aecom_ciga_homolog" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="banco-de-dados-aecom_ciga_homolog"><span class="header-section-number">2.2</span> Banco de dados “aecom_ciga_homolog”</h2>
+<section id="banco-de-dados-aecom_ciga_homolog" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="banco-de-dados-aecom_ciga_homolog"><span class="header-section-number">2.1</span> Banco de dados “aecom_ciga_homolog”</h2>
 <p>O banco de dados <code>aecom_ciga_homolog</code> contém diversas bases de dados de temas como: recomendações, sigbm, tabelas que deverão ser deletadas após parar de usar o Shinyapps, entre outros.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -248,8 +187,6 @@ Importante
 <p>Esse banco de dados é utilizado nos seguintes repositórios:</p>
 <!-- - Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes) -->
 <!-- - Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao) -->
-<section id="tabelas-do-banco-de-dados-aecom_ciga_homolog" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="tabelas-do-banco-de-dados-aecom_ciga_homolog"><span class="header-section-number">2.2.1</span> Tabelas do banco de dados “aecom_ciga_homolog”</h3>
 <p><strong>Tabelas não utilizadas</strong> (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto):</p>
 <p><code>geography_columns</code>, <code>geometry_columns</code>, <code>pg_stat_statements</code>, <code>pg_stat_statements_info</code>, <code>spatial_ref_sys</code>.</p>
 <p><strong>Tabelas utilizadas</strong>:</p>
@@ -352,9 +289,49 @@ Importante
 </div>
 </div>
 </div>
-
-
 </section>
+<section id="banco-de-dados-externo" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="banco-de-dados-externo"><span class="header-section-number">2.2</span> Banco de dados externo</h2>
+<p>O banco de dados <code>cadastro-tacs</code> contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.</p>
+<p>Esse banco de dados é utilizado nos seguintes repositórios:</p>
+<ul>
+<li><p>Painel Recomendações <a href="https://github.com/ciga-mpmg/painelRecomendacoes">(<code>ciga-mpmg/painelRecomendacoes</code>)</a></p></li>
+<li><p>Painel Descaracterização <a href="https://github.com/ciga-mpmg/painelDescaracterizacao">(<code>ciga-mpmg/painelDescaracterizacao</code>)</a></p></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.</p>
+</div>
+</div>
+<p><strong>Tabelas utilizadas</strong>:</p>
+<ul>
+<li><code>entrepreneurs</code>: Empreendedores de estruturas geotécnicas.
+<ul>
+<li>Utilizada em: Painel Descaracterização.</li>
+</ul></li>
+<li><code>geotechnical_structures</code>: Estruturas geotécnicas.
+<ul>
+<li>Utilizada em: Painel Descaracterização.</li>
+</ul></li>
+<li><code>tac_decharacterisations</code>: Tacs de descaracterização de estruturas geotécnicas.
+<ul>
+<li>Utilizada em: Painel Descaracterização.</li>
+</ul></li>
+<li><code>tacs</code>: Tacs de estruturas geotécnicas (não são de descaracterização).
+<ul>
+<li>Utilizada em: Painel Recomendações.</li>
+</ul></li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->

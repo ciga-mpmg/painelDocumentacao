@@ -7,74 +7,6 @@ knitr:
 
 Nesta seção, o objetivo é apresentar quais são os bancos de dados utilizados no projeto, bem como as tabelas utilizadas, e em quais partes do projeto é utilizado.
 
-## Banco de dados "cadastro-tacs"
-
-O banco de dados `cadastro-tacs` contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.
-
-Esse banco de dados é utilizado nos seguintes repositórios:
-
-- Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes)
-
-- Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao)
-
-::: {.callout-important}
-O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.
-:::
-
-
-```{r}
-# con_cadastro_tacs <- DBI::dbConnect(
-#   drv = RPostgres::Postgres(),
-#   host = Sys.getenv("CIGA_SQL_HOST"),
-#   dbname = 'cadastro_tacs',
-#   user = Sys.getenv("CIGA_SQL_USER"),
-#   port = Sys.getenv("CIGA_SQL_PORT"),
-#   password = Sys.getenv("CIGA_SQL_PASSWORD"),
-# )
-# 
-# tabelas_cadastro_tacs <- RSQLite::dbListTables(con_cadastro_tacs)
-
-# tabelas_cadastro_tacs |> 
-#   sort() |> 
-#   writeLines()
-```
-
-### Tabelas do banco de dados "cadastro-tacs"
-
-```{r}
-# dplyr::tbl(con_cadastro_tacs, "tac_amendments") |>
-#   dplyr::collect()
-```
-
-**Tabelas não utilizadas** (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto): 
-
-`active_storage_attachments`, `active_storage_blobs`, `active_storage_variant_records`, `ar_internal_metadata`, `schema_migrations`, `users`, `pg_search_documents`.
-
-
-**Tabelas vazias** (conferir com a equipe da AECOM):
-
-  - `amendment_geotechnical_structures`.
-  
-  - `tac_amendments`.
-
-**Tabelas utilizadas**:
-
--   `entrepreneurs`: Empreendedores de estruturas geotécnicas.
-    - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório [`ciga-mpmg/ciga2.0`](https://github.com/ciga-mpmg/ciga2.0).
-    - Utilizada em: Painel Descaracterização. 
-    
--   `geotechnical_structures`: Estruturas geotécnicas.
-    - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório [`ciga-mpmg/ciga2.0`](https://github.com/ciga-mpmg/ciga2.0).
-    - Utilizada em: Painel Descaracterização. 
-  
-    
--   `tac_decharacterisations`: Tacs de descaracterização de estruturas geotécnicas.
-    - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. 
-    - Utilizada em: Painel Descaracterização. 
-    
--   `tacs`: Tacs de estruturas geotécnicas (não são de descaracterização).
-    - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório [`ciga-mpmg/ciga2.0`](https://github.com/ciga-mpmg/ciga2.0).
-    - Utilizada em: Painel Recomendações.       
 
 
 ## Banco de dados "aecom_ciga_homolog"
@@ -108,11 +40,7 @@ Esse banco de dados é utilizado nos seguintes repositórios:
 # tabelas_no_bd_reco |>
 #   sort() |>
 #   writeLines()
-```
 
-### Tabelas do banco de dados "aecom_ciga_homolog"
-
-```{r}
 # dplyr::tbl(con_recomendacoes, "dados_recomendacoes_sigbm") |>
 #   dplyr::collect()
 ```
@@ -192,3 +120,54 @@ Me parece que antes esse fluxo era necessário pois as tabelas de complexo miner
   - `tacs` cópia antiga da tabela presente no banco de dados     `cadastro-tacs`.
   
 :::  
+
+## Banco de dados externo
+
+O banco de dados `cadastro-tacs` contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.
+
+Esse banco de dados é utilizado nos seguintes repositórios:
+
+- Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes)
+
+- Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao)
+
+::: {.callout-important}
+O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.
+:::
+
+
+```{r}
+# con_cadastro_tacs <- DBI::dbConnect(
+#   drv = RPostgres::Postgres(),
+#   host = Sys.getenv("CIGA_SQL_HOST"),
+#   dbname = 'cadastro_tacs',
+#   user = Sys.getenv("CIGA_SQL_USER"),
+#   port = Sys.getenv("CIGA_SQL_PORT"),
+#   password = Sys.getenv("CIGA_SQL_PASSWORD"),
+# )
+# 
+# tabelas_cadastro_tacs <- RSQLite::dbListTables(con_cadastro_tacs)
+
+# tabelas_cadastro_tacs |> 
+#   sort() |> 
+#   writeLines()
+
+
+# dplyr::tbl(con_cadastro_tacs, "tac_amendments") |>
+#   dplyr::collect()
+```
+
+**Tabelas utilizadas**:
+
+-   `entrepreneurs`: Empreendedores de estruturas geotécnicas.
+    - Utilizada em: Painel Descaracterização. 
+    
+-   `geotechnical_structures`: Estruturas geotécnicas.
+    - Utilizada em: Painel Descaracterização. 
+  
+    
+-   `tac_decharacterisations`: Tacs de descaracterização de estruturas geotécnicas.
+    - Utilizada em: Painel Descaracterização. 
+    
+-   `tacs`: Tacs de estruturas geotécnicas (não são de descaracterização).
+    - Utilizada em: Painel Recomendações.       
