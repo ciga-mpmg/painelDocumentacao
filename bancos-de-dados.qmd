@@ -9,7 +9,7 @@ Nesta seção, o objetivo é apresentar quais são os bancos de dados utilizados
 
 
 
-## Banco de dados "aecom_ciga_homolog"
+## Banco de dados principal
 
 O banco de dados `aecom_ciga_homolog` contém diversas bases de dados de temas como: recomendações, sigbm, tabelas que deverão ser deletadas após parar de usar o Shinyapps, entre outros.
 
