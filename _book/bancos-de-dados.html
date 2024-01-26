@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -229,28 +195,8 @@ Importante
 <p>O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.</p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># con_cadastro_tacs &lt;- DBI::dbConnect(</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   drv = RPostgres::Postgres(),</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   host = Sys.getenv("CIGA_SQL_HOST"),</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   dbname = 'cadastro_tacs',</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   user = Sys.getenv("CIGA_SQL_USER"),</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   port = Sys.getenv("CIGA_SQL_PORT"),</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   password = Sys.getenv("CIGA_SQL_PASSWORD"),</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># tabelas_cadastro_tacs &lt;- RSQLite::dbListTables(con_cadastro_tacs)</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># tabelas_cadastro_tacs |&gt; </span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   sort() |&gt; </span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   writeLines()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="tabelas-do-banco-de-dados-cadastro-tacs" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="tabelas-do-banco-de-dados-cadastro-tacs"><span class="header-section-number">2.1.1</span> Tabelas do banco de dados “cadastro-tacs”</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::tbl(con_cadastro_tacs, "tac_amendments") |&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   dplyr::collect()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Tabelas não utilizadas</strong> (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto):</p>
 <p><code>active_storage_attachments</code>, <code>active_storage_blobs</code>, <code>active_storage_variant_records</code>, <code>ar_internal_metadata</code>, <code>schema_migrations</code>, <code>users</code>, <code>pg_search_documents</code>.</p>
 <p><strong>Tabelas vazias</strong> (conferir com a equipe da AECOM):</p>
@@ -302,49 +248,100 @@ Importante
 <p>Esse banco de dados é utilizado nos seguintes repositórios:</p>
 <!-- - Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes) -->
 <!-- - Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao) -->
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># con_recomendacoes &lt;- DBI::dbConnect(</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   drv = RPostgres::Postgres(),</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   host = Sys.getenv("CIGA_SQL_HOST"),</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   dbname = 'aecom_ciga_homolog',</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   user = Sys.getenv("CIGA_SQL_USER"),</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   port = Sys.getenv("CIGA_SQL_PORT"),</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   password = Sys.getenv("CIGA_SQL_PASSWORD"),</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># tabelas_no_bd_reco &lt;- RSQLite::dbListTables(con_recomendacoes)</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># tabelas_no_bd_reco |&gt;</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   sort() |&gt;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   writeLines()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="tabelas-do-banco-de-dados-aecom_ciga_homolog" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="tabelas-do-banco-de-dados-aecom_ciga_homolog"><span class="header-section-number">2.2.1</span> Tabelas do banco de dados “aecom_ciga_homolog”</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::tbl(con_recomendacoes, "geography_columns") |&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   dplyr::collect()</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Tabelas não utilizadas</strong> (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto):</p>
 <p><code>geography_columns</code>, <code>geometry_columns</code>, <code>pg_stat_statements</code>, <code>pg_stat_statements_info</code>, <code>spatial_ref_sys</code>.</p>
 <p><strong>Tabelas utilizadas</strong>:</p>
 <ul>
-<li><p><code>comarcasTJMG</code>: …</p></li>
-<li><p><code>dados_recomendacoes_sigbm</code>: …</p></li>
-<li><p><code>dados_recomendacoes_sigbm_complexo_minerario</code>: …</p></li>
-<li><p><code>dados_sigbm_atualizacao_mensal</code>: …</p></li>
-<li><p><code>dados_sigbm_linha_do_tempo</code>: …</p></li>
+<li><code>comarcasTJMG</code>: Comarcas do TJMG.
+<ul>
+<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml"><code>download-comarcas-TJMG</code></a>, no repositório <a href="https://github.com/ciga-mpmg/download_comarcas_TJMG"><code>ciga-mpmg/download_comarcas_TJMG</code></a>. Depende do pacote <a href="https://github.com/ciga-mpmg/comarcasTJMG"><code>comarcasTJMG</code></a>.</li>
+<li>Utilizada em: Resuvafeca.</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No README do repositório <a href="https://github.com/ciga-mpmg/comarcasTJMG">comarcasTJMG</a>, está como se o repositório estivesse no GitHub do Rubem.</p>
+</div>
+</div>
+<ul>
+<li><p><code>recommendations3</code>: …</p></li>
+<li><p><code>sigbm</code>: …</p></li>
+<li><p><code>sigbm_atual</code>: …</p></li>
+<li><p><code>dados_recomendacoes_sigbm</code>: Join feito com as tabelas <code>recommendations3</code> e <code>sigbm</code>.</p>
+<ul>
+<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml"><code>update-sigbm</code></a>, no repositório <a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a></li>
+<li>Utilizada em: Painel Recomendações, Relatório Gerencial.</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O repositório do workflow (<a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a>) tem “aecom” no nome. Precisa ser renomeado.</p>
+</div>
+</div>
+<ul>
+<li><code>dados_recomendacoes_sigbm_complexo_minerario</code>: Tratamentos feito com as tabelas <code>dados_recomendacoes_sigbm</code> e <code>sigbm</code>.
+<ul>
+<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml"><code>update-sigbm</code></a>, no repositório <a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a></li>
+<li>Utilizada em: Painel Recomendações.</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Me parece que antes esse fluxo era necessário pois as tabelas de complexo minerário estavam separadas. Agora, como vem com o banco, talvez seria bom reavaliar com calma.</p>
+</div>
+</div>
+<ul>
+<li><p><code>dados_sigbm_atualizacao_mensal</code>: Tratamento da tabela <code>sigbm</code> para gerar a tabela de atualização mensal.</p>
+<ul>
+<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml"><code>update-sigbm</code></a>, no repositório <a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a></li>
+<li>Utilizada em: Painel Barragens.</li>
+</ul></li>
+<li><p><code>dados_sigbm_linha_do_tempo</code>: Tratamento da tabela <code>sigbm</code> para gerar linha do tempo.</p>
+<ul>
+<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml"><code>update-sigbm</code></a>, no repositório <a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a></li>
+<li>Utilizada em: Painel Barragens.</li>
+</ul></li>
 <li><p><code>full_recommendations</code>: …</p></li>
 <li><p><code>ide_sisema</code>: …</p></li>
 <li><p><code>metadados_documentos_tacs</code>: …</p></li>
 <li><p><code>metadados_imagens_satelite_bucket</code>: …</p></li>
 <li><p><code>metadados_mascaras_imagens_satelite_bucket</code>: …</p></li>
 <li><p><code>metadados_relatorios_gerenciais</code>: …</p></li>
-<li><p><code>recommendations3</code>: …</p></li>
-<li><p><code>sigbm</code>: …</p></li>
-<li><p><code>sigbm_atual</code>: …</p></li>
 <li><p><code>sigbm_dados_cadastrais</code>: …</p></li>
 <li><p><code>sigbm_dados_cadastrais_atual</code>: …</p></li>
 </ul>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <p><strong>Tabelas que deverão ser deletadas após parar de usar o Shinyapps</strong>:</p>
 <ul>
 <li><p><code>entrepreneurs</code> cópia antiga da tabela presente no banco de dados <code>cadastro-tacs</code>.</p></li>
@@ -352,6 +349,9 @@ Importante
 <li><p><code>tac_decharacterisations</code> cópia antiga da tabela presente no banco de dados <code>cadastro-tacs</code>.</p></li>
 <li><p><code>tacs</code> cópia antiga da tabela presente no banco de dados <code>cadastro-tacs</code>.</p></li>
 </ul>
+</div>
+</div>
+</div>
 
 
 </section>

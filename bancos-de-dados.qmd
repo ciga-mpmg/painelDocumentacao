@@ -1,3 +1,8 @@
+---
+knitr: 
+  opts_chunk: 
+    echo: false
+---
 # Bancos de dados
 
 Nesta seção, o objetivo é apresentar quais são os bancos de dados utilizados no projeto, bem como as tabelas utilizadas, e em quais partes do projeto é utilizado.
@@ -58,8 +63,6 @@ O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usa
     - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório [`ciga-mpmg/ciga2.0`](https://github.com/ciga-mpmg/ciga2.0).
     - Utilizada em: Painel Descaracterização. 
     
-
-
 -   `geotechnical_structures`: Estruturas geotécnicas.
     - Tabela criada pela equipe da AECOM, não fazemos alterações nos scripts gerados pela R6. Aparentemente é criado no repositório [`ciga-mpmg/ciga2.0`](https://github.com/ciga-mpmg/ciga2.0).
     - Utilizada em: Painel Descaracterização. 
@@ -110,7 +113,7 @@ Esse banco de dados é utilizado nos seguintes repositórios:
 ### Tabelas do banco de dados "aecom_ciga_homolog"
 
 ```{r}
-# dplyr::tbl(con_recomendacoes, "geography_columns") |>
+# dplyr::tbl(con_recomendacoes, "dados_recomendacoes_sigbm") |>
 #   dplyr::collect()
 ```
 
@@ -121,15 +124,43 @@ Esse banco de dados é utilizado nos seguintes repositórios:
 
 **Tabelas utilizadas**:
 
-  - `comarcasTJMG`: ...
+  - `comarcasTJMG`: Comarcas do TJMG. 
+    - ETL feito pelo workflow  [`download-comarcas-TJMG `](https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml), no repositório [`ciga-mpmg/download_comarcas_TJMG`](https://github.com/ciga-mpmg/download_comarcas_TJMG). Depende do pacote [`comarcasTJMG`](https://github.com/ciga-mpmg/comarcasTJMG).
+    - Utilizada em: Resuvafeca. 
+
+::: {.callout-important}
+No README do repositório [comarcasTJMG](https://github.com/ciga-mpmg/comarcasTJMG), está como se o repositório estivesse no GitHub do Rubem.
+:::  
+
+  - `recommendations3`: ...
   
-  - `dados_recomendacoes_sigbm`: ...
+  - `sigbm`: ...
   
-  - `dados_recomendacoes_sigbm_complexo_minerario`: ...
+  - `sigbm_atual`: ...
   
-  - `dados_sigbm_atualizacao_mensal`: ...
+  - `dados_recomendacoes_sigbm`: Join feito com as tabelas `recommendations3` e `sigbm`. 
+    - ETL feito pelo workflow  [`update-sigbm`](https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml), no repositório [`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)
+    - Utilizada em: Painel Recomendações, Relatório Gerencial.
+    
+::: {.callout-important}
+O repositório do workflow ([`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)) tem "aecom" no nome. Precisa ser renomeado.
+:::      
   
-  - `dados_sigbm_linha_do_tempo`: ...
+  - `dados_recomendacoes_sigbm_complexo_minerario`:  Tratamentos feito com as tabelas `dados_recomendacoes_sigbm` e `sigbm`. 
+    - ETL feito pelo workflow  [`update-sigbm`](https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml), no repositório [`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)
+    - Utilizada em: Painel Recomendações.
+        
+::: {.callout-important}
+Me parece que antes esse fluxo era necessário pois as tabelas de complexo minerário estavam separadas. Agora, como vem com o banco, talvez seria bom reavaliar com calma.
+:::      
+  
+  - `dados_sigbm_atualizacao_mensal`: Tratamento da tabela `sigbm` para gerar a tabela de atualização mensal.
+    - ETL feito pelo workflow  [`update-sigbm`](https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml), no repositório [`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)
+    - Utilizada em: Painel Barragens.
+  
+  - `dados_sigbm_linha_do_tempo`: Tratamento da tabela `sigbm` para gerar linha do tempo.
+    - ETL feito pelo workflow  [`update-sigbm`](https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml), no repositório [`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)
+    - Utilizada em: Painel Barragens.
   
   - `full_recommendations`: ...
   
@@ -143,17 +174,13 @@ Esse banco de dados é utilizado nos seguintes repositórios:
   
   - `metadados_relatorios_gerenciais`: ...
   
-  - `recommendations3`: ...
-  
-  - `sigbm`: ...
-  
-  - `sigbm_atual`: ...
-  
   - `sigbm_dados_cadastrais`: ...
   
   - `sigbm_dados_cadastrais_atual`: ...
   
 
+        
+::: {.callout}
 **Tabelas que deverão ser deletadas após parar de usar o Shinyapps**:
 
   - `entrepreneurs` cópia antiga da tabela presente no banco de dados `cadastro-tacs`.
@@ -163,3 +190,5 @@ Esse banco de dados é utilizado nos seguintes repositórios:
   - `tac_decharacterisations` cópia antiga da tabela presente no banco de dados `cadastro-tacs`.
 
   - `tacs` cópia antiga da tabela presente no banco de dados     `cadastro-tacs`.
+  
+:::  
