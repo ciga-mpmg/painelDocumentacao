@@ -58,5 +58,55 @@
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Bancos de dados</span>"
     ]
+  },
+  {
+    "objectID": "paineis.html",
+    "href": "paineis.html",
+    "title": "1  Painéis do CIGA-MPMG",
+    "section": "",
+    "text": "1.1 Estrutura básica\nTodos os paineis com exeção de painelMain dependem de uma série de configurações e dependências de ambiente. São elas:\nTodos os apps contam com uma infraestrutura de login que depende das variáveis de ambiente. Essa infraestrutura é:\nAs configurações para obter o endpoint de validação do login estão registradas em https://github.com/ciga-mpmg/painelAssets/blob/main/inst/app/golem-config.yml. A mecânica e front-end de validação estão no repositório painelLogin.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Painéis do CIGA-MPMG</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#estrutura-básica",
+    "href": "paineis.html#estrutura-básica",
+    "title": "1  Painéis do CIGA-MPMG",
+    "section": "",
+    "text": "Ubuntu 20.04\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nVariáveis de ambiente:\n\nCIGA_SQL_HOST  # endereço de acesso ao banco de dados\nCIGA_SQL_DATABASE # banco de dados\nCIGA_SQL_USER # usuário do banco\nCIGA_SQL_PORT # porta do banco\nCIGA_SQL_PASSWORD # senha\nAMBIENTE # stringr que deve ser \"homolog\" ou \"prod\"\nCIGA_OUTLOOK_TENANT # tenant do outlook\nCIGA_OUTLOOK_APP # id do aplicativo do outlook\nCIGA_OUTLOOK_PASSWORD # senha do outlook\nCIGA_FIREBASE_PASSWORD # senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br\nCIGA_FIREBASE_PROJECT_API=\"AIzaSyCH-0lM6fq2Wgx7NfGedRDJnV9Bxa4ifoo\" # projeto do firebase\n\nif (ambiente %in% c(\"homolog\", \"prod\")) {\n    url &lt;- get_golem_config(\"url\", Sys.getenv(\"AMBIENTE\"))\n    validation_endpoint &lt;- get_golem_config(\n      \"validation_endpoint\",\n      Sys.getenv(\"AMBIENTE\")\n    )\n    active_ui &lt;- painelLogin:::create_app_ui_auth(\n      request,\n      app_ui,\n      url,\n      validation_endpoint\n    )\n  } else {\n    active_ui &lt;- app_ui\n    url &lt;- NULL\n  }",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Painéis do CIGA-MPMG</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#mecanismo-de-autenticação",
+    "href": "paineis.html#mecanismo-de-autenticação",
+    "title": "1  Painéis do CIGA-MPMG",
+    "section": "1.2 Mecanismo de autenticação",
+    "text": "1.2 Mecanismo de autenticação\nO mecanismo de autenticação de todo acesso se divide em dois casos: se há token de acesso nos cookies do usuário ou não. Se não houver, o fluxo de acesso é:\n\nInterromper o acesso ao app e expor a UI de login do painelLogin.\nA função validate_session usa o ToolKit do firebase para verificar se as credenciais são válidas.\nSe forem válidas, um token é devolvido paro usuário e salvo nos cookies.\nQuando as credenciais são válidas também é fornecido acesso ao painel.\n\n\nknitr::include_graphics(\"img/fluxoFirebase.png\")",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Painéis do CIGA-MPMG</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#direcionamento-via-nginx",
+    "href": "paineis.html#direcionamento-via-nginx",
+    "title": "1  Painéis do CIGA-MPMG",
+    "section": "1.3 Direcionamento via nginx",
+    "text": "1.3 Direcionamento via nginx\nA compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de location do nginx são:\n    location / {\n                # block added from rstudio support doc\n                proxy_pass http://localhost:3838;\n                proxy_redirect / $scheme://$http_host/;\n                proxy_http_version 1.1;\n                proxy_set_header Upgrade $http_upgrade;\n                proxy_set_header Connection $connection_upgrade;\n                proxy_read_timeout 20d;\n                proxy_buffering off;\n    }\nJá as configurações de redirecionamento são\nserver {\n\n        listen 80;\n        server_name painel-homolog.ciga-mpmg.com.br;\n        rewrite     ^   https://$server_name$request_uri? redirect;\n\n        # Tamamho maximo de upload\n        #client_max_body_size 125m;\n\n        #proxy_headers_hash_max_size 2048;\n        #proxy_headers_hash_bucket_size 128;\n\n\n    location ^~ /.well-known/acme-challenge/ {\n         alias /var/www/html/.well-known/acme-challenge/;\n    }\n\n    location / {\n      proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n       # Websockets support\n  #      proxy_set_header Upgrade \"websocket\";\n  #      proxy_set_header Connection \"Upgrade\";\n\n    }\n\n    location /recomendacoes {\n      proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    }\n}\n\nserver {\n    listen 443 ssl;\n    server_name painel-homolog.ciga-mpmg.com.br;\n\n    ssl on;\n    ssl_certificate       /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/fullchain.pem;\n    ssl_certificate_key   /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/privkey.pem;\n\n    proxy_headers_hash_max_size 2048;\n    proxy_headers_hash_bucket_size 128;\n\n    location ^~ /.well-known/acme-challenge/ {\n         alias /var/www/html/.well-known/acme-challenge/;\n    }\n\n    location / {\n      proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n\n    }\n\n    location /recomendacoes/ {\n      proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    }\n\n    location /tacs/ {\n      proxy_pass http://127.0.0.1:3838/painelInfoTacs/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n    }\n\n        location /barragens/ {\n      proxy_pass http://127.0.0.1:3838/painelBarragens/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n    }\n\n        location /descaracterizacao/ {\n      proxy_pass http://127.0.0.1:3838/painelDescaracterizacao/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n      error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n\n    }\n}",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Painéis do CIGA-MPMG</span>"
+    ]
+  },
+  {
+    "objectID": "workflows.html",
+    "href": "workflows.html",
+    "title": "3  Workflows com GitHub Actions",
+    "section": "",
+    "text": "Para executar a obtenção e a preparação dos utilizados nos painéis e outros produtos relacionados ao CIGA, existem diversos workflows que são executados pelo GitHub Actions.\nWorkflows são arquivos de configuração que definem um conjunto de ações que são executadas em um ambiente de execução. Em alguns casos, o ambiente de execução são máquinas virtuais pertencentes à GitHub, em outros, o servidor do próprio CIGA.\nOs workflows existentes, e as informações sobre eles, estão descritas no arquivo https://github.com/ciga-mpmg/painelActions/blob/main/README.md.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflows com GitHub Actions</span>"
+    ]
   }
 ]
