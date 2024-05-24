@@ -16,13 +16,12 @@ O banco de dados `aecom_ciga_homolog` contém diversas bases de dados de temas c
 Esse banco de dados tem "AECOM" no nome. O Rubem disse que isso não é desejável. Checar com a equipe da AECOM o que fazer sobre isso.
 :::
 
-### Repositórios que utilizam o banco de dados
+### Painéis que utilizam o banco de dados
 
-Esse banco de dados é utilizado nos seguintes repositórios:
+Esse banco de dados é utilizado nos seguintes painéis:
 
-<!-- - Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes) -->
-
-<!-- - Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao) -->
+-   [`painelRecomendacoes`](https://github.com/ciga-mpmg/painelRecomendacoes) 
+-   [`painelBarragens`](https://github.com/ciga-mpmg/Barragens)
 
 
 ### Tabelas no banco de dados
@@ -46,18 +45,6 @@ tabelas_no_bd_reco |>
   writeLines()
 ```
 
-[TEMPORÁRIO] Tabelas que faltam descrever: 
-
-```{r}
-tabelas_descritas <- c("geography_columns", "geometry_columns", "pg_stat_statements", "pg_stat_statements_info", "spatial_ref_sys", "comarcasTJMG")
-
-tabelas_para_descrever <- setdiff(tabelas_no_bd_reco, tabelas_descritas)
-
-tabelas_para_descrever |>
-  sort() |>
-  writeLines()
-```
-
 ### Descrição das tabelas
 
 ```{r}
@@ -74,62 +61,81 @@ tabelas_para_descrever |>
 -   `comarcasTJMG`:
     - **Descrição:** Comarcas do TJMG.
     - **Criação:** ETL feito pelo workflow [`download-comarcas-TJMG`](https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml), no repositório [`ciga-mpmg/download_comarcas_TJMG`](https://github.com/ciga-mpmg/download_comarcas_TJMG). Depende do pacote [`comarcasTJMG`](https://github.com/ciga-mpmg/comarcasTJMG).
-    - **Leitura:** [painelEmailsSIGBM](https://github.com/ciga-mpmg/painelEmailsSIGBM), [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm), [resuvafeca](https://github.com/ciga-mpmg/resuvafeca).
+    - **Leitura:**  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm).
+
 
 -   `recommendations3`: 
-    - **Descrição:** Tabela de recomendações emitidas por auditorias.
-    - **Criação:** ETL feito no repositório [resuvafeca](https://github.com/ciga-mpmg/resuvafeca).
-    - **Leitura:** ...
+    - **Descrição:** Tabela de recomendações emitidas para os TACs, por auditorias.
+    - **Criação:** Sistema de cadastro de TACs.
+    - **Leitura:**  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm), [relatorioGerencial](https://github.com/ciga-mpmg/relatorioGerencial). 
 
--   `sigbm`: ...
+-   `sigbm`:
+    - **Descrição:** Tabela completa de informações extraídas da página principal do SIGBM, com informações sobre barragens no estado de Minas Gerais.
+    - **Criação:** ETL realizado no repositório  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm).
+    - **Leitura:** [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm), [painelBarragens](https://github.com/ciga-mpmg/painelBarragens).
+    
+    
+-   `sigbm_atual`: 
+    - **Descrição:** Tabela apenas com as informações mais recentes extraídas da página principal do SIGBM, com informações sobre barragens no estado de Minas Gerais.
+    - **Criação:** ETL realizado no repositório  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm).
+    - **Leitura:**  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm), [painelBarragens](https://github.com/ciga-mpmg/painelBarragens).
 
--   `sigbm_atual`: ...
+-   `sigbm_atual_com_comarcas`: 
+    - **Descrição:** Tabela apenas com as informações mais recentes extraídas da página principal do SIGBM, com informações sobre barragens no estado de Minas Gerais, e suas respectivas comarcas.
+    - **Criação:** ETL realizado no repositório  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm).
+    - **Leitura:** [painelBarragens](https://github.com/ciga-mpmg/painelBarragens).
 
--   `dados_recomendacoes_sigbm`: Join feito com as tabelas `recommendations3` e `sigbm`.
 
-    -   ETL feito pelo workflow [`update-sigbm`](https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml), no repositório [`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)
-    -   Utilizada em: Painel Recomendações, Relatório Gerencial.
+-   `dados_recomendacoes_sigbm`: 
+    - **Descrição:** União (join) feita a partir das tabelas `recommendations3` e `sigbm`.
+    - **Criação:** repositório  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm).
+    - **Leitura:** [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm), [painelRecomendacoes](https://github.com/ciga-mpmg/painelRecomendacoes), [relatorioGerencial](https://github.com/ciga-mpmg/relatorioGerencial).
+
+
+-   `dados_recomendacoes_sigbm_complexo_minerario`: 
+    - **Descrição:** Resultado da união (join) da tabela com as recomendações, informações sobre o sigbm e informações sobre o complexo minerário.
+    - **Criação:** repositório  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm).
+    - **Leitura:** [painelRecomendacoes](https://github.com/ciga-mpmg/painelRecomendacoes), [googleStorageMetadata](https://github.com/ciga-mpmg/googleStorageMetadata).
 
 ::: callout-important
-O repositório do workflow ([`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)) tem "aecom" no nome. Precisa ser renomeado.
+[JAN/2024] Me parece que antes esse fluxo era necessário pois as tabelas de complexo minerário estavam separadas. Agora, como vem com o banco, talvez seria bom reavaliar com calma se isso está fazendo sentido.
 :::
 
--   `dados_recomendacoes_sigbm_complexo_minerario`: Tratamentos feito com as tabelas `dados_recomendacoes_sigbm` e `sigbm`.
-    -   ETL feito pelo workflow [`update-sigbm`](https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml), no repositório [`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)
-    -   Utilizada em: Painel Recomendações.
+-   `dados_sigbm_atualizacao_mensal`:
+    - **Descrição:** Tratamento da tabela `sigbm` para gerar a tabela de atualização mensal.
+    - **Criação:** repositório  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm).
+    - **Leitura:**  [painelBarragens](https://github.com/ciga-mpmg/painelBarragens).
 
-::: callout-important
-Me parece que antes esse fluxo era necessário pois as tabelas de complexo minerário estavam separadas. Agora, como vem com o banco, talvez seria bom reavaliar com calma.
-:::
 
--   `dados_sigbm_atualizacao_mensal`: Tratamento da tabela `sigbm` para gerar a tabela de atualização mensal.
+-   `dados_sigbm_linha_do_tempo` e `dados_sigbm_linha_do_tempo_parcial`: 
+    - **Descrição:** Tratamento da tabela `sigbm` para gerar linha do tempo.
+    - **Criação:** repositório  [scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm).
+    - **Leitura:** [painelBarragens](https://github.com/ciga-mpmg/painelBarragens).
 
-    -   ETL feito pelo workflow [`update-sigbm`](https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml), no repositório [`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)
-    -   Utilizada em: Painel Barragens.
+-   `full_recommendations`:
+    - **Descrição:** ??
+    - **Criação:** ??
+    - **Leitura:** Nenhum
 
--   `dados_sigbm_linha_do_tempo`: Tratamento da tabela `sigbm` para gerar linha do tempo.
+-   `ide_sisema`:
+    - **Descrição:** Dados do IDE SISEMA.
+    - **Criação:** [download_IDE_SISEMA](https://github.com/ciga-mpmg/download_IDE_SISEMA)
+    - **Leitura:** Nenhum
 
-    -   ETL feito pelo workflow [`update-sigbm`](https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml), no repositório [`ciga-mpmg/aecom_sigbm`](https://github.com/ciga-mpmg/aecom_sigbm)
-    -   Utilizada em: Painel Barragens.
+-   `metadados_documentos_tacs`, `metadados_imagens_satelite_bucket`, `metadados_imagens_satelite_bucket_local`, `metadados_mascaras_imagens_satelite_bucket`, `metadados_relatorios_gerenciais`:
+    - **Descrição:** Metadados extraídos do Google Storage, com informações sobre os documentos dos TACs, imagens de satélite, relatórios gerenciais, etc.
+    - **Criação:**  [googleStorageMetadata](https://github.com/ciga-mpmg/googleStorageMetadata).
+    - **Leitura:** [painelBarragens](https://github.com/ciga-mpmg/painelBarragens), [painelRecomendacoes](https://github.com/ciga-mpmg/painelRecomendacoes).
 
--   `full_recommendations`: ...
 
--   `ide_sisema`: ...
+-   `sigbm_dados_cadastrais` e `sigbm_dados_cadastrais_atual`:
+    - **Descrição:** Dados extraídos da página completa do SIGBM, com informações sobre barragens no estado de Minas Gerais. Essa base de dados contém mais dados do que a base `sigbm`.
+    - **Criação:** [ciga-monitoramento-info-barragens/sigbm-dados-cadastrais](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais)
+    - **Leitura:** Nenhum.
 
--   `metadados_documentos_tacs`: ...
-
--   `metadados_imagens_satelite_bucket`: ...
-
--   `metadados_mascaras_imagens_satelite_bucket`: ...
-
--   `metadados_relatorios_gerenciais`: ...
-
--   `sigbm_dados_cadastrais`: ...
-
--   `sigbm_dados_cadastrais_atual`: ...
 
 ::: callout
-**Tabelas que deverão ser deletadas após parar de usar o Shinyapps**:
+**Tabelas que ainda são usadas no painel do Shinyapps, mas que agora usamos do banco de dados`cadastro-tacs` e poderão ser deletadas futuramente do banco de dados `aecom_ciga_homolog`**:
 
 -   `entrepreneurs` cópia antiga da tabela presente no banco de dados `cadastro-tacs`.
 
@@ -138,6 +144,8 @@ Me parece que antes esse fluxo era necessário pois as tabelas de complexo miner
 -   `tac_decharacterisations` cópia antiga da tabela presente no banco de dados `cadastro-tacs`.
 
 -   `tacs` cópia antiga da tabela presente no banco de dados `cadastro-tacs`.
+
+**ATENÇÃO**: Analisar se essas tabelas estão sendo utilizadas em algum lugar antes de deletá-las. 
 :::
 
 ## Banco de dados externo
@@ -148,7 +156,6 @@ Esse banco de dados é utilizado nos seguintes repositórios:
 
 -   Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes)
 
--   Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao)
 
 ::: callout-important
 O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.
@@ -177,11 +184,11 @@ O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usa
 
 **Tabelas utilizadas**:
 
--   `entrepreneurs`: Empreendedores de estruturas geotécnicas.
-    -   Utilizada em: Painel Descaracterização.
--   `geotechnical_structures`: Estruturas geotécnicas.
-    -   Utilizada em: Painel Descaracterização.
--   `tac_decharacterisations`: Tacs de descaracterização de estruturas geotécnicas.
-    -   Utilizada em: Painel Descaracterização.
+<!-- -   `entrepreneurs`: Empreendedores de estruturas geotécnicas. -->
+<!--     -   Utilizada em: Painel Descaracterização. -->
+<!-- -   `geotechnical_structures`: Estruturas geotécnicas. -->
+<!--     -   Utilizada em: Painel Descaracterização. -->
+<!-- -   `tac_decharacterisations`: Tacs de descaracterização de estruturas geotécnicas. -->
+<!--     -   Utilizada em: Painel Descaracterização. -->
 -   `tacs`: Tacs de estruturas geotécnicas (não são de descaracterização).
     -   Utilizada em: Painel Recomendações.

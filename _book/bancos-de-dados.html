@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#banco-de-dados-principal" id="toc-banco-de-dados-principal" class="nav-link active" data-scroll-target="#banco-de-dados-principal"><span class="header-section-number">2.1</span> Banco de dados principal</a>
   <ul class="collapse">
-  <li><a href="#repositórios-que-utilizam-o-banco-de-dados" id="toc-repositórios-que-utilizam-o-banco-de-dados" class="nav-link" data-scroll-target="#repositórios-que-utilizam-o-banco-de-dados"><span class="header-section-number">2.1.1</span> Repositórios que utilizam o banco de dados</a></li>
+  <li><a href="#painéis-que-utilizam-o-banco-de-dados" id="toc-painéis-que-utilizam-o-banco-de-dados" class="nav-link" data-scroll-target="#painéis-que-utilizam-o-banco-de-dados"><span class="header-section-number">2.1.1</span> Painéis que utilizam o banco de dados</a></li>
   <li><a href="#tabelas-no-banco-de-dados" id="toc-tabelas-no-banco-de-dados" class="nav-link" data-scroll-target="#tabelas-no-banco-de-dados"><span class="header-section-number">2.1.2</span> Tabelas no banco de dados</a></li>
   <li><a href="#descrição-das-tabelas" id="toc-descrição-das-tabelas" class="nav-link" data-scroll-target="#descrição-das-tabelas"><span class="header-section-number">2.1.3</span> Descrição das tabelas</a></li>
   </ul></li>
@@ -195,11 +195,13 @@ Importante
 <p>Esse banco de dados tem “AECOM” no nome. O Rubem disse que isso não é desejável. Checar com a equipe da AECOM o que fazer sobre isso.</p>
 </div>
 </div>
-<section id="repositórios-que-utilizam-o-banco-de-dados" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="repositórios-que-utilizam-o-banco-de-dados"><span class="header-section-number">2.1.1</span> Repositórios que utilizam o banco de dados</h3>
-<p>Esse banco de dados é utilizado nos seguintes repositórios:</p>
-<!-- - Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes) -->
-<!-- - Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao) -->
+<section id="painéis-que-utilizam-o-banco-de-dados" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="painéis-que-utilizam-o-banco-de-dados"><span class="header-section-number">2.1.1</span> Painéis que utilizam o banco de dados</h3>
+<p>Esse banco de dados é utilizado nos seguintes painéis:</p>
+<ul>
+<li><a href="https://github.com/ciga-mpmg/painelRecomendacoes"><code>painelRecomendacoes</code></a></li>
+<li><a href="https://github.com/ciga-mpmg/Barragens"><code>painelBarragens</code></a></li>
+</ul>
 </section>
 <section id="tabelas-no-banco-de-dados" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="tabelas-no-banco-de-dados"><span class="header-section-number">2.1.2</span> Tabelas no banco de dados</h3>
@@ -236,33 +238,6 @@ tac_decharacterisations
 tacs</code></pre>
 </div>
 </div>
-<p>[TEMPORÁRIO] Tabelas que faltam descrever:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>dados_recomendacoes_sigbm
-dados_recomendacoes_sigbm_complexo_minerario
-dados_sigbm_atualizacao_mensal
-dados_sigbm_linha_do_tempo
-dados_sigbm_linha_do_tempo_parcial
-entrepreneurs
-full_recommendations
-geotechnical_structures
-ide_sisema
-metadados_documentos_tacs
-metadados_imagens_satelite_bucket
-metadados_imagens_satelite_bucket_local
-metadados_mascaras_imagens_satelite_bucket
-metadados_relatorios_gerenciais
-recommendations3
-sigbm
-sigbm_atual
-sigbm_atual_com_comarcas
-sigbm_dados_cadastrais
-sigbm_dados_cadastrais_atual
-tac_decharacterisations
-tacs</code></pre>
-</div>
-</div>
 </section>
 <section id="descrição-das-tabelas" class="level3" data-number="2.1.3">
 <h3 data-number="2.1.3" class="anchored" data-anchor-id="descrição-das-tabelas"><span class="header-section-number">2.1.3</span> Descrição das tabelas</h3>
@@ -270,24 +245,47 @@ tacs</code></pre>
 <p><code>geography_columns</code>, <code>geometry_columns</code>, <code>pg_stat_statements</code>, <code>pg_stat_statements_info</code>, <code>spatial_ref_sys</code>.</p>
 <p><strong>Tabelas utilizadas</strong>:</p>
 <ul>
-<li><p><code>comarcasTJMG</code>:</p>
+<li><code>comarcasTJMG</code>:
 <ul>
 <li><strong>Descrição:</strong> Comarcas do TJMG.</li>
 <li><strong>Criação:</strong> ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml"><code>download-comarcas-TJMG</code></a>, no repositório <a href="https://github.com/ciga-mpmg/download_comarcas_TJMG"><code>ciga-mpmg/download_comarcas_TJMG</code></a>. Depende do pacote <a href="https://github.com/ciga-mpmg/comarcasTJMG"><code>comarcasTJMG</code></a>.</li>
-<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/painelEmailsSIGBM">painelEmailsSIGBM</a>, <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>, <a href="https://github.com/ciga-mpmg/resuvafeca">resuvafeca</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>.</li>
 </ul></li>
-<li><p><code>recommendations3</code>:</p>
+<li><code>recommendations3</code>:
 <ul>
-<li><strong>Descrição:</strong> Tabela de recomendações emitidas por auditorias.</li>
-<li><strong>Criação:</strong> ETL feito no repositório <a href="https://github.com/ciga-mpmg/resuvafeca">resuvafeca</a>.</li>
-<li><strong>Leitura:</strong> …</li>
+<li><strong>Descrição:</strong> Tabela de recomendações emitidas para os TACs, por auditorias.</li>
+<li><strong>Criação:</strong> Sistema de cadastro de TACs.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>, <a href="https://github.com/ciga-mpmg/relatorioGerencial">relatorioGerencial</a>.</li>
 </ul></li>
-<li><p><code>sigbm</code>: …</p></li>
-<li><p><code>sigbm_atual</code>: …</p></li>
-<li><p><code>dados_recomendacoes_sigbm</code>: Join feito com as tabelas <code>recommendations3</code> e <code>sigbm</code>.</p>
+<li><code>sigbm</code>:
 <ul>
-<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml"><code>update-sigbm</code></a>, no repositório <a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a></li>
-<li>Utilizada em: Painel Recomendações, Relatório Gerencial.</li>
+<li><strong>Descrição:</strong> Tabela completa de informações extraídas da página principal do SIGBM, com informações sobre barragens no estado de Minas Gerais.</li>
+<li><strong>Criação:</strong> ETL realizado no repositório <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>, <a href="https://github.com/ciga-mpmg/painelBarragens">painelBarragens</a>.</li>
+</ul></li>
+<li><code>sigbm_atual</code>:
+<ul>
+<li><strong>Descrição:</strong> Tabela apenas com as informações mais recentes extraídas da página principal do SIGBM, com informações sobre barragens no estado de Minas Gerais.</li>
+<li><strong>Criação:</strong> ETL realizado no repositório <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>, <a href="https://github.com/ciga-mpmg/painelBarragens">painelBarragens</a>.</li>
+</ul></li>
+<li><code>sigbm_atual_com_comarcas</code>:
+<ul>
+<li><strong>Descrição:</strong> Tabela apenas com as informações mais recentes extraídas da página principal do SIGBM, com informações sobre barragens no estado de Minas Gerais, e suas respectivas comarcas.</li>
+<li><strong>Criação:</strong> ETL realizado no repositório <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/painelBarragens">painelBarragens</a>.</li>
+</ul></li>
+<li><code>dados_recomendacoes_sigbm</code>:
+<ul>
+<li><strong>Descrição:</strong> União (join) feita a partir das tabelas <code>recommendations3</code> e <code>sigbm</code>.</li>
+<li><strong>Criação:</strong> repositório <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>, <a href="https://github.com/ciga-mpmg/painelRecomendacoes">painelRecomendacoes</a>, <a href="https://github.com/ciga-mpmg/relatorioGerencial">relatorioGerencial</a>.</li>
+</ul></li>
+<li><code>dados_recomendacoes_sigbm_complexo_minerario</code>:
+<ul>
+<li><strong>Descrição:</strong> Resultado da união (join) da tabela com as recomendações, informações sobre o sigbm e informações sobre o complexo minerário.</li>
+<li><strong>Criação:</strong> repositório <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/painelRecomendacoes">painelRecomendacoes</a>, <a href="https://github.com/ciga-mpmg/googleStorageMetadata">googleStorageMetadata</a>.</li>
 </ul></li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -300,48 +298,46 @@ Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O repositório do workflow (<a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a>) tem “aecom” no nome. Precisa ser renomeado.</p>
+<p>[JAN/2024] Me parece que antes esse fluxo era necessário pois as tabelas de complexo minerário estavam separadas. Agora, como vem com o banco, talvez seria bom reavaliar com calma se isso está fazendo sentido.</p>
 </div>
 </div>
 <ul>
-<li><code>dados_recomendacoes_sigbm_complexo_minerario</code>: Tratamentos feito com as tabelas <code>dados_recomendacoes_sigbm</code> e <code>sigbm</code>.
+<li><code>dados_sigbm_atualizacao_mensal</code>:
 <ul>
-<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml"><code>update-sigbm</code></a>, no repositório <a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a></li>
-<li>Utilizada em: Painel Recomendações.</li>
+<li><strong>Descrição:</strong> Tratamento da tabela <code>sigbm</code> para gerar a tabela de atualização mensal.</li>
+<li><strong>Criação:</strong> repositório <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/painelBarragens">painelBarragens</a>.</li>
 </ul></li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Importante
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Me parece que antes esse fluxo era necessário pois as tabelas de complexo minerário estavam separadas. Agora, como vem com o banco, talvez seria bom reavaliar com calma.</p>
-</div>
-</div>
+<li><code>dados_sigbm_linha_do_tempo</code> e <code>dados_sigbm_linha_do_tempo_parcial</code>:
 <ul>
-<li><p><code>dados_sigbm_atualizacao_mensal</code>: Tratamento da tabela <code>sigbm</code> para gerar a tabela de atualização mensal.</p>
-<ul>
-<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml"><code>update-sigbm</code></a>, no repositório <a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a></li>
-<li>Utilizada em: Painel Barragens.</li>
+<li><strong>Descrição:</strong> Tratamento da tabela <code>sigbm</code> para gerar linha do tempo.</li>
+<li><strong>Criação:</strong> repositório <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/painelBarragens">painelBarragens</a>.</li>
 </ul></li>
-<li><p><code>dados_sigbm_linha_do_tempo</code>: Tratamento da tabela <code>sigbm</code> para gerar linha do tempo.</p>
+<li><code>full_recommendations</code>:
 <ul>
-<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/aecom_sigbm/actions/workflows/update-sigbm.yaml"><code>update-sigbm</code></a>, no repositório <a href="https://github.com/ciga-mpmg/aecom_sigbm"><code>ciga-mpmg/aecom_sigbm</code></a></li>
-<li>Utilizada em: Painel Barragens.</li>
+<li><strong>Descrição:</strong> ??</li>
+<li><strong>Criação:</strong> ??</li>
+<li><strong>Leitura:</strong> Nenhum</li>
 </ul></li>
-<li><p><code>full_recommendations</code>: …</p></li>
-<li><p><code>ide_sisema</code>: …</p></li>
-<li><p><code>metadados_documentos_tacs</code>: …</p></li>
-<li><p><code>metadados_imagens_satelite_bucket</code>: …</p></li>
-<li><p><code>metadados_mascaras_imagens_satelite_bucket</code>: …</p></li>
-<li><p><code>metadados_relatorios_gerenciais</code>: …</p></li>
-<li><p><code>sigbm_dados_cadastrais</code>: …</p></li>
-<li><p><code>sigbm_dados_cadastrais_atual</code>: …</p></li>
+<li><code>ide_sisema</code>:
+<ul>
+<li><strong>Descrição:</strong> Dados do IDE SISEMA.</li>
+<li><strong>Criação:</strong> <a href="https://github.com/ciga-mpmg/download_IDE_SISEMA">download_IDE_SISEMA</a></li>
+<li><strong>Leitura:</strong> Nenhum</li>
+</ul></li>
+<li><code>metadados_documentos_tacs</code>, <code>metadados_imagens_satelite_bucket</code>, <code>metadados_imagens_satelite_bucket_local</code>, <code>metadados_mascaras_imagens_satelite_bucket</code>, <code>metadados_relatorios_gerenciais</code>:
+<ul>
+<li><strong>Descrição:</strong> Metadados extraídos do Google Storage, com informações sobre os documentos dos TACs, imagens de satélite, relatórios gerenciais, etc.</li>
+<li><strong>Criação:</strong> <a href="https://github.com/ciga-mpmg/googleStorageMetadata">googleStorageMetadata</a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/painelBarragens">painelBarragens</a>, <a href="https://github.com/ciga-mpmg/painelRecomendacoes">painelRecomendacoes</a>.</li>
+</ul></li>
+<li><code>sigbm_dados_cadastrais</code> e <code>sigbm_dados_cadastrais_atual</code>:
+<ul>
+<li><strong>Descrição:</strong> Dados extraídos da página completa do SIGBM, com informações sobre barragens no estado de Minas Gerais. Essa base de dados contém mais dados do que a base <code>sigbm</code>.</li>
+<li><strong>Criação:</strong> <a href="https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais">ciga-monitoramento-info-barragens/sigbm-dados-cadastrais</a></li>
+<li><strong>Leitura:</strong> Nenhum.</li>
+</ul></li>
 </ul>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -349,13 +345,14 @@ Importante
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Tabelas que deverão ser deletadas após parar de usar o Shinyapps</strong>:</p>
+<p><strong>Tabelas que ainda são usadas no painel do Shinyapps, mas que agora usamos do banco de dados<code>cadastro-tacs</code> e poderão ser deletadas futuramente do banco de dados <code>aecom_ciga_homolog</code></strong>:</p>
 <ul>
 <li><p><code>entrepreneurs</code> cópia antiga da tabela presente no banco de dados <code>cadastro-tacs</code>.</p></li>
 <li><p><code>geotechnical_structures</code> cópia antiga da tabela presente no banco de dados <code>cadastro-tacs</code>.</p></li>
 <li><p><code>tac_decharacterisations</code> cópia antiga da tabela presente no banco de dados <code>cadastro-tacs</code>.</p></li>
 <li><p><code>tacs</code> cópia antiga da tabela presente no banco de dados <code>cadastro-tacs</code>.</p></li>
 </ul>
+<p><strong>ATENÇÃO</strong>: Analisar se essas tabelas estão sendo utilizadas em algum lugar antes de deletá-las.</p>
 </div>
 </div>
 </div>
@@ -366,8 +363,7 @@ Importante
 <p>O banco de dados <code>cadastro-tacs</code> contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.</p>
 <p>Esse banco de dados é utilizado nos seguintes repositórios:</p>
 <ul>
-<li><p>Painel Recomendações <a href="https://github.com/ciga-mpmg/painelRecomendacoes">(<code>ciga-mpmg/painelRecomendacoes</code>)</a></p></li>
-<li><p>Painel Descaracterização <a href="https://github.com/ciga-mpmg/painelDescaracterizacao">(<code>ciga-mpmg/painelDescaracterizacao</code>)</a></p></li>
+<li>Painel Recomendações <a href="https://github.com/ciga-mpmg/painelRecomendacoes">(<code>ciga-mpmg/painelRecomendacoes</code>)</a></li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -383,19 +379,13 @@ Importante
 </div>
 </div>
 <p><strong>Tabelas utilizadas</strong>:</p>
+<!-- -   `entrepreneurs`: Empreendedores de estruturas geotécnicas. -->
+<!--     -   Utilizada em: Painel Descaracterização. -->
+<!-- -   `geotechnical_structures`: Estruturas geotécnicas. -->
+<!--     -   Utilizada em: Painel Descaracterização. -->
+<!-- -   `tac_decharacterisations`: Tacs de descaracterização de estruturas geotécnicas. -->
+<!--     -   Utilizada em: Painel Descaracterização. -->
 <ul>
-<li><code>entrepreneurs</code>: Empreendedores de estruturas geotécnicas.
-<ul>
-<li>Utilizada em: Painel Descaracterização.</li>
-</ul></li>
-<li><code>geotechnical_structures</code>: Estruturas geotécnicas.
-<ul>
-<li>Utilizada em: Painel Descaracterização.</li>
-</ul></li>
-<li><code>tac_decharacterisations</code>: Tacs de descaracterização de estruturas geotécnicas.
-<ul>
-<li>Utilizada em: Painel Descaracterização.</li>
-</ul></li>
 <li><code>tacs</code>: Tacs de estruturas geotécnicas (não são de descaracterização).
 <ul>
 <li>Utilizada em: Painel Recomendações.</li>
