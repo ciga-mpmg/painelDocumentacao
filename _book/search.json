@@ -74,7 +74,7 @@
     "href": "bancos-de-dados.html#banco-de-dados-externo",
     "title": "2  Bancos de dados",
     "section": "2.2 Banco de dados externo",
-    "text": "2.2 Banco de dados externo\nO banco de dados cadastro-tacs contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.\nEsse banco de dados é utilizado nos seguintes repositórios:\n\nPainel Recomendações (ciga-mpmg/painelRecomendacoes)\n\n\n\n\n\n\n\nImportante\n\n\n\nO painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.\n\n\nTabelas utilizadas:\n\n\n\n\n\n\n\ntacs: Tacs de estruturas geotécnicas (não são de descaracterização).\n\nUtilizada em: Painel Recomendações.",
+    "text": "2.2 Banco de dados externo\nO banco de dados cadastro-tacs contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.\nEsse banco de dados é utilizado nos seguintes repositórios:\n\nPainel Recomendações (ciga-mpmg/painelRecomendacoes)\n\n\n\n\n\n\n\nImportante\n\n\n\n[JAN/2024] O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.\n[MAIO/2024] Conferi, e no código ele está conectando com a base de recomendações. Não está conectando com a base de cadastro de TACs. Isso precisará ser alterado.\n\n\nTabelas utilizadas:\n\n\n\n\n\n\n\ntacs: Tacs de estruturas geotécnicas (não são de descaracterização).\n\nUtilizada em: Painel Recomendações.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Bancos de dados</span>"
     ]
