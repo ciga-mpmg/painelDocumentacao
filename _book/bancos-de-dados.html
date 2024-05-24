@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workflows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Referências</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Workflows com GitHub Actions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -146,7 +146,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#banco-de-dados-principal" id="toc-banco-de-dados-principal" class="nav-link active" data-scroll-target="#banco-de-dados-principal"><span class="header-section-number">2.1</span> Banco de dados principal</a></li>
+  <li><a href="#banco-de-dados-principal" id="toc-banco-de-dados-principal" class="nav-link active" data-scroll-target="#banco-de-dados-principal"><span class="header-section-number">2.1</span> Banco de dados principal</a>
+  <ul class="collapse">
+  <li><a href="#repositórios-que-utilizam-o-banco-de-dados" id="toc-repositórios-que-utilizam-o-banco-de-dados" class="nav-link" data-scroll-target="#repositórios-que-utilizam-o-banco-de-dados"><span class="header-section-number">2.1.1</span> Repositórios que utilizam o banco de dados</a></li>
+  <li><a href="#tabelas-no-banco-de-dados" id="toc-tabelas-no-banco-de-dados" class="nav-link" data-scroll-target="#tabelas-no-banco-de-dados"><span class="header-section-number">2.1.2</span> Tabelas no banco de dados</a></li>
+  <li><a href="#descrição-das-tabelas" id="toc-descrição-das-tabelas" class="nav-link" data-scroll-target="#descrição-das-tabelas"><span class="header-section-number">2.1.3</span> Descrição das tabelas</a></li>
+  </ul></li>
   <li><a href="#banco-de-dados-externo" id="toc-banco-de-dados-externo" class="nav-link" data-scroll-target="#banco-de-dados-externo"><span class="header-section-number">2.2</span> Banco de dados externo</a></li>
   </ul>
 </nav>
@@ -190,34 +195,93 @@ Importante
 <p>Esse banco de dados tem “AECOM” no nome. O Rubem disse que isso não é desejável. Checar com a equipe da AECOM o que fazer sobre isso.</p>
 </div>
 </div>
+<section id="repositórios-que-utilizam-o-banco-de-dados" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="repositórios-que-utilizam-o-banco-de-dados"><span class="header-section-number">2.1.1</span> Repositórios que utilizam o banco de dados</h3>
 <p>Esse banco de dados é utilizado nos seguintes repositórios:</p>
 <!-- - Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes) -->
 <!-- - Painel Descaracterização [(`ciga-mpmg/painelDescaracterizacao`)](https://github.com/ciga-mpmg/painelDescaracterizacao) -->
+</section>
+<section id="tabelas-no-banco-de-dados" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="tabelas-no-banco-de-dados"><span class="header-section-number">2.1.2</span> Tabelas no banco de dados</h3>
+<p>Segue abaixo a lista de tabelas presentes no banco de dados <code>aecom_ciga_homolog</code>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>comarcasTJMG
+dados_recomendacoes_sigbm
+dados_recomendacoes_sigbm_complexo_minerario
+dados_sigbm_atualizacao_mensal
+dados_sigbm_linha_do_tempo
+dados_sigbm_linha_do_tempo_parcial
+entrepreneurs
+full_recommendations
+geography_columns
+geometry_columns
+geotechnical_structures
+ide_sisema
+metadados_documentos_tacs
+metadados_imagens_satelite_bucket
+metadados_imagens_satelite_bucket_local
+metadados_mascaras_imagens_satelite_bucket
+metadados_relatorios_gerenciais
+pg_stat_statements
+pg_stat_statements_info
+recommendations3
+sigbm
+sigbm_atual
+sigbm_atual_com_comarcas
+sigbm_dados_cadastrais
+sigbm_dados_cadastrais_atual
+spatial_ref_sys
+tac_decharacterisations
+tacs</code></pre>
+</div>
+</div>
+<p>[TEMPORÁRIO] Tabelas que faltam descrever:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>dados_recomendacoes_sigbm
+dados_recomendacoes_sigbm_complexo_minerario
+dados_sigbm_atualizacao_mensal
+dados_sigbm_linha_do_tempo
+dados_sigbm_linha_do_tempo_parcial
+entrepreneurs
+full_recommendations
+geotechnical_structures
+ide_sisema
+metadados_documentos_tacs
+metadados_imagens_satelite_bucket
+metadados_imagens_satelite_bucket_local
+metadados_mascaras_imagens_satelite_bucket
+metadados_relatorios_gerenciais
+recommendations3
+sigbm
+sigbm_atual
+sigbm_atual_com_comarcas
+sigbm_dados_cadastrais
+sigbm_dados_cadastrais_atual
+tac_decharacterisations
+tacs</code></pre>
+</div>
+</div>
+</section>
+<section id="descrição-das-tabelas" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="descrição-das-tabelas"><span class="header-section-number">2.1.3</span> Descrição das tabelas</h3>
 <p><strong>Tabelas não utilizadas</strong> (são criadas pelo próprio sistema de banco de dados, e não são manipuladas/utilizadas no projeto):</p>
 <p><code>geography_columns</code>, <code>geometry_columns</code>, <code>pg_stat_statements</code>, <code>pg_stat_statements_info</code>, <code>spatial_ref_sys</code>.</p>
 <p><strong>Tabelas utilizadas</strong>:</p>
 <ul>
-<li><code>comarcasTJMG</code>: Comarcas do TJMG.
+<li><p><code>comarcasTJMG</code>:</p>
 <ul>
-<li>ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml"><code>download-comarcas-TJMG</code></a>, no repositório <a href="https://github.com/ciga-mpmg/download_comarcas_TJMG"><code>ciga-mpmg/download_comarcas_TJMG</code></a>. Depende do pacote <a href="https://github.com/ciga-mpmg/comarcasTJMG"><code>comarcasTJMG</code></a>.</li>
-<li>Utilizada em: Resuvafeca.</li>
+<li><strong>Descrição:</strong> Comarcas do TJMG.</li>
+<li><strong>Criação:</strong> ETL feito pelo workflow <a href="https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml"><code>download-comarcas-TJMG</code></a>, no repositório <a href="https://github.com/ciga-mpmg/download_comarcas_TJMG"><code>ciga-mpmg/download_comarcas_TJMG</code></a>. Depende do pacote <a href="https://github.com/ciga-mpmg/comarcasTJMG"><code>comarcasTJMG</code></a>.</li>
+<li><strong>Leitura:</strong> <a href="https://github.com/ciga-mpmg/painelEmailsSIGBM">painelEmailsSIGBM</a>, <a href="https://github.com/ciga-mpmg/scraper_sigbm">scraper_sigbm</a>, <a href="https://github.com/ciga-mpmg/resuvafeca">resuvafeca</a>.</li>
 </ul></li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Importante
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>No README do repositório <a href="https://github.com/ciga-mpmg/comarcasTJMG">comarcasTJMG</a>, está como se o repositório estivesse no GitHub do Rubem.</p>
-</div>
-</div>
+<li><p><code>recommendations3</code>:</p>
 <ul>
-<li><p><code>recommendations3</code>: …</p></li>
+<li><strong>Descrição:</strong> Tabela de recomendações emitidas por auditorias.</li>
+<li><strong>Criação:</strong> ETL feito no repositório <a href="https://github.com/ciga-mpmg/resuvafeca">resuvafeca</a>.</li>
+<li><strong>Leitura:</strong> …</li>
+</ul></li>
 <li><p><code>sigbm</code>: …</p></li>
 <li><p><code>sigbm_atual</code>: …</p></li>
 <li><p><code>dados_recomendacoes_sigbm</code>: Join feito com as tabelas <code>recommendations3</code> e <code>sigbm</code>.</p>
@@ -295,6 +359,7 @@ Importante
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="banco-de-dados-externo" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="banco-de-dados-externo"><span class="header-section-number">2.2</span> Banco de dados externo</h2>
@@ -735,8 +800,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflows.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>Referências</span>">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Referências</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./workflows.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>Workflows com GitHub Actions</span>">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Workflows com GitHub Actions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
