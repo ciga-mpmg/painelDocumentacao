@@ -1,0 +1,49 @@
+## Casos de Uso
+
+Neste capítulo apresentamos alguns casos de uso do Painel CIGA-MPMG e suas respectivas documentações.
+
+## Gerar relatórios gerenciais
+
+**Sou**: Administrador do sistema CIGA-MPMG.
+
+**Quero**: Gerar relatórios gerenciais atualizados e disponibiliza-los para download na plataforma.
+
+Esse processo deve ser executado em dois passos. 
+
+**Passo 1**: Executar a rotina de geração dos relatórios "gerar_relatorios_gerenciais" clicando em "Run workflow" na página de Actions do repositório https://github.com/ciga-mpmg/painelMain
+
+![](img/actions_geracao_de_relatorio.png)
+
+Ao final desse processo, novos relatórios referentes à data de execução da rotina.
+
+**Passo 2**: Executar a rotina de cadastros do relatórios no banco de dados interno da plataforma CIGA-MPMG.
+
+![](img/actions_atualizacao_bucket.png)
+
+## Firebase
+
+### Criar usuário
+
+**Sou**: Administrador do sistema CIGA-MPMG.
+
+**Quero**: Criar um novo usuário para o painel CIGA-MPMG.
+
+O administrador do sistema CIGA-MPMG pode cadastrar novos usuários interagindo com o painel de gerenciamento do Firebase:
+
+![](img/criacao_de_usuarios.png)
+
+Ao clicar em "Adicionar usuário", basta incluir usuário e senha e o usuário estará criado com acesso a https://ciga-mpmg.com.br/
+
+Caso seja necessário fornecer acesso ao painel de homologação para teste de novas funcionalidades, é necessário definir `homolog: true` na entrada correspondente ao usuário recém-criado no RealTime Database:
+
+![](img/desbloqueio_de_usuario.png)
+
+### Alterar senha, remover usuário ou suspender acesso
+
+**Sou**: Administrador do sistema CIGA-MPMG.
+
+**Quero**: Alterar senha, remover um usuário ou suspender um acesso.
+
+Caso seja necessário alterar uma dessas três características, basta interagir com os detalhamentos de um usuário no painel de gerenciamento do Firebase.
+
+![](img/redefinir_senha.png)
