@@ -1,28 +1,28 @@
-## Painéis do CIGA-MPMG
+## Telas do Painel Gerencial CIGA
 
 A aplicação disponível em https://ciga-mpmg.com.br/ é composta por 4 painéis, organizados em repositórios distintos. Cada painel consiste em um aplicativo shiny seguindo o [framework golem](https://golemverse.org/) e são integrados por roteamento via [`nginx`](https://www.nginx.com/) nos servidores de aplicação. Os paineis mencionados são:
 
-- [`painelMain`](https://github.com/ciga-mpmg/painelMain) é a página principal que contém uma descrição básica de todos os outros painéis.
-- [`painelRecomendacoes`](https://github.com/ciga-mpmg/painelRecomendacoes) é o painel que expõe informações sobre todas as recomendações e os relatórios gerenciais.
-- [`painelBarragens`](https://github.com/ciga-mpmg/Barragens) é o painel que expõe informações sobre todas as barragens, relacionadas a alguma recomendação ou não, e consolida informações oriundas do SIGBM.
-- [`painelInfoTacs`](https://github.com/ciga-mpmg/painelInfoTacs) é um painel para acesso de informações cadastrais dos TACs.
+-   [`painelMain`](https://github.com/ciga-mpmg/painelMain) é a página principal que contém uma descrição básica de todos os outros painéis.
+-   [`painelRecomendacoes`](https://github.com/ciga-mpmg/painelRecomendacoes) é o painel que expõe informações sobre todas as recomendações e os relatórios gerenciais.
+-   [`painelBarragens`](https://github.com/ciga-mpmg/Barragens) é o painel que expõe informações sobre todas as barragens, relacionadas a alguma recomendação ou não, e consolida informações oriundas do SIGBM.
+-   [`painelInfoTacs`](https://github.com/ciga-mpmg/painelInfoTacs) é um painel para acesso de informações cadastrais dos TACs.
 
-Nas subseçõs abaixo destacamos detalhes importantes de cada painel. 
+Nas subseções abaixo destacamos detalhes importantes de cada painel.
 
 ## Estrutura básica
 
 Todos os paineis com exeção de `painelMain` dependem de uma série de configurações e dependências de ambiente. São elas:
 
-- Ubuntu 20.04
+-   Ubuntu 20.04
 
-- R 4.2.1 ou superior
+-   R 4.2.1 ou superior
 
-- Shiny-Server em versão 1.5.19 ou superior
+-   Shiny-Server em versão 1.5.19 ou superior
 
-- Variáveis de ambiente:
+-   Variáveis de ambiente:
 
 ```
-CIGA_SQL_HOST  # endereço de acesso ao banco de dados
+CIGA_SQL_HOST # endereço de acesso ao banco de dados
 CIGA_SQL_DATABASE # banco de dados
 CIGA_SQL_USER # usuário do banco
 CIGA_SQL_PORT # porta do banco
@@ -32,10 +32,10 @@ CIGA_OUTLOOK_TENANT # tenant do outlook
 CIGA_OUTLOOK_APP # id do aplicativo do outlook
 CIGA_OUTLOOK_PASSWORD # senha do outlook
 CIGA_FIREBASE_PASSWORD # senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br
-CIGA_FIREBASE_PROJECT_API="AIzaSyCH-0lM6fq2Wgx7NfGedRDJnV9Bxa4ifoo" # projeto do firebase
+CIGA_FIREBASE_PROJECT_API # projeto do firebase
 ```
 
-Todos os apps contam com uma infraestrutura de login que depende das variáveis de ambiente. Essa infraestrutura é:
+As variáveis de ambiente são encontradas em `/home/shiny-admin/.Renviron`. Todos os apps contam com uma infraestrutura de login que depende das variáveis de ambiente. Essa infraestrutura é:
 
 ```
 if (ambiente %in% c("homolog", "prod")) {
@@ -62,10 +62,10 @@ As configurações para obter o endpoint de validação do login estão registra
 
 O mecanismo de autenticação de todo acesso se divide em dois casos: se há token de acesso nos cookies do usuário ou não. Se não houver, o fluxo de acesso é:
 
-1. Interromper o acesso ao app e expor a UI de login do painelLogin.
-2. A função `validate_session` usa o ToolKit do firebase para verificar se as credenciais são válidas.
-3. Se forem válidas, um token é devolvido paro usuário e salvo nos cookies.
-4. Quando as credenciais são válidas também é fornecido acesso ao painel.
+1.  Interromper o acesso ao app e expor a UI de login do painelLogin.
+2.  A função `validate_session` usa o ToolKit do firebase para verificar se as credenciais são válidas.
+3.  Se forem válidas, um token é devolvido paro usuário e salvo nos cookies.
+4.  Quando as credenciais são válidas também é fornecido acesso ao painel.
 
 ```{r}
 knitr::include_graphics("img/fluxoFirebase.png")
@@ -76,7 +76,7 @@ knitr::include_graphics("img/fluxoFirebase.png")
 A compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de `location` do nginx são:
 
 ```
-	location / {
+    location / {
                 # block added from rstudio support doc
                 proxy_pass http://localhost:3838;
                 proxy_redirect / $scheme://$http_host/;
@@ -85,10 +85,10 @@ A compatibilização de todos os apps como uma única aplicação é feita com d
                 proxy_set_header Connection $connection_upgrade;
                 proxy_read_timeout 20d;
                 proxy_buffering off;
-	}
+    }
 ```
 
-Já as configurações de redirecionamento são
+Já as configurações de redirecionamento são:
 
 ```
 server {
@@ -212,5 +212,4 @@ server {
 
     }
 }
-
 ```

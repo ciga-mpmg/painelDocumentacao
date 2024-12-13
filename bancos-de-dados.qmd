@@ -1,6 +1,6 @@
 ---
-knitr: 
-  opts_chunk: 
+knitr:
+  opts_chunk:
     echo: false
 ---
 
@@ -138,9 +138,9 @@ Esse banco de dados é utilizado nos seguintes repositórios:
 -   Painel Recomendações [(`ciga-mpmg/painelRecomendacoes`)](https://github.com/ciga-mpmg/painelRecomendacoes)
 
 ::: callout-important
-[JAN/2024] O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.
+\[JAN/2024\] O painelInfoTacs deveria usar os dados deste banco, certo? Conferir se está usando mesmo. Não apareceu na pesquisa do GitHub.
 
-[MAIO/2024] Conferi, e no código ele está conectando com a base de recomendações. Não está conectando com a base de cadastro de TACs. Isso precisará ser alterado.
+\[MAIO/2024\] Conferi, e no código ele está conectando com a base de recomendações. Não está conectando com a base de cadastro de TACs. Isso precisará ser alterado.
 :::
 
 ```{r}
@@ -152,11 +152,11 @@ Esse banco de dados é utilizado nos seguintes repositórios:
 #   port = Sys.getenv("CIGA_SQL_PORT"),
 #   password = Sys.getenv("CIGA_SQL_PASSWORD"),
 # )
-# 
+#
 # tabelas_cadastro_tacs <- RSQLite::dbListTables(con_cadastro_tacs)
 
-# tabelas_cadastro_tacs |> 
-#   sort() |> 
+# tabelas_cadastro_tacs |>
+#   sort() |>
 #   writeLines()
 
 
