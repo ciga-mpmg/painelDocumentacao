@@ -21,7 +21,7 @@ Todos os paineis com exeção de `painelMain` dependem de uma série de configur
 
 -   Variáveis de ambiente:
 
-```
+```         
 CIGA_SQL_HOST # endereço de acesso ao banco de dados
 CIGA_SQL_DATABASE # banco de dados
 CIGA_SQL_USER # usuário do banco
@@ -37,7 +37,7 @@ CIGA_FIREBASE_PROJECT_API # projeto do firebase
 
 As variáveis de ambiente são encontradas em `/home/shiny-admin/.Renviron`. Todos os apps contam com uma infraestrutura de login que depende das variáveis de ambiente. Essa infraestrutura é:
 
-```
+```         
 if (ambiente %in% c("homolog", "prod")) {
     url <- get_golem_config("url", Sys.getenv("AMBIENTE"))
     validation_endpoint <- get_golem_config(
@@ -75,7 +75,7 @@ knitr::include_graphics("img/fluxoFirebase.png")
 
 A compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de `location` do nginx são:
 
-```
+```         
     location / {
                 # block added from rstudio support doc
                 proxy_pass http://localhost:3838;
@@ -90,7 +90,7 @@ A compatibilização de todos os apps como uma única aplicação é feita com d
 
 Já as configurações de redirecionamento são:
 
-```
+```         
 server {
 
         listen 80;

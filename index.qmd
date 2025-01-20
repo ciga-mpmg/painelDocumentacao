@@ -1,7 +1,3 @@
-# Introdução {.unnumbered}
+# Sobre {.unnumbered}
 
-Este documento apresenta a documentação do Painel desenvolvido para o CIGA-MPMG.
-
-Devido à complexidade do painel, o projeto está estruturado em diferentes partes, cada um com um propósito específico.
-
-Os softwares foram desenvolvidos e versionados utilizando o sistema de controle de versão [Git](https://git-scm.com/) e estão disponíveis em repositórios privados no [GitHub](https://github.com/).
+Este documento apresenta a documentação dos painéis de dados que compõem o CIGA-MPMG: Barragens, Informações sobre os Tacs, Descaracterização e Recomendações.

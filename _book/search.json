@@ -88,5 +88,35 @@
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Workflows com GitHub Actions</span>"
     ]
+  },
+  {
+    "objectID": "acesso.html",
+    "href": "acesso.html",
+    "title": "2  Acesso",
+    "section": "",
+    "text": "2.1 Login\nPara acessar a versão em produção do CIGA-MPMG, utilize a URL https://painel.ciga-mpmg.com.br/. A versão de homologação se encontra na URL https://painel-homolog.ciga-mpmg.com.br/.\nAmbas as versões necessitam de autenticação, sendo necessário cadastrar cada novo usuário no painel de gerenciamento do Firebase.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
+    ]
+  },
+  {
+    "objectID": "acesso.html#cadastrar-novo-usuário",
+    "href": "acesso.html#cadastrar-novo-usuário",
+    "title": "2  Acesso",
+    "section": "2.2 Cadastrar novo usuário",
+    "text": "2.2 Cadastrar novo usuário\nO administrador do sistema CIGA-MPMG pode cadastrar novos usuários interagindo com o painel de gerenciamento do Firebase:\n\nAo clicar em “Adicionar usuário”, basta incluir usuário e senha e o usuário estará criado com acesso a https://ciga-mpmg.com.br/.\nCaso seja necessário fornecer acesso ao painel de homologação para teste de novas funcionalidades, é necessário definir homolog: true na entrada correspondente ao usuário recém-criado no RealTime Database:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
+    ]
+  },
+  {
+    "objectID": "acesso.html#alterar-senha-remover-usuário-ou-suspender-acesso",
+    "href": "acesso.html#alterar-senha-remover-usuário-ou-suspender-acesso",
+    "title": "2  Acesso",
+    "section": "2.3 Alterar senha, remover usuário ou suspender acesso",
+    "text": "2.3 Alterar senha, remover usuário ou suspender acesso\nCaso seja necessário alterar uma dessas três características, basta interagir com os detalhamentos de um usuário no painel de gerenciamento do Firebase.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
+    ]
   }
 ]

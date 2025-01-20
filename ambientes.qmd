@@ -1,0 +1,34 @@
+# Ambientes
+
+Nesta seção, apresentamos os ambientes utilizados para a administração do Painel CIGA-MPMG.
+
+## R
+
+Os painéis do CIGA-MPMG foram desenvolvidos utilizando a linguagem de programação [R](https://www.r-project.org/) e a biblioteca [Shiny](https://shiny.posit.co/).
+
+Para alteração do código-fonte, será necessário instalar o R na máquina de desenvolvimento. Também é recomendado a utilização de alguma IDE amigável ao R, como o [RStudio](https://posit.co/download/rstudio-desktop/), o [VSCode](https://code.visualstudio.com/) ou o [Positron](https://positron.posit.co/).
+
+## GitHub
+
+O código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão [Git](https://git-scm.com/) e estão disponíveis em repositórios privados no [GitHub](https://github.com/).
+
+Os repositórios foram criados dentro da organização [ciga-mpmg](https://github.com/ciga-mpmg).
+
+Os respositórios de automação são utilizados para a execução das rotinas de atualização dos dados e de deploy dos painéis. Na Seção @sec-repositorios listamos a função de cada repositório e fornecemos seu respectivo link.
+
+## GCP
+
+@azeloc
+
+## Shiny Server
+
+Os painéis do CIGA-MPMG foram implantados utilizando o [Shiny Server](https://posit.co/products/open-source/shiny-server/).
+
+Este ambiente deverá ser acessado para... @azeloc
+
+## Firebase
+
+O serviço [Firebase](https://firebase.google.com) é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.
+
+O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG. 
+@azeloc

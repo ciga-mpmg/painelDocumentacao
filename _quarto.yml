@@ -7,11 +7,14 @@ book:
   date: "5/24/2024"
   chapters:
     - index.qmd
+    - ambientes.qmd
+    - acesso.qmd
     - paineis.qmd
-    - bancos-de-dados.qmd
-    - workflows.qmd
-    - referencias.qmd
-    - casos_de_uso.qmd
+    - repositorios.qmd
+    # - bancos-de-dados.qmd
+    # - workflows.qmd
+    # - referencias.qmd
+    # - casos_de_uso.qmd
 
 bibliography: references.bib
 
