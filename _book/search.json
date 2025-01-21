@@ -4,49 +4,49 @@
     "href": "index.html",
     "title": "Documentação do Painel CIGA-MPMG",
     "section": "",
-    "text": "Introdução\nEste documento apresenta a documentação do Painel desenvolvido para o CIGA-MPMG.\nDevido à complexidade do painel, o projeto está estruturado em diferentes partes, cada um com um propósito específico.\nOs softwares foram desenvolvidos e versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.",
+    "text": "Sobre\nEste documento apresenta a documentação dos painéis de dados que compõem o CIGA-MPMG: Barragens, Informações sobre os Tacs, Descaracterização e Recomendações.",
     "crumbs": [
-      "Introdução"
+      "Sobre"
     ]
   },
   {
     "objectID": "paineis.html",
     "href": "paineis.html",
-    "title": "1  Painéis do CIGA-MPMG",
+    "title": "3  Painéis",
     "section": "",
-    "text": "1.1 Estrutura básica\nTodos os paineis com exeção de painelMain dependem de uma série de configurações e dependências de ambiente. São elas:\nTodos os apps contam com uma infraestrutura de login que depende das variáveis de ambiente. Essa infraestrutura é:\nAs configurações para obter o endpoint de validação do login estão registradas em https://github.com/ciga-mpmg/painelAssets/blob/main/inst/app/golem-config.yml. A mecânica e front-end de validação estão no repositório painelLogin.",
+    "text": "3.1 Home\nA home do Painel Gerencial CIGA-MPMG é a página acessada logo após o login. Seu objetivo é encaminhar o usuário para um dos painéis de dados: Barragens, Informações sobre os TACs, Descaracterização e Recomendações.\nO código fonte desta página se encontra no repositório painelMain.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Painéis do CIGA-MPMG</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
     ]
   },
   {
     "objectID": "paineis.html#estrutura-básica",
     "href": "paineis.html#estrutura-básica",
-    "title": "1  Painéis do CIGA-MPMG",
+    "title": "3  Telas do Painel Gerencial CIGA",
     "section": "",
-    "text": "Ubuntu 20.04\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nVariáveis de ambiente:\n\nCIGA_SQL_HOST  # endereço de acesso ao banco de dados\nCIGA_SQL_DATABASE # banco de dados\nCIGA_SQL_USER # usuário do banco\nCIGA_SQL_PORT # porta do banco\nCIGA_SQL_PASSWORD # senha\nAMBIENTE # stringr que deve ser \"homolog\" ou \"prod\"\nCIGA_OUTLOOK_TENANT # tenant do outlook\nCIGA_OUTLOOK_APP # id do aplicativo do outlook\nCIGA_OUTLOOK_PASSWORD # senha do outlook\nCIGA_FIREBASE_PASSWORD # senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br\nCIGA_FIREBASE_PROJECT_API=\"AIzaSyCH-0lM6fq2Wgx7NfGedRDJnV9Bxa4ifoo\" # projeto do firebase\n\nif (ambiente %in% c(\"homolog\", \"prod\")) {\n    url &lt;- get_golem_config(\"url\", Sys.getenv(\"AMBIENTE\"))\n    validation_endpoint &lt;- get_golem_config(\n      \"validation_endpoint\",\n      Sys.getenv(\"AMBIENTE\")\n    )\n    active_ui &lt;- painelLogin:::create_app_ui_auth(\n      request,\n      app_ui,\n      url,\n      validation_endpoint\n    )\n  } else {\n    active_ui &lt;- app_ui\n    url &lt;- NULL\n  }",
+    "text": "Ubuntu 20.04\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nVariáveis de ambiente:\n\nCIGA_SQL_HOST # endereço de acesso ao banco de dados\nCIGA_SQL_DATABASE # banco de dados\nCIGA_SQL_USER # usuário do banco\nCIGA_SQL_PORT # porta do banco\nCIGA_SQL_PASSWORD # senha\nAMBIENTE # stringr que deve ser \"homolog\" ou \"prod\"\nCIGA_OUTLOOK_TENANT # tenant do outlook\nCIGA_OUTLOOK_APP # id do aplicativo do outlook\nCIGA_OUTLOOK_PASSWORD # senha do outlook\nCIGA_FIREBASE_PASSWORD # senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br\nCIGA_FIREBASE_PROJECT_API # projeto do firebase\n\nif (ambiente %in% c(\"homolog\", \"prod\")) {\n    url &lt;- get_golem_config(\"url\", Sys.getenv(\"AMBIENTE\"))\n    validation_endpoint &lt;- get_golem_config(\n      \"validation_endpoint\",\n      Sys.getenv(\"AMBIENTE\")\n    )\n    active_ui &lt;- painelLogin:::create_app_ui_auth(\n      request,\n      app_ui,\n      url,\n      validation_endpoint\n    )\n  } else {\n    active_ui &lt;- app_ui\n    url &lt;- NULL\n  }",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Painéis do CIGA-MPMG</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Telas do Painel Gerencial CIGA</span>"
     ]
   },
   {
     "objectID": "paineis.html#mecanismo-de-autenticação",
     "href": "paineis.html#mecanismo-de-autenticação",
-    "title": "1  Painéis do CIGA-MPMG",
-    "section": "1.2 Mecanismo de autenticação",
-    "text": "1.2 Mecanismo de autenticação\nO mecanismo de autenticação de todo acesso se divide em dois casos: se há token de acesso nos cookies do usuário ou não. Se não houver, o fluxo de acesso é:\n\nInterromper o acesso ao app e expor a UI de login do painelLogin.\nA função validate_session usa o ToolKit do firebase para verificar se as credenciais são válidas.\nSe forem válidas, um token é devolvido paro usuário e salvo nos cookies.\nQuando as credenciais são válidas também é fornecido acesso ao painel.\n\n\nknitr::include_graphics(\"img/fluxoFirebase.png\")",
+    "title": "3  Telas do Painel Gerencial CIGA",
+    "section": "3.2 Mecanismo de autenticação",
+    "text": "3.2 Mecanismo de autenticação\nO mecanismo de autenticação de todo acesso se divide em dois casos: se há token de acesso nos cookies do usuário ou não. Se não houver, o fluxo de acesso é:\n\nInterromper o acesso ao app e expor a UI de login do painelLogin.\nA função validate_session usa o ToolKit do firebase para verificar se as credenciais são válidas.\nSe forem válidas, um token é devolvido paro usuário e salvo nos cookies.\nQuando as credenciais são válidas também é fornecido acesso ao painel.\n\n\nknitr::include_graphics(\"img/fluxoFirebase.png\")",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Painéis do CIGA-MPMG</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Telas do Painel Gerencial CIGA</span>"
     ]
   },
   {
     "objectID": "paineis.html#direcionamento-via-nginx",
     "href": "paineis.html#direcionamento-via-nginx",
-    "title": "1  Painéis do CIGA-MPMG",
-    "section": "1.3 Direcionamento via nginx",
-    "text": "1.3 Direcionamento via nginx\nA compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de location do nginx são:\n    location / {\n                # block added from rstudio support doc\n                proxy_pass http://localhost:3838;\n                proxy_redirect / $scheme://$http_host/;\n                proxy_http_version 1.1;\n                proxy_set_header Upgrade $http_upgrade;\n                proxy_set_header Connection $connection_upgrade;\n                proxy_read_timeout 20d;\n                proxy_buffering off;\n    }\nJá as configurações de redirecionamento são\nserver {\n\n        listen 80;\n        server_name painel-homolog.ciga-mpmg.com.br;\n        rewrite     ^   https://$server_name$request_uri? redirect;\n\n        # Tamamho maximo de upload\n        #client_max_body_size 125m;\n\n        #proxy_headers_hash_max_size 2048;\n        #proxy_headers_hash_bucket_size 128;\n\n\n    location ^~ /.well-known/acme-challenge/ {\n         alias /var/www/html/.well-known/acme-challenge/;\n    }\n\n    location / {\n      proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n       # Websockets support\n  #      proxy_set_header Upgrade \"websocket\";\n  #      proxy_set_header Connection \"Upgrade\";\n\n    }\n\n    location /recomendacoes {\n      proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    }\n}\n\nserver {\n    listen 443 ssl;\n    server_name painel-homolog.ciga-mpmg.com.br;\n\n    ssl on;\n    ssl_certificate       /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/fullchain.pem;\n    ssl_certificate_key   /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/privkey.pem;\n\n    proxy_headers_hash_max_size 2048;\n    proxy_headers_hash_bucket_size 128;\n\n    location ^~ /.well-known/acme-challenge/ {\n         alias /var/www/html/.well-known/acme-challenge/;\n    }\n\n    location / {\n      proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n\n    }\n\n    location /recomendacoes/ {\n      proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    }\n\n    location /tacs/ {\n      proxy_pass http://127.0.0.1:3838/painelInfoTacs/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n    }\n\n        location /barragens/ {\n      proxy_pass http://127.0.0.1:3838/painelBarragens/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n    }\n\n        location /descaracterizacao/ {\n      proxy_pass http://127.0.0.1:3838/painelDescaracterizacao/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n      error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n\n    }\n}",
+    "title": "3  Telas do Painel Gerencial CIGA",
+    "section": "3.3 Direcionamento via nginx",
+    "text": "3.3 Direcionamento via nginx\nA compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de location do nginx são:\n    location / {\n                # block added from rstudio support doc\n                proxy_pass http://localhost:3838;\n                proxy_redirect / $scheme://$http_host/;\n                proxy_http_version 1.1;\n                proxy_set_header Upgrade $http_upgrade;\n                proxy_set_header Connection $connection_upgrade;\n                proxy_read_timeout 20d;\n                proxy_buffering off;\n    }\nJá as configurações de redirecionamento são:\nserver {\n\n        listen 80;\n        server_name painel-homolog.ciga-mpmg.com.br;\n        rewrite     ^   https://$server_name$request_uri? redirect;\n\n        # Tamamho maximo de upload\n        #client_max_body_size 125m;\n\n        #proxy_headers_hash_max_size 2048;\n        #proxy_headers_hash_bucket_size 128;\n\n\n    location ^~ /.well-known/acme-challenge/ {\n         alias /var/www/html/.well-known/acme-challenge/;\n    }\n\n    location / {\n      proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n       # Websockets support\n  #      proxy_set_header Upgrade \"websocket\";\n  #      proxy_set_header Connection \"Upgrade\";\n\n    }\n\n    location /recomendacoes {\n      proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    }\n}\n\nserver {\n    listen 443 ssl;\n    server_name painel-homolog.ciga-mpmg.com.br;\n\n    ssl on;\n    ssl_certificate       /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/fullchain.pem;\n    ssl_certificate_key   /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/privkey.pem;\n\n    proxy_headers_hash_max_size 2048;\n    proxy_headers_hash_bucket_size 128;\n\n    location ^~ /.well-known/acme-challenge/ {\n         alias /var/www/html/.well-known/acme-challenge/;\n    }\n\n    location / {\n      proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n\n    }\n\n    location /recomendacoes/ {\n      proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n    }\n\n    location /tacs/ {\n      proxy_pass http://127.0.0.1:3838/painelInfoTacs/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n    }\n\n        location /barragens/ {\n      proxy_pass http://127.0.0.1:3838/painelBarragens/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n\n    }\n\n        location /descaracterizacao/ {\n      proxy_pass http://127.0.0.1:3838/painelDescaracterizacao/;\n      proxy_redirect / $scheme://$http_host$request_uri;\n      proxy_http_version 1.1;\n      proxy_set_header Upgrade $http_upgrade;\n      proxy_set_header Connection $connection_upgrade;\n      proxy_read_timeout 20d;\n      proxy_buffering off;\n\n      error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n\n    }\n}",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Painéis do CIGA-MPMG</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Telas do Painel Gerencial CIGA</span>"
     ]
   },
   {
@@ -117,6 +117,106 @@
     "text": "2.3 Alterar senha, remover usuário ou suspender acesso\nCaso seja necessário alterar uma dessas três características, basta interagir com os detalhamentos de um usuário no painel de gerenciamento do Firebase.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html",
+    "href": "ambientes.html",
+    "title": "2  Ambientes",
+    "section": "",
+    "text": "2.1 R\nOs painéis do CIGA-MPMG foram desenvolvidos utilizando a linguagem de programação R e a biblioteca Shiny.\nPara alteração do código-fonte, será necessário instalar o R na máquina de desenvolvimento. Também é recomendado a utilização de alguma IDE amigável ao R, como o RStudio, o VSCode ou o Positron.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#github",
+    "href": "ambientes.html#github",
+    "title": "2  Ambientes",
+    "section": "2.2 GitHub",
+    "text": "2.2 GitHub\nO código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.\nOs repositórios foram criados dentro da organização ciga-mpmg.\nOs respositórios de automação são utilizados para a execução das rotinas de atualização dos dados e de deploy dos painéis. Na Seção Capítulo 4 listamos a função de cada repositório e fornecemos seu respectivo link.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#gcp",
+    "href": "ambientes.html#gcp",
+    "title": "2  Ambientes",
+    "section": "2.3 GCP",
+    "text": "2.3 GCP\n(azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#shiny-server",
+    "href": "ambientes.html#shiny-server",
+    "title": "2  Ambientes",
+    "section": "2.4 Shiny Server",
+    "text": "2.4 Shiny Server\nOs painéis do CIGA-MPMG foram implantados utilizando o Shiny Server.\nEste ambiente deverá ser acessado para… (azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#firebase",
+    "href": "ambientes.html#firebase",
+    "title": "2  Ambientes",
+    "section": "2.5 Firebase",
+    "text": "2.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG. (azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#barragens",
+    "href": "paineis.html#barragens",
+    "title": "3  Painéis",
+    "section": "3.2 Barragens",
+    "text": "3.2 Barragens\nPossui visualizações e informações de barragens de rejeitos de mineração existentes no estado de Minas Gerais obtidas no Sistema de Gestão de Segurança de Barragem de Mineração (SIGBM), disponibilizado pela Agência Nacional de Mineração (ANM) e registradas na plataforma CIGA. As informações são atualizadas diariamente, de acordo com a base de dados do SIGBM.\nO código fonte desta página se encontra no repositório painelBarragens.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#informações-sobre-os-tacs",
+    "href": "paineis.html#informações-sobre-os-tacs",
+    "title": "3  Painéis",
+    "section": "3.3 Informações sobre os TACs",
+    "text": "3.3 Informações sobre os TACs\nPossui acesso a informações detalhadas extraídas dos documentos jurídicos que balizam o Programa de Auditoria Técnica Independente, além de documentos técnicos enviados pelas Auditorias Técnicas no escopo dos Termos firmados entre o MPMG, MPF e mineradoras. Destaca-se que o termo TACs é aqui utilizado como uma generalização para acordos extrajudiciais como Termos de Compromisso, Termos de Ajustamento de Conduta e Termos de Compromisso Preliminar.\nO código fonte desta página se encontra no repositório painelInfoTacs.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#descaracterização",
+    "href": "paineis.html#descaracterização",
+    "title": "3  Painéis",
+    "section": "3.4 Descaracterização",
+    "text": "3.4 Descaracterização\nPossui informações de acompanhamento dos TACs assinados pelos empreendedores responsáveis pelas barragens alteadas pelo método a montante ou desconhecido em Minas Gerais, com o objetivo de descaracterizar as barragens de mineração, que não atenderam ao prazo estipulado pela Lei “Mar de Lama Nunca Mais” (Lei Estadual nº 23.291/2019).\nO código fonte desta página se encontra no repositório painelDescaracterizacao.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#recomendações",
+    "href": "paineis.html#recomendações",
+    "title": "3  Painéis",
+    "section": "3.5 Recomendações",
+    "text": "3.5 Recomendações\nPossui visualizações e estatísticas de acompanhamento de recomendações emitidas pelas Auditorias Técnicas Independentes, no contexto do cumprimento dos Termos de Ajustamento de Conduta (TACs) pelos empreendedores. Tais recomendações são primordialmente associadas a estruturas geotécnicas, mas envolvem também temas ligados ao meio ambiente, como bem-estar e manejo da fauna evacuada, monitoramento das águas na bacia do Rio Paraopeba, segurança hídrica no contexto do alto curso da bacia do Rio das Velhas, manejo de rejeitos na Bacia do Rio Doce, dentre outros temas.\nO código fonte desta página se encontra no repositório painelRecomendacoes.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#home",
+    "href": "paineis.html#home",
+    "title": "3  Painéis",
+    "section": "",
+    "text": "Figura 3.1: Acesso aos painéis de dados do Painel Gerencial CIGA-MPMG",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
     ]
   }
 ]

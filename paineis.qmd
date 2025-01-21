@@ -1,215 +1,37 @@
-## Telas do Painel Gerencial CIGA
+# Painéis
 
-A aplicação disponível em https://ciga-mpmg.com.br/ é composta por 4 painéis, organizados em repositórios distintos. Cada painel consiste em um aplicativo shiny seguindo o [framework golem](https://golemverse.org/) e são integrados por roteamento via [`nginx`](https://www.nginx.com/) nos servidores de aplicação. Os paineis mencionados são:
+Nesta seção, descrevemos os painéis que compõem o Painel Gerencial CIGA-MPMG.
 
--   [`painelMain`](https://github.com/ciga-mpmg/painelMain) é a página principal que contém uma descrição básica de todos os outros painéis.
--   [`painelRecomendacoes`](https://github.com/ciga-mpmg/painelRecomendacoes) é o painel que expõe informações sobre todas as recomendações e os relatórios gerenciais.
--   [`painelBarragens`](https://github.com/ciga-mpmg/Barragens) é o painel que expõe informações sobre todas as barragens, relacionadas a alguma recomendação ou não, e consolida informações oriundas do SIGBM.
--   [`painelInfoTacs`](https://github.com/ciga-mpmg/painelInfoTacs) é um painel para acesso de informações cadastrais dos TACs.
+## Home
 
-Nas subseções abaixo destacamos detalhes importantes de cada painel.
+A home do Painel Gerencial CIGA-MPMG é a página acessada logo após o login. Seu objetivo é encaminhar o usuário para um dos painéis de dados: Barragens, Informações sobre os TACs, Descaracterização e Recomendações.
 
-## Estrutura básica
+![Acesso aos painéis de dados do Painel Gerencial CIGA-MPMG](img/painel_gerencial.png){#fig-painel-gerencial}
 
-Todos os paineis com exeção de `painelMain` dependem de uma série de configurações e dependências de ambiente. São elas:
+O código fonte desta página se encontra no repositório [painelMain](https://github.com/ciga-mpmg/painelMain).
 
--   Ubuntu 20.04
+## Barragens
 
--   R 4.2.1 ou superior
-
--   Shiny-Server em versão 1.5.19 ou superior
-
--   Variáveis de ambiente:
-
-```         
-CIGA_SQL_HOST # endereço de acesso ao banco de dados
-CIGA_SQL_DATABASE # banco de dados
-CIGA_SQL_USER # usuário do banco
-CIGA_SQL_PORT # porta do banco
-CIGA_SQL_PASSWORD # senha
-AMBIENTE # stringr que deve ser "homolog" ou "prod"
-CIGA_OUTLOOK_TENANT # tenant do outlook
-CIGA_OUTLOOK_APP # id do aplicativo do outlook
-CIGA_OUTLOOK_PASSWORD # senha do outlook
-CIGA_FIREBASE_PASSWORD # senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br
-CIGA_FIREBASE_PROJECT_API # projeto do firebase
-```
-
-As variáveis de ambiente são encontradas em `/home/shiny-admin/.Renviron`. Todos os apps contam com uma infraestrutura de login que depende das variáveis de ambiente. Essa infraestrutura é:
-
-```         
-if (ambiente %in% c("homolog", "prod")) {
-    url <- get_golem_config("url", Sys.getenv("AMBIENTE"))
-    validation_endpoint <- get_golem_config(
-      "validation_endpoint",
-      Sys.getenv("AMBIENTE")
-    )
-    active_ui <- painelLogin:::create_app_ui_auth(
-      request,
-      app_ui,
-      url,
-      validation_endpoint
-    )
-  } else {
-    active_ui <- app_ui
-    url <- NULL
-  }
-```
-
-As configurações para obter o endpoint de validação do login estão registradas em `https://github.com/ciga-mpmg/painelAssets/blob/main/inst/app/golem-config.yml`. A mecânica e front-end de validação estão no repositório [painelLogin](https://github.com/ciga-mpmg/painelLogin).
-
-## Mecanismo de autenticação
-
-O mecanismo de autenticação de todo acesso se divide em dois casos: se há token de acesso nos cookies do usuário ou não. Se não houver, o fluxo de acesso é:
-
-1.  Interromper o acesso ao app e expor a UI de login do painelLogin.
-2.  A função `validate_session` usa o ToolKit do firebase para verificar se as credenciais são válidas.
-3.  Se forem válidas, um token é devolvido paro usuário e salvo nos cookies.
-4.  Quando as credenciais são válidas também é fornecido acesso ao painel.
-
-```{r}
-knitr::include_graphics("img/fluxoFirebase.png")
-```
-
-## Direcionamento via nginx
-
-A compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de `location` do nginx são:
-
-```         
-    location / {
-                # block added from rstudio support doc
-                proxy_pass http://localhost:3838;
-                proxy_redirect / $scheme://$http_host/;
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection $connection_upgrade;
-                proxy_read_timeout 20d;
-                proxy_buffering off;
-    }
-```
-
-Já as configurações de redirecionamento são:
-
-```         
-server {
-
-        listen 80;
-        server_name painel-homolog.ciga-mpmg.com.br;
-        rewrite     ^   https://$server_name$request_uri? redirect;
-
-        # Tamamho maximo de upload
-        #client_max_body_size 125m;
-
-        #proxy_headers_hash_max_size 2048;
-        #proxy_headers_hash_bucket_size 128;
+Possui visualizações e informações de barragens de rejeitos de mineração existentes no estado de Minas Gerais obtidas no Sistema de Gestão de Segurança de Barragem de Mineração (SIGBM), disponibilizado pela Agência Nacional de Mineração (ANM) e registradas na plataforma CIGA. As informações são atualizadas diariamente, de acordo com a base de dados do SIGBM.
 
 
-    location ^~ /.well-known/acme-challenge/ {
-         alias /var/www/html/.well-known/acme-challenge/;
-    }
+O código fonte desta página se encontra no repositório [painelBarragens](https://github.com/ciga-mpmg/painelBarragens).
 
-    location / {
-      proxy_pass http://127.0.0.1:3838/painelMain$request_uri;
-      proxy_redirect / $scheme://$http_host$request_uri;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
-      proxy_read_timeout 20d;
-      proxy_buffering off;
+## Informações sobre os TACs
 
+Possui acesso a informações detalhadas extraídas dos documentos jurídicos que balizam o Programa de Auditoria Técnica Independente, além de documentos técnicos enviados pelas Auditorias Técnicas no escopo dos Termos firmados entre o MPMG, MPF e mineradoras. Destaca-se que o termo TACs é aqui utilizado como uma generalização para acordos extrajudiciais como Termos de Compromisso, Termos de Ajustamento de Conduta e Termos de Compromisso Preliminar.
 
-       # Websockets support
-  #      proxy_set_header Upgrade "websocket";
-  #      proxy_set_header Connection "Upgrade";
+O código fonte desta página se encontra no repositório [painelInfoTacs](https://github.com/ciga-mpmg/painelInfoTacs).
 
-    }
+## Descaracterização
 
-    location /recomendacoes {
-      proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;
-      proxy_redirect / $scheme://$http_host$request_uri;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
-      proxy_read_timeout 20d;
-      proxy_buffering off;
-
-    }
-}
-
-server {
-    listen 443 ssl;
-    server_name painel-homolog.ciga-mpmg.com.br;
-
-    ssl on;
-    ssl_certificate       /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/fullchain.pem;
-    ssl_certificate_key   /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/privkey.pem;
-
-    proxy_headers_hash_max_size 2048;
-    proxy_headers_hash_bucket_size 128;
-
-    location ^~ /.well-known/acme-challenge/ {
-         alias /var/www/html/.well-known/acme-challenge/;
-    }
-
-    location / {
-      proxy_pass http://127.0.0.1:3838/painelMain$request_uri;
-      proxy_redirect / $scheme://$http_host$request_uri;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
-      proxy_read_timeout 20d;
-      proxy_buffering off;
-
-    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;
-
-    }
-
-    location /recomendacoes/ {
-      proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;
-      proxy_redirect / $scheme://$http_host$request_uri;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
-      proxy_read_timeout 20d;
-      proxy_buffering off;
-
-    }
-
-    location /tacs/ {
-      proxy_pass http://127.0.0.1:3838/painelInfoTacs/;
-      proxy_redirect / $scheme://$http_host$request_uri;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
-      proxy_read_timeout 20d;
-      proxy_buffering off;
+Possui informações de acompanhamento dos TACs assinados pelos empreendedores responsáveis pelas barragens alteadas pelo método a montante ou desconhecido em Minas Gerais, com o objetivo de descaracterizar as barragens de mineração, que não atenderam ao prazo estipulado pela Lei “Mar de Lama Nunca Mais” (Lei Estadual nº 23.291/2019).
 
 
-    }
+O código fonte desta página se encontra no repositório [painelDescaracterizacao](https://github.com/ciga-mpmg/painelDescaracterizacao).
 
-        location /barragens/ {
-      proxy_pass http://127.0.0.1:3838/painelBarragens/;
-      proxy_redirect / $scheme://$http_host$request_uri;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
-      proxy_read_timeout 20d;
-      proxy_buffering off;
+## Recomendações
 
+Possui visualizações e estatísticas de acompanhamento de recomendações emitidas pelas Auditorias Técnicas Independentes, no contexto do cumprimento dos Termos de Ajustamento de Conduta (TACs) pelos empreendedores. Tais recomendações são primordialmente associadas a estruturas geotécnicas, mas envolvem também temas ligados ao meio ambiente, como bem-estar e manejo da fauna evacuada, monitoramento das águas na bacia do Rio Paraopeba, segurança hídrica no contexto do alto curso da bacia do Rio das Velhas, manejo de rejeitos na Bacia do Rio Doce, dentre outros temas.
 
-    }
-
-        location /descaracterizacao/ {
-      proxy_pass http://127.0.0.1:3838/painelDescaracterizacao/;
-      proxy_redirect / $scheme://$http_host$request_uri;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
-      proxy_read_timeout 20d;
-      proxy_buffering off;
-
-      error_page 404 500 502 /usr/share/nginx/html/custom_404.html;
-
-    }
-}
-```
+O código fonte desta página se encontra no repositório [painelRecomendacoes](https://github.com/ciga-mpmg/painelRecomendacoes).
