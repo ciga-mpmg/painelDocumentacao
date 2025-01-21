@@ -14,7 +14,9 @@ O código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionad
 
 Os repositórios foram criados dentro da organização [ciga-mpmg](https://github.com/ciga-mpmg).
 
-Os respositórios de automação são utilizados para a execução das rotinas de atualização dos dados e de deploy dos painéis. Na Seção @sec-repositorios listamos a função de cada repositório e fornecemos seu respectivo link.
+Alguns repositórios possuem processos automatizados via [Github Actions](https://github.com/features/actions), como a atualização dos dados do SIGBM e o deploy dos painéis.
+
+Na Seção @sec-repositorios listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link.
 
 ## GCP
 
@@ -30,5 +32,4 @@ Este ambiente deverá ser acessado para... @azeloc
 
 O serviço [Firebase](https://firebase.google.com) é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.
 
-O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG. 
-@azeloc
+O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG. @azeloc

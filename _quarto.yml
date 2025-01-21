@@ -11,6 +11,7 @@ book:
     - acesso.qmd
     - paineis.qmd
     - repositorios.qmd
+    - relatorio.qmd
     # - bancos-de-dados.qmd
     # - workflows.qmd
     # - referencias.qmd

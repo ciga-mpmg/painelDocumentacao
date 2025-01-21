@@ -122,51 +122,51 @@
   {
     "objectID": "ambientes.html",
     "href": "ambientes.html",
-    "title": "2  Ambientes",
+    "title": "1  Ambientes",
     "section": "",
-    "text": "2.1 R\nOs painéis do CIGA-MPMG foram desenvolvidos utilizando a linguagem de programação R e a biblioteca Shiny.\nPara alteração do código-fonte, será necessário instalar o R na máquina de desenvolvimento. Também é recomendado a utilização de alguma IDE amigável ao R, como o RStudio, o VSCode ou o Positron.",
+    "text": "1.1 R\nOs painéis do CIGA-MPMG foram desenvolvidos utilizando a linguagem de programação R e a biblioteca Shiny.\nPara alteração do código-fonte, será necessário instalar o R na máquina de desenvolvimento. Também é recomendado a utilização de alguma IDE amigável ao R, como o RStudio, o VSCode ou o Positron.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
   },
   {
     "objectID": "ambientes.html#github",
     "href": "ambientes.html#github",
-    "title": "2  Ambientes",
-    "section": "2.2 GitHub",
-    "text": "2.2 GitHub\nO código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.\nOs repositórios foram criados dentro da organização ciga-mpmg.\nOs respositórios de automação são utilizados para a execução das rotinas de atualização dos dados e de deploy dos painéis. Na Seção Capítulo 4 listamos a função de cada repositório e fornecemos seu respectivo link.",
+    "title": "1  Ambientes",
+    "section": "1.2 GitHub",
+    "text": "1.2 GitHub\nO código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.\nOs repositórios foram criados dentro da organização ciga-mpmg.\nAlguns repositórios possuem processos automatizados via Github Actions, como a atualização dos dados do SIGBM e o deploy dos painéis.\nNa Seção Capítulo 4 listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
   },
   {
     "objectID": "ambientes.html#gcp",
     "href": "ambientes.html#gcp",
-    "title": "2  Ambientes",
-    "section": "2.3 GCP",
-    "text": "2.3 GCP\n(azeloc?)",
+    "title": "1  Ambientes",
+    "section": "1.3 GCP",
+    "text": "1.3 GCP\n(azeloc?)",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
   },
   {
     "objectID": "ambientes.html#shiny-server",
     "href": "ambientes.html#shiny-server",
-    "title": "2  Ambientes",
-    "section": "2.4 Shiny Server",
-    "text": "2.4 Shiny Server\nOs painéis do CIGA-MPMG foram implantados utilizando o Shiny Server.\nEste ambiente deverá ser acessado para… (azeloc?)",
+    "title": "1  Ambientes",
+    "section": "1.4 Shiny Server",
+    "text": "1.4 Shiny Server\nOs painéis do CIGA-MPMG foram implantados utilizando o Shiny Server.\nEste ambiente deverá ser acessado para… (azeloc?)",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
   },
   {
     "objectID": "ambientes.html#firebase",
     "href": "ambientes.html#firebase",
-    "title": "2  Ambientes",
-    "section": "2.5 Firebase",
-    "text": "2.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG. (azeloc?)",
+    "title": "1  Ambientes",
+    "section": "1.5 Firebase",
+    "text": "1.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG. (azeloc?)",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ambientes</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
   },
   {
@@ -215,6 +215,176 @@
     "title": "3  Painéis",
     "section": "",
     "text": "Figura 3.1: Acesso aos painéis de dados do Painel Gerencial CIGA-MPMG",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html",
+    "href": "repositorios.html",
+    "title": "4  Repositórios",
+    "section": "",
+    "text": "4.1 painelMain",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelmain",
+    "href": "repositorios.html#painelmain",
+    "title": "4  Repositórios",
+    "section": "",
+    "text": "Descrição: contém o código-fonte da home do Painel Gerencial CIGA-MPMG (Seção 3.1), a página acessada logo após o login.\nLink: https://github.com/ciga-mpmg/painelMain\nActions: possui os Actions de deploy em homologação e produção de cada um dos painéis e para gerar os relatórios gerenciais.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelbarragens",
+    "href": "repositorios.html#painelbarragens",
+    "title": "4  Repositórios",
+    "section": "4.2 painelBarragens",
+    "text": "4.2 painelBarragens\n\nDescrição: contém o código-fonte do painel Barragens (Seção 3.2).\nLink: https://github.com/ciga-mpmg/painelBarragens\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelinfotacs",
+    "href": "repositorios.html#painelinfotacs",
+    "title": "4  Repositórios",
+    "section": "4.3 painelInfoTacs",
+    "text": "4.3 painelInfoTacs\n\nDescrição: contém o código-fonte do painel Informações sobre os TACs (Seção 3.3).\nLink: https://github.com/ciga-mpmg/painelInfoTacs\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#paineldescaracterizacao",
+    "href": "repositorios.html#paineldescaracterizacao",
+    "title": "4  Repositórios",
+    "section": "4.4 painelDescaracterizacao",
+    "text": "4.4 painelDescaracterizacao\n\nDescrição: contém o código-fonte do painel Descaracterização (Seção 3.4).\nLink: https://github.com/ciga-mpmg/painelDescaracterizacao\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelrecomendacoes",
+    "href": "repositorios.html#painelrecomendacoes",
+    "title": "4  Repositórios",
+    "section": "4.5 painelRecomendacoes",
+    "text": "4.5 painelRecomendacoes\n\nDescrição: contém o código-fonte do painel Recomendações (Seção 3.5).\nLink: https://github.com/ciga-mpmg/painelRecomendacoes\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelassets",
+    "href": "repositorios.html#painelassets",
+    "title": "4  Repositórios",
+    "section": "4.6 painelAssets",
+    "text": "4.6 painelAssets\n\nDescrição: contém o código-fonte de um pacote R com funções auxiliares utilizadas em todos os painéis.\nLink: https://github.com/ciga-mpmg/painelAssets\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painellogin",
+    "href": "repositorios.html#painellogin",
+    "title": "4  Repositórios",
+    "section": "4.7 painelLogin",
+    "text": "4.7 painelLogin\n\nDescrição: contém o código-fonte de um pacote R com funções utilizadas na construção da camada de login via Firebase de cada Painel.\nLink: https://github.com/ciga-mpmg/painelLogin\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelrelatoriogerencial",
+    "href": "repositorios.html#painelrelatoriogerencial",
+    "title": "4  Repositórios",
+    "section": "4.8 painelRelatorioGerencial",
+    "text": "4.8 painelRelatorioGerencial\n\nDescrição: contém o código-fonte de todas as versões do Relatório Gerencial.\nLink: https://github.com/ciga-mpmg/painelRelatorioGerencial\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelactions",
+    "href": "repositorios.html#painelactions",
+    "title": "4  Repositórios",
+    "section": "4.9 painelActions",
+    "text": "4.9 painelActions\n(azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#paineldocumentacao",
+    "href": "repositorios.html#paineldocumentacao",
+    "title": "4  Repositórios",
+    "section": "4.10 painelDocumentacao",
+    "text": "4.10 painelDocumentacao\n\nDescrição: contém os arquivos que compõem esta documentação.\nLink: https://github.com/ciga-mpmg/painelDocumentacao\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#scraper_sigbm",
+    "href": "repositorios.html#scraper_sigbm",
+    "title": "4  Repositórios",
+    "section": "4.11 scraper_sigbm",
+    "text": "4.11 scraper_sigbm\n(azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-home",
+    "href": "paineis.html#sec-painel-home",
+    "title": "3  Painéis",
+    "section": "",
+    "text": "Figura 3.1: Acesso aos painéis de dados do Painel Gerencial CIGA-MPMG",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-barragens",
+    "href": "paineis.html#sec-painel-barragens",
+    "title": "3  Painéis",
+    "section": "3.2 Barragens",
+    "text": "3.2 Barragens\nPossui visualizações e informações de barragens de rejeitos de mineração existentes no estado de Minas Gerais obtidas no Sistema de Gestão de Segurança de Barragem de Mineração (SIGBM), disponibilizado pela Agência Nacional de Mineração (ANM) e registradas na plataforma CIGA. As informações são atualizadas diariamente, de acordo com a base de dados do SIGBM.\nO código fonte desta página se encontra no repositório painelBarragens.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-infoTacs",
+    "href": "paineis.html#sec-painel-infoTacs",
+    "title": "3  Painéis",
+    "section": "3.3 Informações sobre os TACs",
+    "text": "3.3 Informações sobre os TACs\nPossui acesso a informações detalhadas extraídas dos documentos jurídicos que balizam o Programa de Auditoria Técnica Independente, além de documentos técnicos enviados pelas Auditorias Técnicas no escopo dos Termos firmados entre o MPMG, MPF e mineradoras. Destaca-se que o termo TACs é aqui utilizado como uma generalização para acordos extrajudiciais como Termos de Compromisso, Termos de Ajustamento de Conduta e Termos de Compromisso Preliminar.\nO código fonte desta página se encontra no repositório painelInfoTacs.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-descaracterizacao",
+    "href": "paineis.html#sec-painel-descaracterizacao",
+    "title": "3  Painéis",
+    "section": "3.4 Descaracterização",
+    "text": "3.4 Descaracterização\nPossui informações de acompanhamento dos TACs assinados pelos empreendedores responsáveis pelas barragens alteadas pelo método a montante ou desconhecido em Minas Gerais, com o objetivo de descaracterizar as barragens de mineração, que não atenderam ao prazo estipulado pela Lei “Mar de Lama Nunca Mais” (Lei Estadual nº 23.291/2019).\nO código fonte desta página se encontra no repositório painelDescaracterizacao.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-recomendacoes",
+    "href": "paineis.html#sec-painel-recomendacoes",
+    "title": "3  Painéis",
+    "section": "3.5 Recomendações",
+    "text": "3.5 Recomendações\nPossui visualizações e estatísticas de acompanhamento de recomendações emitidas pelas Auditorias Técnicas Independentes, no contexto do cumprimento dos Termos de Ajustamento de Conduta (TACs) pelos empreendedores. Tais recomendações são primordialmente associadas a estruturas geotécnicas, mas envolvem também temas ligados ao meio ambiente, como bem-estar e manejo da fauna evacuada, monitoramento das águas na bacia do Rio Paraopeba, segurança hídrica no contexto do alto curso da bacia do Rio das Velhas, manejo de rejeitos na Bacia do Rio Doce, dentre outros temas.\nO código fonte desta página se encontra no repositório painelRecomendacoes.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
     ]
