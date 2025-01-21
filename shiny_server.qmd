@@ -1,0 +1,150 @@
+# Shiny Server {#sec-shiny-server}
+
+Nesta seção, apresentamos as configurações aplicadas ao Shiny Server para implantar o Painel CIGA-MPMG.
+
+## nginx
+
+A compatibilização de todos os apps como uma única aplicação é feita com direcionamento via [`nginx`](https://www.nginx.com/). As configurações de `location` do nginx são:
+
+```         
+location / {
+  proxy_pass http://localhost:3838;
+  proxy_redirect / $scheme://$http_host/;
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection $connection_upgrade;
+  proxy_read_timeout 20d;
+  proxy_buffering off;
+}
+```
+
+Já as configurações de redirecionamento são:
+
+```         
+server {
+  listen 80;
+  server_name painel-homolog.ciga-mpmg.com.br;
+  rewrite     ^   https://$server_name$request_uri? redirect;
+
+  location ^~ /.well-known/acme-challenge/ {
+        alias /var/www/html/.well-known/acme-challenge/;
+  }
+
+  location / {
+    proxy_pass http://127.0.0.1:3838/painelMain$request_uri;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+  }
+
+  location /recomendacoes {
+    proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+  }
+}
+
+server {
+  listen 443 ssl;
+  server_name painel-homolog.ciga-mpmg.com.br;
+
+  ssl on;
+  ssl_certificate       /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/fullchain.pem;
+  ssl_certificate_key   /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/privkey.pem;
+
+  proxy_headers_hash_max_size 2048;
+  proxy_headers_hash_bucket_size 128;
+
+  location ^~ /.well-known/acme-challenge/ {
+        alias /var/www/html/.well-known/acme-challenge/;
+  }
+
+  location / {
+    proxy_pass http://127.0.0.1:3838/painelMain$request_uri;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+
+    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;
+
+  }
+
+  location /recomendacoes/ {
+    proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+
+  }
+
+  location /tacs/ {
+    proxy_pass http://127.0.0.1:3838/painelInfoTacs/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+  }
+
+  location /barragens/ {
+    proxy_pass http://127.0.0.1:3838/painelBarragens/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+  }
+
+  location /descaracterizacao/ {
+    proxy_pass http://127.0.0.1:3838/painelDescaracterizacao/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;
+  }
+}
+```
+
+## Variáveis de sistema
+
+Para o Painel conseguir acessar os serviços externos (e.g., Firebase e banco de dados), é necessário configurar as seguintes variáveis de ambiente no arquivo `/home/shiny-admin/.Renviron`:
+
+- `CIGA_SQL_HOST`: endereço de acesso ao banco de dados
+
+- `CIGA_SQL_DATABASE`: banco de dados
+
+- `CIGA_SQL_USER`: usuário do banco
+
+- `CIGA_SQL_PORT`: porta do banco
+
+- `CIGA_SQL_PASSWORD`: senha
+
+- `AMBIENTE`: string que deve ser "homolog" ou "prod"
+
+- `CIGA_OUTLOOK_TENANT`: tenant do outlook
+
+- `CIGA_OUTLOOK_APP`: id do aplicativo do outlook
+
+- `CIGA_OUTLOOK_PASSWORD`: senha do outlook
+
+- `CIGA_FIREBASE_PASSWORD`: senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br
+
+- `CIGA_FIREBASE_PROJECT_API`: projeto do firebase

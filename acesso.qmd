@@ -1,10 +1,10 @@
-# Acesso
+# Acesso {#sec-acesso}
 
 Nesta seção, apresentamos informações sobre o acesso ao Painel CIGA-MPMG.
 
 ## Login
 
-Para acessar a versão em produção do CIGA-MPMG, utilize a URL [https://painel.ciga-mpmg.com.br/](https://painel.ciga-mpmg.com.br/). A versão de homologação se encontra na URL [https://painel-homolog.ciga-mpmg.com.br/](https://painel-homolog.ciga-mpmg.com.br/). 
+Para acessar a versão em produção do CIGA-MPMG, utilize a URL <https://painel.ciga-mpmg.com.br/>. A versão de homologação se encontra na URL <https://painel-homolog.ciga-mpmg.com.br/>.
 
 Ambas as versões necessitam de autenticação, sendo necessário cadastrar cada novo usuário no painel de gerenciamento do Firebase.
 

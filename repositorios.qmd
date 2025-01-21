@@ -4,67 +4,67 @@ Nesta seção, listamos e descrevemos todos os repositórios utilizados pelo Pai
 
 ## painelMain
 
-- **Descrição**: contém o código-fonte da home do Painel Gerencial CIGA-MPMG (@sec-painel-home), a página acessada logo após o login.
+-   **Descrição**: contém o código-fonte da home do Painel Gerencial CIGA-MPMG (@sec-painel-home), a página acessada logo após o login.
 
-- **Link**: [https://github.com/ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain)
+-   **Link**: <https://github.com/ciga-mpmg/painelMain>
 
-- **Actions**: possui os Actions de deploy em homologação e produção de cada um dos painéis e para gerar os relatórios gerenciais.
+-   **Actions**: possui os Actions de deploy em homologação e produção de cada um dos painéis e para gerar os relatórios gerenciais.
 
 ## painelBarragens
 
-- **Descrição**: contém o código-fonte do painel Barragens (@sec-painel-barragens).
+-   **Descrição**: contém o código-fonte do painel Barragens (@sec-painel-barragens).
 
-- **Link**: [https://github.com/ciga-mpmg/painelBarragens](https://github.com/ciga-mpmg/painelBarragens)
+-   **Link**: <https://github.com/ciga-mpmg/painelBarragens>
 
-- **Actions**: não possui.
+-   **Actions**: não possui.
 
 ## painelInfoTacs
 
-- **Descrição**: contém o código-fonte do painel Informações sobre os TACs (@sec-painel-infoTacs).
+-   **Descrição**: contém o código-fonte do painel Informações sobre os TACs (@sec-painel-infoTacs).
 
-- **Link**: [https://github.com/ciga-mpmg/painelInfoTacs](https://github.com/ciga-mpmg/painelInfoTacs)
+-   **Link**: <https://github.com/ciga-mpmg/painelInfoTacs>
 
-- **Actions**: não possui.
+-   **Actions**: não possui.
 
 ## painelDescaracterizacao
 
-- **Descrição**: contém o código-fonte do painel Descaracterização (@sec-painel-descaracterizacao).
+-   **Descrição**: contém o código-fonte do painel Descaracterização (@sec-painel-descaracterizacao).
 
-- **Link**: [https://github.com/ciga-mpmg/painelDescaracterizacao](https://github.com/ciga-mpmg/painelDescaracterizacao)
+-   **Link**: <https://github.com/ciga-mpmg/painelDescaracterizacao>
 
-- **Actions**: não possui.
+-   **Actions**: não possui.
 
 ## painelRecomendacoes
 
-- **Descrição**: contém o código-fonte do painel Recomendações (@sec-painel-recomendacoes).
+-   **Descrição**: contém o código-fonte do painel Recomendações (@sec-painel-recomendacoes).
 
-- **Link**: [https://github.com/ciga-mpmg/painelRecomendacoes](https://github.com/ciga-mpmg/painelRecomendacoes)
+-   **Link**: <https://github.com/ciga-mpmg/painelRecomendacoes>
 
-- **Actions**: não possui.
+-   **Actions**: não possui.
 
 ## painelAssets
 
-- **Descrição**: contém o código-fonte de um pacote R com funções auxiliares utilizadas em todos os painéis.
+-   **Descrição**: contém o código-fonte de um pacote R com funções auxiliares utilizadas em todos os painéis.
 
-- **Link**: [https://github.com/ciga-mpmg/painelAssets](https://github.com/ciga-mpmg/painelAssets)
+-   **Link**: <https://github.com/ciga-mpmg/painelAssets>
 
-- **Actions**: não possui.
+-   **Actions**: não possui.
 
 ## painelLogin
 
-- **Descrição**: contém o código-fonte de um pacote R com funções utilizadas na construção da camada de login via Firebase de cada Painel.
+-   **Descrição**: contém o código-fonte de um pacote R com funções utilizadas na construção da camada de login via Firebase de cada Painel. Também possui o front-end da tela de Login.
 
-- **Link**: [https://github.com/ciga-mpmg/painelLogin](https://github.com/ciga-mpmg/painelLogin)
+-   **Link**: <https://github.com/ciga-mpmg/painelLogin>
 
-- **Actions**: não possui.
+-   **Actions**: não possui.
 
 ## painelRelatorioGerencial
 
-- **Descrição**: contém o código-fonte de todas as versões do Relatório Gerencial.
+-   **Descrição**: contém o código-fonte de todas as versões do Relatório Gerencial.
 
-- **Link**: [https://github.com/ciga-mpmg/painelRelatorioGerencial](https://github.com/ciga-mpmg/painelRelatorioGerencial)
+-   **Link**: <https://github.com/ciga-mpmg/painelRelatorioGerencial>
 
-- **Actions**: não possui.
+-   **Actions**: não possui.
 
 ## painelActions
 
@@ -72,11 +72,11 @@ Nesta seção, listamos e descrevemos todos os repositórios utilizados pelo Pai
 
 ## painelDocumentacao
 
-- **Descrição**: contém os arquivos que compõem esta documentação.
+-   **Descrição**: contém os arquivos que compõem esta documentação.
 
-- **Link**: [https://github.com/ciga-mpmg/painelDocumentacao](https://github.com/ciga-mpmg/painelDocumentacao)
+-   **Link**: <https://github.com/ciga-mpmg/painelDocumentacao>
 
-- **Actions**: não possui.
+-   **Actions**: não possui.
 
 ## scraper_sigbm
 

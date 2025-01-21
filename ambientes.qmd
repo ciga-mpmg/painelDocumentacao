@@ -16,11 +16,28 @@ Os repositórios foram criados dentro da organização [ciga-mpmg](https://githu
 
 Alguns repositórios possuem processos automatizados via [Github Actions](https://github.com/features/actions), como a atualização dos dados do SIGBM e o deploy dos painéis.
 
-Na Seção @sec-repositorios listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link.
+Na @sec-repositorios listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link. Na @sec-actions, descrevemos o que faz cada Action e como executá-los.
 
 ## GCP
 
+
 @azeloc
+
+Para implantar o Painel CIGA-MPMG, foi necessário configurar uma máquina com as seguintes configurações:
+
+- **Sistema operacional**: Ubuntu 20.04
+
+- **Capacidade de disco**: @azeloc
+
+- **Memória RAM**: @azeloc
+
+Também foi necessário instalar os seguintes softwares:
+
+- R 4.2.1 ou superior
+
+- Shiny-Server em versão 1.5.19 ou superior
+
+- nginx @azeloc
 
 ## Shiny Server
 
@@ -28,8 +45,10 @@ Os painéis do CIGA-MPMG foram implantados utilizando o [Shiny Server](https://p
 
 Este ambiente deverá ser acessado para... @azeloc
 
+Apresentamos as configurações aplicadas ao Shiny Server para implantar o Painel CIGA-MPMG na @sec-shiny-server.
+
 ## Firebase
 
 O serviço [Firebase](https://firebase.google.com) é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.
 
-O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG. @azeloc
+O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a @sec-acesso). @azeloc

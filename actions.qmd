@@ -1,0 +1,394 @@
+# Actions {#sec-actions}
+
+Para executar a obtenção e a preparação dos utilizados nos painéis e outros produtos relacionados ao CIGA, existem diversos workflows que são executados pelo GitHub Actions.
+
+Workflows são arquivos de configuração que definem um conjunto de ações que são executadas em um ambiente de execução. Em alguns casos, o ambiente de execução são máquinas virtuais pertencentes à GitHub, em outros, o servidor do próprio CIGA.
+
+Nesta seção, descrevemos todos os workflows utilizados na manutenção do Painel Gerencial do CIGA-MPMG.
+
+## Credenciais (*repository secrets*)
+
+Cada workflow pode necessitar de diferentes credenciais. Abaixo estão
+listadas as credenciais necessárias para os workflows, segundo o serviço que
+ele utiliza.
+
+### Banco de dados (GCP)
+
+- CIGA_SQL_HOST
+- CIGA_SQL_DATABASE
+- CIGA_SQL_USER
+- CIGA_SQL_PORT
+- CIGA_SQL_PASSWORD
+
+### Outlook (Conta Microsoft)
+
+- CIGA_OUTLOOK_TENANT
+- CIGA_OUTLOOK_PASSWORD
+- CIGA_OUTLOOK_APP
+
+### Firebase (GCP)
+
+- CIGA_FIREBASE_PASSWORD
+- CIGA_FIREBASE_PROJECT_API
+
+### SSH (acesso ao servidor) (GCP)
+
+- SSH_PRIVATE_KEY
+- SSH_HOST
+- SSH_USER
+- SSH_PRIVATE_KEY_PROD
+- SSH_HOST_PROD
+
+### Google Cloud Storage (Bucket)
+
+- CIGA_JSON_GOOGLE
+
+### GitHub
+
+- TOKEN
+
+## Workflows relacionados com ações/*side-effects*
+
+### Enviar emails de atualizações do SIGBM
+
+- Nível de urgência: ALTO
+- Descrição: Envia email com atualizações do SIGBM. Emails com
+  periodicidade diária, semanal ou mensal.
+- Execução:
+  - Ativação manual
+  - Ativação automática: todos os dias, uma vez ao dia, às 7h30.
+- Repositório:
+  [ciga-mpmg/painelEmailsSIGBM](https://github.com/ciga-mpmg/painelEmailsSIGBM)
+- Link:
+  [workflow](https://github.com/ciga-mpmg/painelEmailsSIGBM/actions/workflows/send-email.yaml)
+- Resultados:
+  - Arquivos:
+    - [data/df_config_usuarios.rda](https://github.com/ciga-mpmg/painelEmailsSIGBM/blob/main/data/df_config_usuarios.rda) -
+      Dados dos usuários cadastrados no Firebase.
+    - [data/tabela_atualizacoes.rda](https://github.com/ciga-mpmg/painelEmailsSIGBM/blob/main/data/tabela_atualizacoes.rda) -
+      Tabela preparada com as atualizações do SIGBM.
+  - Tabelas no banco de dados: Nenhuma tabela é alterada.
+  - Ações: Os emails de atualizações são enviados.
+- Credenciais necessárias:
+  - CIGA_SQL_HOST
+  - CIGA_SQL_DATABASE
+  - CIGA_SQL_USER
+  - CIGA_SQL_PORT
+  - CIGA_SQL_PASSWORD
+  - CIGA_OUTLOOK_TENANT
+  - CIGA_OUTLOOK_PASSWORD
+  - CIGA_OUTLOOK_APP
+  - CIGA_FIREBASE_PASSWORD
+  - CIGA_FIREBASE_PROJECT_API
+
+### Gerar relatórios gerenciais padronizados
+
+- Nível de urgência: Baixo
+- Descrição: Gera relatórios gerenciais padronizados - Alerta 7, Por
+  TAC, por empreendedor, e por complexo minerário.
+- Execução:
+  - Ativação manual
+  - Ativação automática: Dia 1 de cada mês, uma vez ao dia, às 00h00.
+  - Automaticamente quando há novas modificações no repositório
+    [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca)
+- Repositório:
+- Repositório com o código para gerar o relatório:
+  [ciga-mpmg/relatorioGerencial](https://github.com/ciga-mpmg/relatorioGerencial)
+- Repositório onde o workflow é executado:
+  [ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain)  
+- Link:
+  [workflow](https://github.com/ciga-mpmg/painelMain/blob/main/.github/workflows/gerar-relatorios-gerenciais.yml)
+- Resultados:
+  - Arquivos: relatórios em PDF, adicionados no Bucket, nas pastas
+    `bucket-aecom-ciga-homolog/relatorios_gerenciais_padronizados/TIPO_RELATORIO/YYYY-MM`
+    correspondente ao tipo de relatório e ao mês/ano.
+  - Tabelas no banco de dados: Nenhuma tabela é alterada.
+  - Ações: Relatórios são gerados no servidor e enviados para o Bucket.
+- Credenciais necessárias:
+  - SSH_PRIVATE_KEY
+  - SSH_HOST
+  - SSH_USER
+
+### Resuvafeca
+
+- Nível de urgência: Baixo
+- Descrição: Sempre que houver novas alterações na branch main do
+  repositório resuvafeca, ativa outros workflows:
+  - [update-sigbm.yaml](https://github.com/ciga-mpmg/scraper_sigbm/actions/workflows/update-sigbm.yaml) -
+    atualizar sigbm
+  - [ciga-mpmg/relatorioGerencial](https://github.com/ciga-mpmg/relatorioGerencial) -
+    gerar relatório gerencial.
+- Execução:
+  - Ativação automática: sempre que houver uma mudança na main do
+    repositório.
+- Repositório:
+  [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca)
+- Link:
+  [workflow-dispatch-sigbm.yaml](https://github.com/ciga-mpmg/resuvafeca/actions/workflows/workflow-dispatch-sigbm.yaml)
+- Resultados:
+  - Arquivos: Nenhum arquivo é gerado.
+  - Tabelas no banco de dados: Nenhuma tabela é alterada.
+  - Ações: Ativa outro workflows.
+- Credenciais necessárias:
+  - TOKEN
+
+## Workflows de deploy
+
+### Atualizar o painel - Produção
+
+- Nível de urgência: Baixo
+- Descrição: Workflow para atualizar o painel em produção. Atualiza
+  todos os paineis. Atualiza o servidor com o código que está na branch
+  `prod` de cada repositório dos painéis.
+- Execução:
+  - Ativação automática: todos os dias, uma vez ao dia, às 00h00.
+- Repositório:
+  [ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain/actions)
+- Links:
+  - [workflow](https://github.com/ciga-mpmg/painelMain/actions/workflows/deploy-prod-all.yml)
+- Resultados:
+  - Arquivos: Nenhum arquivo é gerado.
+  - Tabelas no banco de dados: Nenhuma tabela é alterada.
+  - Ações: Atualizações dos painéis em produção.
+- Credenciais necessárias:
+  - SSH_PRIVATE_KEY_PROD
+  - SSH_HOST_PROD
+  - SSH_USER
+
+### Atualizar o painel - Homologação
+
+- Nível de urgência: Baixo
+- Descrição: Workflow para o painel em homologação. Atualiza todos os
+  paineis. Atualiza o servidor com o código que está na branch `main` de
+  cada repositório dos painéis.
+- Execução:
+  - Ativação automática: todos os dias, uma vez ao dia, às 01h00.
+- Repositório:
+  [ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain/actions)
+- Links:
+  - [workflow](https://github.com/ciga-mpmg/painelMain/actions/workflows/deploy-homolog-all.yml)  
+- Resultados:
+  - Arquivos: Nenhum arquivo é gerado.
+  - Tabelas no banco de dados: Nenhuma tabela é alterada.
+  - Ações: Atualizações dos painéis em homologação.
+- Credenciais necessárias:
+  - SSH_PRIVATE_KEY
+  - SSH_HOST
+  - SSH_USER
+
+## Workflows de atualização de bases de dados
+
+### Download SIGBM
+
+- Nível de urgência: ALTO
+
+- Descrição: Faz download dos dados do portal
+  [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem).
+  Além disso, faz um join da base do SIGBM com a base de recomendações,
+  e outros tratamentos necessários para preparar tabelas para os
+  painéis.
+
+- Execução:
+
+  - Ativação automática: todos os dias, duas vezes ao dia, às 11h30 e
+    23h30.
+
+- Repositório:
+  [ciga-mpmg/scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm)
+
+- Link:
+  [update-sigbm.yaml](https://github.com/ciga-mpmg/scraper_sigbm/actions/workflows/update-sigbm.yaml)
+
+- Resultados:
+
+  - Arquivos:
+    - [data-raw/sigbm_diff.csv](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/sigbm_diff.csv)
+    - [data-raw/sigbm_mais_recente.csv](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/sigbm_mais_recente.csv)
+  - Tabelas no banco de dados:
+    - [sigbm_atual](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/01-script_actions_download-clean.R)
+    - [sigbm](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/01-script_actions_download-clean.R)  
+    - [dados_recomendacoes_sigbm](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/02-script_actions_unir_recomendacoes.R)
+    - [dados_sigbm_atualizacao_mensal](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/03-script_actions_gerar_atualizacao_mensal.R)
+    - [dados_sigbm_linha_do_tempo_parcial](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/04-script_actions_gerar_linha_do_tempo.R)
+    - [dados_sigbm_linha_do_tempo](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/04-script_actions_gerar_linha_do_tempo.R)
+    - [dados_recomendacoes_sigbm_complexo_minerario](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/05-script_actions_gerar_complexo_minerario.R)
+    - [sigbm_atual_com_comarcas](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/06-script_actions_gerar_sigbm_com_comarcas.R)
+
+- Credenciais necessárias:
+
+  - CIGA_SQL_HOST
+  - CIGA_SQL_DATABASE
+  - CIGA_SQL_USER
+  - CIGA_SQL_PORT
+  - CIGA_SQL_PASSWORD
+
+- Importante: Executar sempre que uma nova atualização da base de
+  recomendações acontecer! Essa execução acontece automaticamente quando
+  há novas modificações no repositório
+  [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca)
+
+- Esse workflow realiza diversas tarefas de ETL importantes para o
+  painel, descritas no [README do
+  repositório](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/README.md).
+
+- Observações:
+  - Conforme feito [aqui](https://github.com/ciga-mpmg/scraper_sigbm/commit/fac25d574abab4f9f014fba31c9886bc8a5da383), a verificação de SSL foi desativada por um problema no site da ANM.  
+
+### Copiar metadados do bucket
+
+- Nível de urgência: ALTO
+- Descrição: Importa informações de uma série de arquivos que estão no
+  bucket, como: documentos dos TACs, relatórios gerenciais,
+  imagens de satélite e as máscaras das imagens de satélite.
+- Execução:
+  - Ativação automática: todos os dias, duas vezes ao dia, às 07h00 e
+    19h00.
+- Repositório:
+  [ciga-mpmg/googleStorageMetadata](https://github.com/ciga-mpmg/googleStorageMetadata)
+- Link:
+  [copia-metadados-bucket.yaml](https://github.com/ciga-mpmg/googleStorageMetadata/actions/workflows/copia-metadados-bucket.yaml)
+- Resultados:
+  - Arquivos: Nenhum arquivo é gerado.
+  - Tabelas no banco de dados:
+    - [metadados_documentos_tacs](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)  
+    - [metadados_relatorios_gerenciais](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)  
+    - [metadados_imagens_satelite_bucket](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)
+    - [metadados_imagens_satelite_bucket_local](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)  
+    - [metadados_mascaras_imagens_satelite_bucket](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)
+- Credenciais necessárias:
+  - CIGA_SQL_HOST
+  - CIGA_SQL_DATABASE
+  - CIGA_SQL_USER
+  - CIGA_SQL_PORT
+  - CIGA_SQL_PASSWORD
+  - CIGA_JSON_GOOGLE
+- Importante:
+  - Sempre que fizer alguma mudança nos arquivos do bucket citados acima
+    e quiser que essas mudanças apareçam no app, execute manualmente
+    esse workflow.
+  - Caso adicione imagens de satélite novas, verifique se a mesma consta
+    na tabela `de-para` de imagens de satélite e barragens:
+    [local](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-local.csv)
+    e
+    [regional](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-regional.csv).
+- Consulte o
+  [README](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/README.md)
+  do repositório para mais informações sobre o quais informações são
+  extraídas.
+
+### Download IDE SISEMA
+
+- Nível de urgência: Baixo
+- Descrição: Faz download dos dados do IDE Sisema acessando o seu Web
+  Map Server (WMS) (código por @rdornas).
+- Execução:
+  - Ativação automática: todos os dias, uma vez ao dia, às 07h00.
+- Repositório:
+  [ciga-mpmg/download_IDE_SISEMA](https://github.com/ciga-mpmg/download_IDE_SISEMA)
+- Link:
+  [update-data.yaml](https://github.com/ciga-mpmg/download_IDE_SISEMA/actions/workflows/update-data.yaml)
+- Resultados:
+  - Arquivos:
+    [data-raw/ide_sisema.csv](https://github.com/ciga-mpmg/download_IDE_SISEMA/blob/main/data-raw/ide_sisema.csv)
+  - Tabelas no banco de dados:
+    [ide_sisema](https://github.com/ciga-mpmg/download_IDE_SISEMA/blob/main/data-raw/script_actions.R)
+- Credenciais necessárias:
+  - CIGA_SQL_HOST
+  - CIGA_SQL_DATABASE
+  - CIGA_SQL_USER
+  - CIGA_SQL_PORT
+  - CIGA_SQL_PASSWORD
+
+### Download Comarcas TJMG
+
+- Nível de urgência: Baixo
+- Descrição: Faz download do pdf dos municípios e comarcas do Tribunal de Justiça do estado de Minas Gerais, trata e disponibiliza (código por @rdornas e @mayaradaher utilizado está disponível no
+  repositório
+  [ciga-mpmg/comarcasTJMG](https://github.com/ciga-mpmg/comarcasTJMG)).
+- Execução:
+  - Ativação automática: todos os dias, uma vez ao dia, às 07h00.
+- Repositório:
+  [ciga-mpmg/download_comarcas_TJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/)
+- Link:
+  [download-comarcas-TJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml)
+- Resultados:
+  - Arquivos:
+    [data-raw/comarcas_TJMG.csv](https://github.com/ciga-mpmg/download_comarcas_TJMG/blob/main/data-raw/comarcas_TJMG.csv)
+  - Tabelas no banco de dados:
+    [comarcasTJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/blob/main/data-raw/script_actions.R)
+- Credenciais necessárias:
+  - CIGA_SQL_HOST
+  - CIGA_SQL_DATABASE
+  - CIGA_SQL_USER
+  - CIGA_SQL_PORT
+  - CIGA_SQL_PASSWORD
+
+### Download SIGBM detalhado
+
+- Nível de urgência: Médio
+- Descrição: Faz o download dos dados detalhados do portal
+  [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem).
+- Execução:
+  - Ativação automática: todos os dias, uma vez ao dia, às 19h00.
+- Repositório:
+  [ciga-monitoramento-info-barragens/sigbm-dados-cadastrais](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais)
+- Link:
+  [update-sigbm-dados-cadastrais.yaml](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/actions/workflows/update-sigbm-dados-cadastrais.yaml)
+- Resultados:
+  - Arquivos:
+    - [data-raw/chaves_mg.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/chaves_mg.csv)
+    - [data-raw/dados_brutos_mais_recente.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/dados_brutos_mais_recente.csv)
+    - [data-raw/dados_tratados_mais_recente.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/dados_tratados_mais_recente.csv)
+    - [data-raw/dados_tratados_diff.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/dados_tratados_diff.csv)
+    - [data-raw/dados_tratados_descaracterizacao.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/dados_tratados_descaracterizacao.csv)
+  - Tabelas no banco de dados:
+    - [sigbm_dados_cadastrais_atual](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/script_actions_2.R)
+    - [sigbm_dados_cadastrais](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/script_actions_2.R)
+- Credenciais necessárias:
+  - CIGA_SQL_HOST
+  - CIGA_SQL_DATABASE
+  - CIGA_SQL_USER
+  - CIGA_SQL_PORT
+  - CIGA_SQL_PASSWORD
+- Observações:
+  - Conforme feito [aqui](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/commit/5b4009c9646a33018030bbd29cf0e7b71d073319), a verificação de SSL foi desativada por um problema no site da ANM.  
+
+### Download SIGBM detalhado - Mapa de inundação - Download
+
+- Nível de urgência: baixo
+- Descrição: Faz o download dos mapas de inundação disponibilizados no
+  portal
+  [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem).
+- Execução:
+  - Ativação automática: todos os dias, uma vez ao dia, às 20h00.
+- Repositório: <https://github.com/ciga-mpmg/sigbm-mapa-inundacao>
+- Link:
+  [01-download-sigbm-mapa-inundacao-dados.yaml](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/actions/workflows/01-download-sigbm-mapa-inundacao-dados.yaml)
+- Resultados:
+  - Arquivos:
+    - [data-raw/chaves_mg.csv](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data-raw/chaves_mg.csv)
+    - [data-raw/dados_mapa_inundacao.csv](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data-raw/dados_mapa_inundacao.csv)
+    - [data/dados_mapa_inundacao.rda](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data/dados_mapa_inundacao.rda)
+    - [data-raw/arquivos_para_baixar.csv](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data-raw/arquivos_para_baixar.csv)
+  - Tabelas no banco de dados: Nenhuma tabela é alterada.
+- Credenciais necessárias:
+  - CIGA_JSON_GOOGLE
+
+### Download SIGBM detalhado - Mapa de inundação - Upload
+
+- Nível de urgência: baixo
+- Descrição: Faz o upload dos mapas de inundação disponibilizados no
+  portal
+  [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem)
+  para o Bucket.
+- Execução:
+  - Ativação automática: todos os dias, uma vez ao dia, às 20h30.
+- Repositório: <https://github.com/ciga-mpmg/sigbm-mapa-inundacao>
+- Link:
+  - [02-upload-sigbm-mapa-inundacao-bucket.yaml](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/actions/workflows/02-upload-sigbm-mapa-inundacao-bucket.yaml)
+- Resultados:
+  - Arquivos:
+    - [data-raw/arquivos_para_baixar.csv](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data-raw/arquivos_para_baixar.csv)  
+  - Tabelas no banco de dados: Nenhuma tabela é alterada.
+- Credenciais necessárias:
+  - CIGA_JSON_GOOGLE

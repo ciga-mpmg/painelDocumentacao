@@ -134,7 +134,7 @@
     "href": "ambientes.html#github",
     "title": "1  Ambientes",
     "section": "1.2 GitHub",
-    "text": "1.2 GitHub\nO código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.\nOs repositórios foram criados dentro da organização ciga-mpmg.\nAlguns repositórios possuem processos automatizados via Github Actions, como a atualização dos dados do SIGBM e o deploy dos painéis.\nNa Seção Capítulo 4 listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link.",
+    "text": "1.2 GitHub\nO código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.\nOs repositórios foram criados dentro da organização ciga-mpmg.\nAlguns repositórios possuem processos automatizados via Github Actions, como a atualização dos dados do SIGBM e o deploy dos painéis.\nNa Seção Seção 5 listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link. Na Seção Seção 6, descrevemos o que faz cada Action e como executá-los.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -144,7 +144,7 @@
     "href": "ambientes.html#gcp",
     "title": "1  Ambientes",
     "section": "1.3 GCP",
-    "text": "1.3 GCP\n(azeloc?)",
+    "text": "1.3 GCP\n(azeloc?)\nPara implantar o Painel CIGA-MPMG, foi necessário configurar uma máquina com as seguintes configurações:\n\nSistema operacional: Ubuntu 20.04\nCapacidade de disco: (azeloc?)\nMemória RAM: (azeloc?)\n\nTambém foi necessário instalar os seguintes softwares:\n\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nnginx (azeloc?)\n\nE configurar as seguintes variáveis de ambiente no arquivo /home/shiny-admin/.Renviron:\n\nCIGA_SQL_HOST: endereço de acesso ao banco de dados\nCIGA_SQL_DATABASE: banco de dados\nCIGA_SQL_USER: usuário do banco\nCIGA_SQL_PORT: porta do banco\nCIGA_SQL_PASSWORD: senha\nAMBIENTE: string que deve ser “homolog” ou “prod”\nCIGA_OUTLOOK_TENANT: tenant do outlook\nCIGA_OUTLOOK_APP: id do aplicativo do outlook\nCIGA_OUTLOOK_PASSWORD: senha do outlook\nCIGA_FIREBASE_PASSWORD: senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br\nCIGA_FIREBASE_PROJECT_API: projeto do firebase",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -154,7 +154,7 @@
     "href": "ambientes.html#shiny-server",
     "title": "1  Ambientes",
     "section": "1.4 Shiny Server",
-    "text": "1.4 Shiny Server\nOs painéis do CIGA-MPMG foram implantados utilizando o Shiny Server.\nEste ambiente deverá ser acessado para… (azeloc?)",
+    "text": "1.4 Shiny Server\nOs painéis do CIGA-MPMG foram implantados utilizando o Shiny Server.\nEste ambiente deverá ser acessado para… (azeloc?)\nApresentamos as configurações aplicadas ao Shiny Server para implantar o Painel CIGA-MPMG na Seção 7.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -164,7 +164,7 @@
     "href": "ambientes.html#firebase",
     "title": "1  Ambientes",
     "section": "1.5 Firebase",
-    "text": "1.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG. (azeloc?)",
+    "text": "1.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja Seção 2). (azeloc?)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -222,121 +222,121 @@
   {
     "objectID": "repositorios.html",
     "href": "repositorios.html",
-    "title": "4  Repositórios",
+    "title": "5  Repositórios",
     "section": "",
-    "text": "4.1 painelMain",
+    "text": "5.1 painelMain",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#painelmain",
     "href": "repositorios.html#painelmain",
-    "title": "4  Repositórios",
+    "title": "5  Repositórios",
     "section": "",
     "text": "Descrição: contém o código-fonte da home do Painel Gerencial CIGA-MPMG (Seção 3.1), a página acessada logo após o login.\nLink: https://github.com/ciga-mpmg/painelMain\nActions: possui os Actions de deploy em homologação e produção de cada um dos painéis e para gerar os relatórios gerenciais.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#painelbarragens",
     "href": "repositorios.html#painelbarragens",
-    "title": "4  Repositórios",
-    "section": "4.2 painelBarragens",
-    "text": "4.2 painelBarragens\n\nDescrição: contém o código-fonte do painel Barragens (Seção 3.2).\nLink: https://github.com/ciga-mpmg/painelBarragens\nActions: não possui.",
+    "title": "5  Repositórios",
+    "section": "5.2 painelBarragens",
+    "text": "5.2 painelBarragens\n\nDescrição: contém o código-fonte do painel Barragens (Seção 3.2).\nLink: https://github.com/ciga-mpmg/painelBarragens\nActions: não possui.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#painelinfotacs",
     "href": "repositorios.html#painelinfotacs",
-    "title": "4  Repositórios",
-    "section": "4.3 painelInfoTacs",
-    "text": "4.3 painelInfoTacs\n\nDescrição: contém o código-fonte do painel Informações sobre os TACs (Seção 3.3).\nLink: https://github.com/ciga-mpmg/painelInfoTacs\nActions: não possui.",
+    "title": "5  Repositórios",
+    "section": "5.3 painelInfoTacs",
+    "text": "5.3 painelInfoTacs\n\nDescrição: contém o código-fonte do painel Informações sobre os TACs (Seção 3.3).\nLink: https://github.com/ciga-mpmg/painelInfoTacs\nActions: não possui.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#paineldescaracterizacao",
     "href": "repositorios.html#paineldescaracterizacao",
-    "title": "4  Repositórios",
-    "section": "4.4 painelDescaracterizacao",
-    "text": "4.4 painelDescaracterizacao\n\nDescrição: contém o código-fonte do painel Descaracterização (Seção 3.4).\nLink: https://github.com/ciga-mpmg/painelDescaracterizacao\nActions: não possui.",
+    "title": "5  Repositórios",
+    "section": "5.4 painelDescaracterizacao",
+    "text": "5.4 painelDescaracterizacao\n\nDescrição: contém o código-fonte do painel Descaracterização (Seção 3.4).\nLink: https://github.com/ciga-mpmg/painelDescaracterizacao\nActions: não possui.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#painelrecomendacoes",
     "href": "repositorios.html#painelrecomendacoes",
-    "title": "4  Repositórios",
-    "section": "4.5 painelRecomendacoes",
-    "text": "4.5 painelRecomendacoes\n\nDescrição: contém o código-fonte do painel Recomendações (Seção 3.5).\nLink: https://github.com/ciga-mpmg/painelRecomendacoes\nActions: não possui.",
+    "title": "5  Repositórios",
+    "section": "5.5 painelRecomendacoes",
+    "text": "5.5 painelRecomendacoes\n\nDescrição: contém o código-fonte do painel Recomendações (Seção 3.5).\nLink: https://github.com/ciga-mpmg/painelRecomendacoes\nActions: não possui.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#painelassets",
     "href": "repositorios.html#painelassets",
-    "title": "4  Repositórios",
-    "section": "4.6 painelAssets",
-    "text": "4.6 painelAssets\n\nDescrição: contém o código-fonte de um pacote R com funções auxiliares utilizadas em todos os painéis.\nLink: https://github.com/ciga-mpmg/painelAssets\nActions: não possui.",
+    "title": "5  Repositórios",
+    "section": "5.6 painelAssets",
+    "text": "5.6 painelAssets\n\nDescrição: contém o código-fonte de um pacote R com funções auxiliares utilizadas em todos os painéis.\nLink: https://github.com/ciga-mpmg/painelAssets\nActions: não possui.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#painellogin",
     "href": "repositorios.html#painellogin",
-    "title": "4  Repositórios",
-    "section": "4.7 painelLogin",
-    "text": "4.7 painelLogin\n\nDescrição: contém o código-fonte de um pacote R com funções utilizadas na construção da camada de login via Firebase de cada Painel.\nLink: https://github.com/ciga-mpmg/painelLogin\nActions: não possui.",
+    "title": "5  Repositórios",
+    "section": "5.7 painelLogin",
+    "text": "5.7 painelLogin\n\nDescrição: contém o código-fonte de um pacote R com funções utilizadas na construção da camada de login via Firebase de cada Painel. Também possui o front-end da tela de Login.\nLink: https://github.com/ciga-mpmg/painelLogin\nActions: não possui.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#painelrelatoriogerencial",
     "href": "repositorios.html#painelrelatoriogerencial",
-    "title": "4  Repositórios",
-    "section": "4.8 painelRelatorioGerencial",
-    "text": "4.8 painelRelatorioGerencial\n\nDescrição: contém o código-fonte de todas as versões do Relatório Gerencial.\nLink: https://github.com/ciga-mpmg/painelRelatorioGerencial\nActions: não possui.",
+    "title": "5  Repositórios",
+    "section": "5.8 painelRelatorioGerencial",
+    "text": "5.8 painelRelatorioGerencial\n\nDescrição: contém o código-fonte de todas as versões do Relatório Gerencial.\nLink: https://github.com/ciga-mpmg/painelRelatorioGerencial\nActions: não possui.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#painelactions",
     "href": "repositorios.html#painelactions",
-    "title": "4  Repositórios",
-    "section": "4.9 painelActions",
-    "text": "4.9 painelActions\n(azeloc?)",
+    "title": "5  Repositórios",
+    "section": "5.9 painelActions",
+    "text": "5.9 painelActions\n(azeloc?)",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#paineldocumentacao",
     "href": "repositorios.html#paineldocumentacao",
-    "title": "4  Repositórios",
-    "section": "4.10 painelDocumentacao",
-    "text": "4.10 painelDocumentacao\n\nDescrição: contém os arquivos que compõem esta documentação.\nLink: https://github.com/ciga-mpmg/painelDocumentacao\nActions: não possui.",
+    "title": "5  Repositórios",
+    "section": "5.10 painelDocumentacao",
+    "text": "5.10 painelDocumentacao\n\nDescrição: contém os arquivos que compõem esta documentação.\nLink: https://github.com/ciga-mpmg/painelDocumentacao\nActions: não possui.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
     "objectID": "repositorios.html#scraper_sigbm",
     "href": "repositorios.html#scraper_sigbm",
-    "title": "4  Repositórios",
-    "section": "4.11 scraper_sigbm",
-    "text": "4.11 scraper_sigbm\n(azeloc?)",
+    "title": "5  Repositórios",
+    "section": "5.11 scraper_sigbm",
+    "text": "5.11 scraper_sigbm\n(azeloc?)",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Repositórios</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
   },
   {
@@ -387,6 +387,96 @@
     "text": "3.5 Recomendações\nPossui visualizações e estatísticas de acompanhamento de recomendações emitidas pelas Auditorias Técnicas Independentes, no contexto do cumprimento dos Termos de Ajustamento de Conduta (TACs) pelos empreendedores. Tais recomendações são primordialmente associadas a estruturas geotécnicas, mas envolvem também temas ligados ao meio ambiente, como bem-estar e manejo da fauna evacuada, monitoramento das águas na bacia do Rio Paraopeba, segurança hídrica no contexto do alto curso da bacia do Rio das Velhas, manejo de rejeitos na Bacia do Rio Doce, dentre outros temas.\nO código fonte desta página se encontra no repositório painelRecomendacoes.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "shiny_server.html",
+    "href": "shiny_server.html",
+    "title": "7  Shiny Server",
+    "section": "",
+    "text": "7.1 nginx\nA compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de location do nginx são:\nJá as configurações de redirecionamento são:",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Shiny Server</span>"
+    ]
+  },
+  {
+    "objectID": "shiny_server.html#nginx",
+    "href": "shiny_server.html#nginx",
+    "title": "7  Shiny Server",
+    "section": "",
+    "text": "location / {\n  proxy_pass http://localhost:3838;\n  proxy_redirect / $scheme://$http_host/;\n  proxy_http_version 1.1;\n  proxy_set_header Upgrade $http_upgrade;\n  proxy_set_header Connection $connection_upgrade;\n  proxy_read_timeout 20d;\n  proxy_buffering off;\n}\n\nserver {\n  listen 80;\n  server_name painel-homolog.ciga-mpmg.com.br;\n  rewrite     ^   https://$server_name$request_uri? redirect;\n\n  location ^~ /.well-known/acme-challenge/ {\n        alias /var/www/html/.well-known/acme-challenge/;\n  }\n\n  location / {\n    proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n  }\n\n  location /recomendacoes {\n    proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n  }\n}\n\nserver {\n  listen 443 ssl;\n  server_name painel-homolog.ciga-mpmg.com.br;\n\n  ssl on;\n  ssl_certificate       /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/fullchain.pem;\n  ssl_certificate_key   /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/privkey.pem;\n\n  proxy_headers_hash_max_size 2048;\n  proxy_headers_hash_bucket_size 128;\n\n  location ^~ /.well-known/acme-challenge/ {\n        alias /var/www/html/.well-known/acme-challenge/;\n  }\n\n  location / {\n    proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n\n    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n\n  }\n\n  location /recomendacoes/ {\n    proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n\n  }\n\n  location /tacs/ {\n    proxy_pass http://127.0.0.1:3838/painelInfoTacs/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n  }\n\n  location /barragens/ {\n    proxy_pass http://127.0.0.1:3838/painelBarragens/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n  }\n\n  location /descaracterizacao/ {\n    proxy_pass http://127.0.0.1:3838/painelDescaracterizacao/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n  }\n}",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Shiny Server</span>"
+    ]
+  },
+  {
+    "objectID": "shiny_server.html#variáveis-de-sistema",
+    "href": "shiny_server.html#variáveis-de-sistema",
+    "title": "7  Shiny Server",
+    "section": "7.2 Variáveis de sistema",
+    "text": "7.2 Variáveis de sistema\nPara o Painel conseguir acessar os serviços externos (e.g., Firebase e banco de dados), é necessário configurar as seguintes variáveis de ambiente no arquivo /home/shiny-admin/.Renviron:\n\nCIGA_SQL_HOST: endereço de acesso ao banco de dados\nCIGA_SQL_DATABASE: banco de dados\nCIGA_SQL_USER: usuário do banco\nCIGA_SQL_PORT: porta do banco\nCIGA_SQL_PASSWORD: senha\nAMBIENTE: string que deve ser “homolog” ou “prod”\nCIGA_OUTLOOK_TENANT: tenant do outlook\nCIGA_OUTLOOK_APP: id do aplicativo do outlook\nCIGA_OUTLOOK_PASSWORD: senha do outlook\nCIGA_FIREBASE_PASSWORD: senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br\nCIGA_FIREBASE_PROJECT_API: projeto do firebase",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Shiny Server</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html",
+    "href": "actions.html",
+    "title": "6  Actions",
+    "section": "",
+    "text": "6.1 Credenciais (repository secrets)\nCada workflow pode necessitar de diferentes credenciais. Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#credenciais-repository-secrets",
+    "href": "actions.html#credenciais-repository-secrets",
+    "title": "6  Actions",
+    "section": "",
+    "text": "6.1.1 Banco de dados (GCP)\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\n6.1.2 Outlook (Conta Microsoft)\n\nCIGA_OUTLOOK_TENANT\nCIGA_OUTLOOK_PASSWORD\nCIGA_OUTLOOK_APP\n\n\n\n6.1.3 Firebase (GCP)\n\nCIGA_FIREBASE_PASSWORD\nCIGA_FIREBASE_PROJECT_API\n\n\n\n6.1.4 SSH (acesso ao servidor) (GCP)\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER\nSSH_PRIVATE_KEY_PROD\nSSH_HOST_PROD\n\n\n\n6.1.5 Google Cloud Storage (Bucket)\n\nCIGA_JSON_GOOGLE\n\n\n\n6.1.6 GitHub\n\nTOKEN",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#workflows-relacionados-com-açõesside-effects",
+    "href": "actions.html#workflows-relacionados-com-açõesside-effects",
+    "title": "6  Actions",
+    "section": "6.2 Workflows relacionados com ações/side-effects",
+    "text": "6.2 Workflows relacionados com ações/side-effects\n\n6.2.1 Enviar emails de atualizações do SIGBM\n\nNível de urgência: ALTO\nDescrição: Envia email com atualizações do SIGBM. Emails com periodicidade diária, semanal ou mensal.\nExecução:\n\nAtivação manual\nAtivação automática: todos os dias, uma vez ao dia, às 7h30.\n\nRepositório: ciga-mpmg/painelEmailsSIGBM\nLink: workflow\nResultados:\n\nArquivos:\n\ndata/df_config_usuarios.rda - Dados dos usuários cadastrados no Firebase.\ndata/tabela_atualizacoes.rda - Tabela preparada com as atualizações do SIGBM.\n\nTabelas no banco de dados: Nenhuma tabela é alterada.\nAções: Os emails de atualizações são enviados.\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\nCIGA_OUTLOOK_TENANT\nCIGA_OUTLOOK_PASSWORD\nCIGA_OUTLOOK_APP\nCIGA_FIREBASE_PASSWORD\nCIGA_FIREBASE_PROJECT_API\n\n\n\n\n6.2.2 Gerar relatórios gerenciais padronizados\n\nNível de urgência: Baixo\nDescrição: Gera relatórios gerenciais padronizados - Alerta 7, Por TAC, por empreendedor, e por complexo minerário.\nExecução:\n\nAtivação manual\nAtivação automática: Dia 1 de cada mês, uma vez ao dia, às 00h00.\nAutomaticamente quando há novas modificações no repositório ciga-mpmg/resuvafeca\n\nRepositório:\nRepositório com o código para gerar o relatório: ciga-mpmg/relatorioGerencial\nRepositório onde o workflow é executado: ciga-mpmg/painelMain\n\nLink: workflow\nResultados:\n\nArquivos: relatórios em PDF, adicionados no Bucket, nas pastas bucket-aecom-ciga-homolog/relatorios_gerenciais_padronizados/TIPO_RELATORIO/YYYY-MM correspondente ao tipo de relatório e ao mês/ano.\nTabelas no banco de dados: Nenhuma tabela é alterada.\nAções: Relatórios são gerados no servidor e enviados para o Bucket.\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER\n\n\n\n\n6.2.3 Resuvafeca\n\nNível de urgência: Baixo\nDescrição: Sempre que houver novas alterações na branch main do repositório resuvafeca, ativa outros workflows:\n\nupdate-sigbm.yaml - atualizar sigbm\nciga-mpmg/relatorioGerencial - gerar relatório gerencial.\n\nExecução:\n\nAtivação automática: sempre que houver uma mudança na main do repositório.\n\nRepositório: ciga-mpmg/resuvafeca\nLink: workflow-dispatch-sigbm.yaml\nResultados:\n\nArquivos: Nenhum arquivo é gerado.\nTabelas no banco de dados: Nenhuma tabela é alterada.\nAções: Ativa outro workflows.\n\nCredenciais necessárias:\n\nTOKEN",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#workflows-de-deploy",
+    "href": "actions.html#workflows-de-deploy",
+    "title": "6  Actions",
+    "section": "6.3 Workflows de deploy",
+    "text": "6.3 Workflows de deploy\n\n6.3.1 Atualizar o painel - Produção\n\nNível de urgência: Baixo\nDescrição: Workflow para atualizar o painel em produção. Atualiza todos os paineis. Atualiza o servidor com o código que está na branch prod de cada repositório dos painéis.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 00h00.\n\nRepositório: ciga-mpmg/painelMain\nLinks:\n\nworkflow\n\nResultados:\n\nArquivos: Nenhum arquivo é gerado.\nTabelas no banco de dados: Nenhuma tabela é alterada.\nAções: Atualizações dos painéis em produção.\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY_PROD\nSSH_HOST_PROD\nSSH_USER\n\n\n\n\n6.3.2 Atualizar o painel - Homologação\n\nNível de urgência: Baixo\nDescrição: Workflow para o painel em homologação. Atualiza todos os paineis. Atualiza o servidor com o código que está na branch main de cada repositório dos painéis.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 01h00.\n\nRepositório: ciga-mpmg/painelMain\nLinks:\n\nworkflow\n\n\nResultados:\n\nArquivos: Nenhum arquivo é gerado.\nTabelas no banco de dados: Nenhuma tabela é alterada.\nAções: Atualizações dos painéis em homologação.\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#workflows-de-atualização-de-bases-de-dados",
+    "href": "actions.html#workflows-de-atualização-de-bases-de-dados",
+    "title": "6  Actions",
+    "section": "6.4 Workflows de atualização de bases de dados",
+    "text": "6.4 Workflows de atualização de bases de dados\n\n6.4.1 Download SIGBM\n\nNível de urgência: ALTO\nDescrição: Faz download dos dados do portal SIGBM. Além disso, faz um join da base do SIGBM com a base de recomendações, e outros tratamentos necessários para preparar tabelas para os painéis.\nExecução:\n\nAtivação automática: todos os dias, duas vezes ao dia, às 11h30 e 23h30.\n\nRepositório: ciga-mpmg/scraper_sigbm\nLink: update-sigbm.yaml\nResultados:\n\nArquivos:\n\ndata-raw/sigbm_diff.csv\ndata-raw/sigbm_mais_recente.csv\n\nTabelas no banco de dados:\n\nsigbm_atual\nsigbm\n\ndados_recomendacoes_sigbm\ndados_sigbm_atualizacao_mensal\ndados_sigbm_linha_do_tempo_parcial\ndados_sigbm_linha_do_tempo\ndados_recomendacoes_sigbm_complexo_minerario\nsigbm_atual_com_comarcas\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\nImportante: Executar sempre que uma nova atualização da base de recomendações acontecer! Essa execução acontece automaticamente quando há novas modificações no repositório ciga-mpmg/resuvafeca\nEsse workflow realiza diversas tarefas de ETL importantes para o painel, descritas no README do repositório.\nObservações:\n\nConforme feito aqui, a verificação de SSL foi desativada por um problema no site da ANM.\n\n\n\n\n6.4.2 Copiar metadados do bucket\n\nNível de urgência: ALTO\nDescrição: Importa informações de uma série de arquivos que estão no bucket, como: documentos dos TACs, relatórios gerenciais, imagens de satélite e as máscaras das imagens de satélite.\nExecução:\n\nAtivação automática: todos os dias, duas vezes ao dia, às 07h00 e 19h00.\n\nRepositório: ciga-mpmg/googleStorageMetadata\nLink: copia-metadados-bucket.yaml\nResultados:\n\nArquivos: Nenhum arquivo é gerado.\nTabelas no banco de dados:\n\nmetadados_documentos_tacs\n\nmetadados_relatorios_gerenciais\n\nmetadados_imagens_satelite_bucket\nmetadados_imagens_satelite_bucket_local\n\nmetadados_mascaras_imagens_satelite_bucket\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\nCIGA_JSON_GOOGLE\n\nImportante:\n\nSempre que fizer alguma mudança nos arquivos do bucket citados acima e quiser que essas mudanças apareçam no app, execute manualmente esse workflow.\nCaso adicione imagens de satélite novas, verifique se a mesma consta na tabela de-para de imagens de satélite e barragens: local e regional.\n\nConsulte o README do repositório para mais informações sobre o quais informações são extraídas.\n\n\n\n6.4.3 Download IDE SISEMA\n\nNível de urgência: Baixo\nDescrição: Faz download dos dados do IDE Sisema acessando o seu Web Map Server (WMS) (código por (rdornas?)).\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 07h00.\n\nRepositório: ciga-mpmg/download_IDE_SISEMA\nLink: update-data.yaml\nResultados:\n\nArquivos: data-raw/ide_sisema.csv\nTabelas no banco de dados: ide_sisema\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\n\n6.4.4 Download Comarcas TJMG\n\nNível de urgência: Baixo\nDescrição: Faz download do pdf dos municípios e comarcas do Tribunal de Justiça do estado de Minas Gerais, trata e disponibiliza (código por (rdornas?) e (mayaradaher?) utilizado está disponível no repositório ciga-mpmg/comarcasTJMG).\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 07h00.\n\nRepositório: ciga-mpmg/download_comarcas_TJMG\nLink: download-comarcas-TJMG\nResultados:\n\nArquivos: data-raw/comarcas_TJMG.csv\nTabelas no banco de dados: comarcasTJMG\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\n\n6.4.5 Download SIGBM detalhado\n\nNível de urgência: Médio\nDescrição: Faz o download dos dados detalhados do portal SIGBM.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 19h00.\n\nRepositório: ciga-monitoramento-info-barragens/sigbm-dados-cadastrais\nLink: update-sigbm-dados-cadastrais.yaml\nResultados:\n\nArquivos:\n\ndata-raw/chaves_mg.csv\ndata-raw/dados_brutos_mais_recente.csv\ndata-raw/dados_tratados_mais_recente.csv\ndata-raw/dados_tratados_diff.csv\ndata-raw/dados_tratados_descaracterizacao.csv\n\nTabelas no banco de dados:\n\nsigbm_dados_cadastrais_atual\nsigbm_dados_cadastrais\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\nObservações:\n\nConforme feito aqui, a verificação de SSL foi desativada por um problema no site da ANM.\n\n\n\n\n6.4.6 Download SIGBM detalhado - Mapa de inundação - Download\n\nNível de urgência: baixo\nDescrição: Faz o download dos mapas de inundação disponibilizados no portal SIGBM.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 20h00.\n\nRepositório: https://github.com/ciga-mpmg/sigbm-mapa-inundacao\nLink: 01-download-sigbm-mapa-inundacao-dados.yaml\nResultados:\n\nArquivos:\n\ndata-raw/chaves_mg.csv\ndata-raw/dados_mapa_inundacao.csv\ndata/dados_mapa_inundacao.rda\ndata-raw/arquivos_para_baixar.csv\n\nTabelas no banco de dados: Nenhuma tabela é alterada.\n\nCredenciais necessárias:\n\nCIGA_JSON_GOOGLE\n\n\n\n\n6.4.7 Download SIGBM detalhado - Mapa de inundação - Upload\n\nNível de urgência: baixo\nDescrição: Faz o upload dos mapas de inundação disponibilizados no portal SIGBM para o Bucket.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 20h30.\n\nRepositório: https://github.com/ciga-mpmg/sigbm-mapa-inundacao\nLink:\n\n02-upload-sigbm-mapa-inundacao-bucket.yaml\n\nResultados:\n\nArquivos:\n\ndata-raw/arquivos_para_baixar.csv\n\n\nTabelas no banco de dados: Nenhuma tabela é alterada.\n\nCredenciais necessárias:\n\nCIGA_JSON_GOOGLE",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
+    ]
+  },
+  {
+    "objectID": "relatorio.html",
+    "href": "relatorio.html",
+    "title": "4  Relatório Gerencial",
+    "section": "",
+    "text": "4.1 Gerar relatórios gerenciais\nPara gerar os relatórios gerenciais atualizados e disponibilizá-los para download na plataforma, você deve:\nPasso 1: Executar a rotina de geração dos relatórios “gerar_relatorios_gerenciais” clicando em “Run workflow” na página de Actions do repositório https://github.com/ciga-mpmg/painelMain\nAo final desse processo, novos relatórios referentes à data de execução da rotina serão criados.\nPasso 2: Executar a rotina de cadastros do relatórios no banco de dados interno da plataforma CIGA-MPMG.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Relatório Gerencial</span>"
     ]
   }
 ]

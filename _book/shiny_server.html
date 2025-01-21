@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="R6">
 
-<title>Documentação do Painel CIGA-MPMG</title>
+<title>7&nbsp; Shiny Server – Documentação do Painel CIGA-MPMG</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ambientes.html" rel="next">
+<link href="./actions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Sobre</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./shiny_server.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Shiny Server</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -108,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Sobre</span></a>
   </div>
 </li>
@@ -150,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./shiny_server.html" class="sidebar-item-text sidebar-link">
+  <a href="./shiny_server.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Shiny Server</span></span></a>
   </div>
 </li>
@@ -164,7 +163,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#sobre" id="toc-sobre" class="nav-link active" data-scroll-target="#sobre">Sobre</a></li>
+  <li><a href="#nginx" id="toc-nginx" class="nav-link active" data-scroll-target="#nginx"><span class="header-section-number">7.1</span> nginx</a></li>
+  <li><a href="#variáveis-de-sistema" id="toc-variáveis-de-sistema" class="nav-link" data-scroll-target="#variáveis-de-sistema"><span class="header-section-number">7.2</span> Variáveis de sistema</a></li>
   </ul>
 </nav>
     </div>
@@ -173,26 +173,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Documentação do Painel CIGA-MPMG</h1>
+<h1 class="title"><span id="sec-shiny-server" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Shiny Server</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autoria</div>
-    <div class="quarto-title-meta-contents">
-             <p>R6 </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Atualizado em</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">24 de maio de 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -202,9 +190,137 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="sobre" class="level1 unnumbered">
-<h1 class="unnumbered">Sobre</h1>
-<p>Este documento apresenta a documentação dos painéis de dados que compõem o CIGA-MPMG: Barragens, Informações sobre os Tacs, Descaracterização e Recomendações.</p>
+<p>Nesta seção, apresentamos as configurações aplicadas ao Shiny Server para implantar o Painel CIGA-MPMG.</p>
+<section id="nginx" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="nginx"><span class="header-section-number">7.1</span> nginx</h2>
+<p>A compatibilização de todos os apps como uma única aplicação é feita com direcionamento via <a href="https://www.nginx.com/"><code>nginx</code></a>. As configurações de <code>location</code> do nginx são:</p>
+<pre><code>location / {
+  proxy_pass http://localhost:3838;
+  proxy_redirect / $scheme://$http_host/;
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection $connection_upgrade;
+  proxy_read_timeout 20d;
+  proxy_buffering off;
+}</code></pre>
+<p>Já as configurações de redirecionamento são:</p>
+<pre><code>server {
+  listen 80;
+  server_name painel-homolog.ciga-mpmg.com.br;
+  rewrite     ^   https://$server_name$request_uri? redirect;
+
+  location ^~ /.well-known/acme-challenge/ {
+        alias /var/www/html/.well-known/acme-challenge/;
+  }
+
+  location / {
+    proxy_pass http://127.0.0.1:3838/painelMain$request_uri;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+  }
+
+  location /recomendacoes {
+    proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+  }
+}
+
+server {
+  listen 443 ssl;
+  server_name painel-homolog.ciga-mpmg.com.br;
+
+  ssl on;
+  ssl_certificate       /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/fullchain.pem;
+  ssl_certificate_key   /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/privkey.pem;
+
+  proxy_headers_hash_max_size 2048;
+  proxy_headers_hash_bucket_size 128;
+
+  location ^~ /.well-known/acme-challenge/ {
+        alias /var/www/html/.well-known/acme-challenge/;
+  }
+
+  location / {
+    proxy_pass http://127.0.0.1:3838/painelMain$request_uri;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+
+    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;
+
+  }
+
+  location /recomendacoes/ {
+    proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+
+  }
+
+  location /tacs/ {
+    proxy_pass http://127.0.0.1:3838/painelInfoTacs/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+  }
+
+  location /barragens/ {
+    proxy_pass http://127.0.0.1:3838/painelBarragens/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+  }
+
+  location /descaracterizacao/ {
+    proxy_pass http://127.0.0.1:3838/painelDescaracterizacao/;
+    proxy_redirect / $scheme://$http_host$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
+    proxy_buffering off;
+    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;
+  }
+}</code></pre>
+</section>
+<section id="variáveis-de-sistema" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="variáveis-de-sistema"><span class="header-section-number">7.2</span> Variáveis de sistema</h2>
+<p>Para o Painel conseguir acessar os serviços externos (e.g., Firebase e banco de dados), é necessário configurar as seguintes variáveis de ambiente no arquivo <code>/home/shiny-admin/.Renviron</code>:</p>
+<ul>
+<li><p><code>CIGA_SQL_HOST</code>: endereço de acesso ao banco de dados</p></li>
+<li><p><code>CIGA_SQL_DATABASE</code>: banco de dados</p></li>
+<li><p><code>CIGA_SQL_USER</code>: usuário do banco</p></li>
+<li><p><code>CIGA_SQL_PORT</code>: porta do banco</p></li>
+<li><p><code>CIGA_SQL_PASSWORD</code>: senha</p></li>
+<li><p><code>AMBIENTE</code>: string que deve ser “homolog” ou “prod”</p></li>
+<li><p><code>CIGA_OUTLOOK_TENANT</code>: tenant do outlook</p></li>
+<li><p><code>CIGA_OUTLOOK_APP</code>: id do aplicativo do outlook</p></li>
+<li><p><code>CIGA_OUTLOOK_PASSWORD</code>: senha do outlook</p></li>
+<li><p><code>CIGA_FIREBASE_PASSWORD</code>: senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br</p></li>
+<li><p><code>CIGA_FIREBASE_PROJECT_API</code>: projeto do firebase</p></li>
+</ul>
 
 
 </section>
@@ -632,11 +748,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./actions.html" class="pagination-link" aria-label="Actions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Actions</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ambientes.html" class="pagination-link" aria-label="Ambientes">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Ambientes</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

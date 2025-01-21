@@ -4,5 +4,4 @@ Para executar a obtenção e a preparação dos utilizados nos painéis e outros
 
 Workflows são arquivos de configuração que definem um conjunto de ações que são executadas em um ambiente de execução. Em alguns casos, o ambiente de execução são máquinas virtuais pertencentes à GitHub, em outros, o servidor do próprio CIGA.
 
-Os workflows existentes, e as informações sobre eles, estão descritas no arquivo <https://github.com/ciga-mpmg/painelActions/blob/main/README.md>. 
-
+Os workflows existentes, e as informações sobre eles, estão descritas no arquivo <https://github.com/ciga-mpmg/painelActions/blob/main/README.md>.
