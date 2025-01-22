@@ -134,7 +134,7 @@
     "href": "ambientes.html#github",
     "title": "1  Ambientes",
     "section": "1.2 GitHub",
-    "text": "1.2 GitHub\nO código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.\nOs repositórios foram criados dentro da organização ciga-mpmg.\nAlguns repositórios possuem processos automatizados via Github Actions, como a atualização dos dados do SIGBM e o deploy dos painéis.\nNa Seção Seção 5 listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link. Na Seção Seção 6, descrevemos o que faz cada Action e como executá-los.",
+    "text": "1.2 GitHub\nO código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.\nOs repositórios foram criados dentro da organização ciga-mpmg.\nAlguns repositórios possuem processos automatizados via Github Actions, como a atualização dos dados do SIGBM e o deploy dos painéis.\nNa Seção 5 listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link. Na Seção 6, descrevemos o que faz cada Action e como executá-los.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -144,7 +144,7 @@
     "href": "ambientes.html#gcp",
     "title": "1  Ambientes",
     "section": "1.3 GCP",
-    "text": "1.3 GCP\n(azeloc?)\nPara implantar o Painel CIGA-MPMG, foi necessário configurar uma máquina com as seguintes configurações:\n\nSistema operacional: Ubuntu 20.04\nCapacidade de disco: (azeloc?)\nMemória RAM: (azeloc?)\n\nTambém foi necessário instalar os seguintes softwares:\n\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nnginx (azeloc?)\n\nE configurar as seguintes variáveis de ambiente no arquivo /home/shiny-admin/.Renviron:\n\nCIGA_SQL_HOST: endereço de acesso ao banco de dados\nCIGA_SQL_DATABASE: banco de dados\nCIGA_SQL_USER: usuário do banco\nCIGA_SQL_PORT: porta do banco\nCIGA_SQL_PASSWORD: senha\nAMBIENTE: string que deve ser “homolog” ou “prod”\nCIGA_OUTLOOK_TENANT: tenant do outlook\nCIGA_OUTLOOK_APP: id do aplicativo do outlook\nCIGA_OUTLOOK_PASSWORD: senha do outlook\nCIGA_FIREBASE_PASSWORD: senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br\nCIGA_FIREBASE_PROJECT_API: projeto do firebase",
+    "text": "1.3 GCP\n(azeloc?)\nPara implantar o Painel CIGA-MPMG, foi necessário configurar uma máquina com as seguintes configurações:\n\nSistema operacional: Ubuntu 20.04\nCapacidade de disco: (azeloc?)\nMemória RAM: (azeloc?)\n\nTambém foi necessário instalar os seguintes softwares:\n\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nnginx (azeloc?)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -164,7 +164,7 @@
     "href": "ambientes.html#firebase",
     "title": "1  Ambientes",
     "section": "1.5 Firebase",
-    "text": "1.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja Seção 2). (azeloc?)",
+    "text": "1.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a Seção 2). (azeloc?)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -424,7 +424,7 @@
     "href": "actions.html",
     "title": "6  Actions",
     "section": "",
-    "text": "6.1 Credenciais (repository secrets)\nCada workflow pode necessitar de diferentes credenciais. Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.",
+    "text": "6.1 Credenciais\nCada workflow pode necessitar de diferentes credenciais (repository secrets). Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
     ]
@@ -477,6 +477,46 @@
     "text": "4.1 Gerar relatórios gerenciais\nPara gerar os relatórios gerenciais atualizados e disponibilizá-los para download na plataforma, você deve:\nPasso 1: Executar a rotina de geração dos relatórios “gerar_relatorios_gerenciais” clicando em “Run workflow” na página de Actions do repositório https://github.com/ciga-mpmg/painelMain\nAo final desse processo, novos relatórios referentes à data de execução da rotina serão criados.\nPasso 2: Executar a rotina de cadastros do relatórios no banco de dados interno da plataforma CIGA-MPMG.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Relatório Gerencial</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#workflows",
+    "href": "actions.html#workflows",
+    "title": "6  Actions",
+    "section": "6.2 Workflows",
+    "text": "6.2 Workflows\nA seguir, descrevemos cada um dos workflows criados para a manutenção do Painel Gerencial do CIGA-MPMG.\n\n6.2.1 Gerar os relatórios gerenciais\n\nDescrição: Gera os relatórios gerenciais e faz o upload para o Google Cloud Storage.\nLink para o workflow: gerar-relatorios-gerenciais.yml\nExecução:\n\nAtivação manual\nAtivação automática: Dia 1 de cada mês, uma vez ao dia, às 00h00.\nAutomaticamente quando há novas modificações no repositório ciga-mpmg/resuvafeca\n\nRepositório:\n\nRepositório com o código para gerar o relatório: ciga-mpmg/relatorioGerencial\nRepositório onde o workflow é executado: ciga-mpmg/painelMain\n\n\nSaídas da execução:\n\nArquivos: relatórios em PDF, enviado ao Google Cloud Storage, nas pastas bucket-aecom-ciga-homolog/relatorios_gerenciais_padronizados/TIPO_RELATORIO/YYYY-MM correspondente ao tipo de relatório e ao mês/ano.\nTabelas no banco de dados: nenhuma tabela é alterada.\nAções: nenhuma ação é realizada\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER\n\n\n\n\n6.2.2 Resuvafeca\n\nDescrição: Sempre que houver novas alterações na branch main do repositório resuvafeca, ativa outros workflows:\n\nupdate-sigbm.yaml - atualizar sigbm\nciga-mpmg/relatorioGerencial - gerar relatório gerencial.\n\nLink para o workflow: workflow-dispatch-sigbm.yaml\nExecução: ativação automática: sempre que houver uma mudança na main do repositório.\nRepositório: ciga-mpmg/resuvafeca\nSaídas da execução:\n\nArquivos: Nenhum arquivo é gerado.\nTabelas no banco de dados: nenhuma tabela é alterada.\nAções: Ativa outro workflows.\n\nCredenciais necessárias:\n\nTOKEN\n\n\n\n\n6.2.3 Atualizar o painel - Produção\n\nDescrição: Workflow para atualizar o painel em produção. Atualiza todos os painéis. Atualiza o servidor com o código que está na branch prod de cada repositório dos painéis.\nLink para o workflow: deploy-prod-all.yml\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 00h00.\n\nRepositório: ciga-mpmg/painelMain\nResultados:\n\nArquivos: nenhum arquivo é gerado.\nTabelas no banco de dados: nenhuma tabela é alterada.\nAções: atualizações dos painéis em ambiente de produção.\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY_PROD\nSSH_HOST_PROD\nSSH_USER\n\n\n\n\n6.2.4 Atualizar o painel - Homologação\n\nDescrição: Workflow para o painel em homologação. Atualiza todos os painéis. Atualiza o servidor com o código que está na branch main de cada repositório dos painéis.\nLink para o workflow: deploy-homolog-all.yml\n\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 01h00.\n\nRepositório: ciga-mpmg/painelMain\nResultados:\n\nArquivos: nenhum arquivo é gerado.\nTabelas no banco de dados: nenhuma tabela é alterada.\nAções: atualizações dos painéis em homologação.\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER\n\n\n\n\n6.2.5 Download SIGBM\n(azeloc?)\nEsse workflow realiza diversas tarefas de ETL importantes para o painel, descritas no README do repositório.\n\nDescrição: Faz download dos dados do portal SIGBM. Além disso, faz um join da base do SIGBM com a base de recomendações, e outros tratamentos necessários para preparar tabelas para os painéis. (azeloc?)\nLink para o workflow: update-sigbm.yaml\nExecução:\n\nAtivação automática: todos os dias, duas vezes ao dia, às 11h30 e 23h30.\n\nRepositório: ciga-mpmg/scraper_sigbm\nResultados:\n\nArquivos:\n\ndata-raw/sigbm_diff.csv\ndata-raw/sigbm_mais_recente.csv\n\nTabelas no banco de dados:\n\nsigbm_atual\nsigbm\n\ndados_recomendacoes_sigbm\ndados_sigbm_atualizacao_mensal\ndados_sigbm_linha_do_tempo_parcial\ndados_sigbm_linha_do_tempo\ndados_recomendacoes_sigbm_complexo_minerario\nsigbm_atual_com_comarcas\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\nImportante! Executar sempre que uma nova atualização da base de recomendações acontecer! Essa execução acontece automaticamente quando há novas modificações no repositório ciga-mpmg/resuvafeca.\n\n\nObservação. Conforme feito aqui, a verificação de SSL foi desativada por um problema no site da ANM.\n\n\n\n6.2.6 Copiar metadados do Google Cloud Storage\n\nDescrição: importa informações de arquivos que estão no Google Cloud Storage, como documentos dos TACs, relatórios gerenciais, imagens de satélite e as máscaras das imagens de satélite.\nExecução:\n\nAtivação automática: todos os dias, duas vezes ao dia, às 07h00 e 19h00.\n\nRepositório: ciga-mpmg/googleStorageMetadata\nLink para o workflow: copia-metadados-bucket.yaml\nResultados:\n\nArquivos: Nenhum arquivo é gerado.\nTabelas no banco de dados:\n\nmetadados_documentos_tacs\n\nmetadados_relatorios_gerenciais\n\nmetadados_imagens_satelite_bucket\nmetadados_imagens_satelite_bucket_local\n\nmetadados_mascaras_imagens_satelite_bucket\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\nCIGA_JSON_GOOGLE\n\n\n\nImportante! Para manter os painéis atualizados, esse workflow deve ser executado manualmente sempre que alguma mudança for realizada nos arquivos do Google Cloud Storage listados acima. Caso adicione imagens de satélite novas, verifique se a mesma consta na tabela de-para de imagens de satélite e barragens: local e regional.\n\n\n\n6.2.7 Download IDE SISEMA\n\nNível de urgência: Baixo\nDescrição: Faz download dos dados do IDE Sisema acessando o seu Web Map Server (WMS) (código por (rdornas?)).\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 07h00.\n\nRepositório: ciga-mpmg/download_IDE_SISEMA\nLink: update-data.yaml\nResultados:\n\nArquivos: data-raw/ide_sisema.csv\nTabelas no banco de dados: ide_sisema\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\n\n6.2.8 Download Comarcas TJMG\n\nNível de urgência: Baixo\nDescrição: Faz download do pdf dos municípios e comarcas do Tribunal de Justiça do estado de Minas Gerais, trata e disponibiliza (código por (rdornas?) e (mayaradaher?) utilizado está disponível no repositório ciga-mpmg/comarcasTJMG).\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 07h00.\n\nRepositório: ciga-mpmg/download_comarcas_TJMG\nLink: download-comarcas-TJMG\nResultados:\n\nArquivos: data-raw/comarcas_TJMG.csv\nTabelas no banco de dados: comarcasTJMG\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\n\n6.2.9 Download SIGBM detalhado\n\nNível de urgência: Médio\nDescrição: Faz o download dos dados detalhados do portal SIGBM.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 19h00.\n\nRepositório: ciga-monitoramento-info-barragens/sigbm-dados-cadastrais\nLink: update-sigbm-dados-cadastrais.yaml\nResultados:\n\nArquivos:\n\ndata-raw/chaves_mg.csv\ndata-raw/dados_brutos_mais_recente.csv\ndata-raw/dados_tratados_mais_recente.csv\ndata-raw/dados_tratados_diff.csv\ndata-raw/dados_tratados_descaracterizacao.csv\n\nTabelas no banco de dados:\n\nsigbm_dados_cadastrais_atual\nsigbm_dados_cadastrais\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\nObservações:\n\nConforme feito aqui, a verificação de SSL foi desativada por um problema no site da ANM.\n\n\n\n\n6.2.10 Download SIGBM detalhado - Mapa de inundação - Download\n\nNível de urgência: baixo\nDescrição: Faz o download dos mapas de inundação disponibilizados no portal SIGBM.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 20h00.\n\nRepositório: https://github.com/ciga-mpmg/sigbm-mapa-inundacao\nLink: 01-download-sigbm-mapa-inundacao-dados.yaml\nResultados:\n\nArquivos:\n\ndata-raw/chaves_mg.csv\ndata-raw/dados_mapa_inundacao.csv\ndata/dados_mapa_inundacao.rda\ndata-raw/arquivos_para_baixar.csv\n\nTabelas no banco de dados: Nenhuma tabela é alterada.\n\nCredenciais necessárias:\n\nCIGA_JSON_GOOGLE\n\n\n\n\n6.2.11 Download SIGBM detalhado - Mapa de inundação - Upload\n\nNível de urgência: baixo\nDescrição: Faz o upload dos mapas de inundação disponibilizados no portal SIGBM para o Bucket.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 20h30.\n\nRepositório: https://github.com/ciga-mpmg/sigbm-mapa-inundacao\nLink:\n\n02-upload-sigbm-mapa-inundacao-bucket.yaml\n\nResultados:\n\nArquivos:\n\ndata-raw/arquivos_para_baixar.csv\n\n\nTabelas no banco de dados: Nenhuma tabela é alterada.\n\nCredenciais necessárias:\n\nCIGA_JSON_GOOGLE",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#google-cloud-storage",
+    "href": "ambientes.html#google-cloud-storage",
+    "title": "1  Ambientes",
+    "section": "1.6 Google Cloud Storage",
+    "text": "1.6 Google Cloud Storage\n(azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#resuvafeca",
+    "href": "repositorios.html#resuvafeca",
+    "title": "5  Repositórios",
+    "section": "5.12 resuvafeca",
+    "text": "5.12 resuvafeca\n(azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#credenciais",
+    "href": "actions.html#credenciais",
+    "title": "6  Actions",
+    "section": "",
+    "text": "Banco de dados (GCP)\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\nOutlook (Conta Microsoft)\n\nCIGA_OUTLOOK_TENANT\nCIGA_OUTLOOK_PASSWORD\nCIGA_OUTLOOK_APP\n\n\n\nFirebase (GCP)\n\nCIGA_FIREBASE_PASSWORD\nCIGA_FIREBASE_PROJECT_API\n\n\n\nSSH (acesso ao servidor) (GCP)\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER\nSSH_PRIVATE_KEY_PROD\nSSH_HOST_PROD\n\n\n\nGoogle Cloud Storage (Bucket)\n\nCIGA_JSON_GOOGLE\n\n\n\nGitHub\n\nTOKEN",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
     ]
   }
 ]

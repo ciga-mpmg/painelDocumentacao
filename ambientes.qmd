@@ -20,24 +20,23 @@ Na @sec-repositorios listamos a função de cada repositório, os Actions que el
 
 ## GCP
 
-
 @azeloc
 
 Para implantar o Painel CIGA-MPMG, foi necessário configurar uma máquina com as seguintes configurações:
 
-- **Sistema operacional**: Ubuntu 20.04
+-   **Sistema operacional**: Ubuntu 20.04
 
-- **Capacidade de disco**: @azeloc
+-   **Capacidade de disco**: @azeloc
 
-- **Memória RAM**: @azeloc
+-   **Memória RAM**: @azeloc
 
 Também foi necessário instalar os seguintes softwares:
 
-- R 4.2.1 ou superior
+-   R 4.2.1 ou superior
 
-- Shiny-Server em versão 1.5.19 ou superior
+-   Shiny-Server em versão 1.5.19 ou superior
 
-- nginx @azeloc
+-   nginx @azeloc
 
 ## Shiny Server
 
@@ -52,3 +51,8 @@ Apresentamos as configurações aplicadas ao Shiny Server para implantar o Paine
 O serviço [Firebase](https://firebase.google.com) é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.
 
 O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a @sec-acesso). @azeloc
+
+
+## Google Cloud Storage
+
+@azeloc
