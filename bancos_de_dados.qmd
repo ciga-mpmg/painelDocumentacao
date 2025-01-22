@@ -6,13 +6,13 @@ Nesta seção, apresentamos quais são os bancos de dados utilizados no projeto,
 
 @azeloc
 
-O banco de dados `aecom_ciga_homolog` contém as principais tabelas utilizadas pelo Painel Gerencial CIGA-MPMG. Ele é utilizado para armazenar informações sobre recomendações, barragens, complexos minerários e metadados de diversos artefatos utilizados pelos painéis.
+O banco de dados `aecom_ciga_homolog` contém as principais tabelas utilizadas pelo Painel Gerencial CIGA. Ele é utilizado para armazenar informações sobre recomendações, barragens, complexos minerários e metadados de diversos artefatos utilizados pelos painéis.
 
 Esse banco de dados é utilizado nos seguintes painéis:
 
-- Barragens
-- Informações dos TACs
-- Recomendações
+-   Barragens
+-   Informações dos TACs
+-   Recomendações
 
 Segue abaixo a lista de tabelas presentes no banco de dados `aecom_ciga_homolog`:
 
@@ -41,11 +41,11 @@ O banco de dados `cadastro-tacs` tem origem no Sistema de Cadastro de TACs e con
 
 Esse banco de dados é utilizado nos seguintes painéis:
 
-- Informações dos TACs
-- Descaracterização
-- Recomendações
+-   Informações dos TACs
+-   Descaracterização
+-   Recomendações
 
-Segue abaixo a lista de tabelas presentes no banco de dados `aecom_ciga_homolog`:
+Segue abaixo a lista de tabelas presentes no banco de dados `cadastro_tacs` que o usuário do Painel tem acesso:
 
 ```{r, echo = FALSE}
 con_cadastro_tacs <- DBI::dbConnect(
