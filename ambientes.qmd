@@ -1,54 +1,51 @@
 # Ambientes
 
-Nesta seção, apresentamos os ambientes utilizados para a administração do Painel CIGA-MPMG.
+Nesta seção, apresentamos os ambientes utilizados para a administração do Painel Gerencial CIGA.
 
 ## R
 
-Os painéis do CIGA-MPMG foram desenvolvidos utilizando a linguagem de programação [R](https://www.r-project.org/) e a biblioteca [Shiny](https://shiny.posit.co/).
+As telas do Painel Gerencial CIGA foram desenvolvidas utilizando a linguagem de programação [R](https://www.r-project.org/) e a biblioteca [Shiny](https://shiny.posit.co/).
 
 Para alteração do código-fonte, será necessário instalar o R na máquina de desenvolvimento. Também é recomendado a utilização de alguma IDE amigável ao R, como o [RStudio](https://posit.co/download/rstudio-desktop/), o [VSCode](https://code.visualstudio.com/) ou o [Positron](https://positron.posit.co/).
 
 ## GitHub
 
-O código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão [Git](https://git-scm.com/) e estão disponíveis em repositórios privados no [GitHub](https://github.com/).
+O código-fonte das telas do Painel Gerencial CIGA e de suas automações foram versionados utilizando o sistema de controle de versão [Git](https://git-scm.com/) e estão disponíveis em repositórios privados no [GitHub](https://github.com/). Por sua vez, os repositórios foram criados dentro da organização [ciga-mpmg](https://github.com/ciga-mpmg).
 
-Os repositórios foram criados dentro da organização [ciga-mpmg](https://github.com/ciga-mpmg).
-
-Alguns repositórios possuem processos automatizados via [Github Actions](https://github.com/features/actions), como a atualização dos dados do SIGBM e o deploy dos painéis.
+Alguns repositórios possuem processos automatizados (Actions) via [Github Actions](https://github.com/features/actions), como a atualização dos dados do SIGBM e o processo de atualização de versão dos painéis (deploy).
 
 Na @sec-repositorios listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link. Na @sec-actions, descrevemos o que faz cada Action e como executá-los.
 
-## GCP
-
+## Google Cloud Platform
 
 @azeloc
 
-Para implantar o Painel CIGA-MPMG, foi necessário configurar uma máquina com as seguintes configurações:
+Para implantar o Painel Gerencial CIGA, foi necessário configurar uma máquina com as seguintes configurações:
 
-- **Sistema operacional**: Ubuntu 20.04
+-   **Sistema operacional**: Ubuntu 24.04.1 LTS
 
-- **Capacidade de disco**: @azeloc
+-   **Capacidade de disco**: 20 Gb
 
-- **Memória RAM**: @azeloc
+-   **Memória RAM**: 4 Gb
 
 Também foi necessário instalar os seguintes softwares:
 
-- R 4.2.1 ou superior
+-   R 4.2.1 ou superior
 
-- Shiny-Server em versão 1.5.19 ou superior
+-   Shiny-Server em versão 1.5.19 ou superior
 
-- nginx @azeloc
+-   nginx 1.26.2
 
 ## Shiny Server
 
-Os painéis do CIGA-MPMG foram implantados utilizando o [Shiny Server](https://posit.co/products/open-source/shiny-server/).
+As telas do Painel Gerencial CIGA foram implantadas utilizando o [Shiny Server](https://posit.co/products/open-source/shiny-server/).
 
 Este ambiente deverá ser acessado para... @azeloc
 
-Apresentamos as configurações aplicadas ao Shiny Server para implantar o Painel CIGA-MPMG na @sec-shiny-server.
+Apresentamos as configurações aplicadas ao Shiny Server para implantar o Painel Gerencial CIGA na @sec-shiny-server.
 
-## Firebase
+## Google Firebase
 
-O serviço [Firebase](https://firebase.google.com) é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.
+O serviço [Google Firebase](https://firebase.google.com) é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.
 
 O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a @sec-acesso). @azeloc

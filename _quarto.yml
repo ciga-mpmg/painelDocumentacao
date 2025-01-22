@@ -2,9 +2,9 @@ project:
   type: book
 
 book:
-  title: "Documentação do Painel CIGA-MPMG"
-  author: "R6"
-  date: "5/24/2024"
+  title: "Documentação do Painel Gerencial CIGA"
+  #author: "R6"
+  date: "1/24/2025"
   chapters:
     - index.qmd
     - ambientes.qmd
@@ -23,15 +23,16 @@ bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
     fig-cap-location: bottom
   # pdf:
   #   documentclass: scrreprt
-
 editor: visual
+theme:
+  light: flatly
+  dark: superhero
 
 lang: pt
-language: 
+language:
   title-block-author-single: "Autoria"
   title-block-published: "Atualizado em"
   crossref-ch-prefix: "Seção"

@@ -1,3 +1,3 @@
 # Sobre {.unnumbered}
 
-Este documento apresenta a documentação dos painéis de dados que compõem o CIGA-MPMG: Barragens, Informações sobre os Tacs, Descaracterização e Recomendações.
+Este documento apresenta um resumo da construção interna do Painel Gerencial CIGA. Nesse sentido, são abordados diversos temas relacionados ao back-end do Painel, incluindo as automatizações, repositórios, acesso e ambientes. Todas as informações aqui disponibilizadas fazem parte da construção das telas "Barragens", "Informações sobre os TACs" e "Recomendações".

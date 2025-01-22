@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Documentação do Painel CIGA-MPMG",
+    "title": "Documentação do Painel Gerencial CIGA",
     "section": "",
-    "text": "Sobre\nEste documento apresenta a documentação dos painéis de dados que compõem o CIGA-MPMG: Barragens, Informações sobre os Tacs, Descaracterização e Recomendações.",
+    "text": "Sobre\nEste documento apresenta um resumo da construção interna do Painel Gerencial CIGA. Nesse sentido, são abordados diversos temas relacionados ao back-end do Painel, incluindo as automatizações, repositórios, acesso e ambientes. Todas as informações aqui disponibilizadas fazem parte da construção das telas “Barragens”, “Informações sobre os TACs” e “Recomendações”.",
     "crumbs": [
       "Sobre"
     ]
@@ -14,7 +14,7 @@
     "href": "paineis.html",
     "title": "3  Painéis",
     "section": "",
-    "text": "3.1 Home\nA home do Painel Gerencial CIGA-MPMG é a página acessada logo após o login. Seu objetivo é encaminhar o usuário para um dos painéis de dados: Barragens, Informações sobre os TACs, Descaracterização e Recomendações.\nO código fonte desta página se encontra no repositório painelMain.",
+    "text": "3.1 Home\nNesta seção, descrevemos os painéis que compõem o Painel Gerencial CIGA-MPMG.\nA home do Painel Gerencial CIGA-MPMG é a página acessada logo após o login. Seu objetivo é encaminhar o usuário para um dos painéis de dados: Barragens, Informações sobre os TACs, Descaracterização e Recomendações.\nO código fonte desta página se encontra no repositório painelMain.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
     ]
@@ -94,7 +94,7 @@
     "href": "acesso.html",
     "title": "2  Acesso",
     "section": "",
-    "text": "2.1 Login\nPara acessar a versão em produção do CIGA-MPMG, utilize a URL https://painel.ciga-mpmg.com.br/. A versão de homologação se encontra na URL https://painel-homolog.ciga-mpmg.com.br/.\nAmbas as versões necessitam de autenticação, sendo necessário cadastrar cada novo usuário no painel de gerenciamento do Firebase.",
+    "text": "2.1 Login\nNesta seção, apresentamos informações sobre o acesso ao Painel Gerencial CIGA.\nPara acessar a versão em produção do Painel Gerencial CIGA, utilize a URL https://painel.ciga-mpmg.com.br/. A versão de homologação se encontra na URL https://painel-homolog.ciga-mpmg.com.br/.\nAmbas as versões necessitam de autenticação, sendo necessário cadastrar cada novo usuário no painel de gerenciamento do Firebase (firebase.google.com).",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
     ]
@@ -104,7 +104,7 @@
     "href": "acesso.html#cadastrar-novo-usuário",
     "title": "2  Acesso",
     "section": "2.2 Cadastrar novo usuário",
-    "text": "2.2 Cadastrar novo usuário\nO administrador do sistema CIGA-MPMG pode cadastrar novos usuários interagindo com o painel de gerenciamento do Firebase:\n\nAo clicar em “Adicionar usuário”, basta incluir usuário e senha e o usuário estará criado com acesso a https://ciga-mpmg.com.br/.\nCaso seja necessário fornecer acesso ao painel de homologação para teste de novas funcionalidades, é necessário definir homolog: true na entrada correspondente ao usuário recém-criado no RealTime Database:",
+    "text": "2.2 Cadastrar novo usuário\nO administrador do sistema CIGA pode cadastrar novos usuários interagindo com o painel de gerenciamento do Firebase:\n\nAo clicar em “Adicionar usuário”, basta incluir usuário e senha e o usuário estará criado com acesso ao Painel Gerencial, em sua versão de produção. Caso seja necessário fornecer acesso ao painel de homologação para teste de novas funcionalidades, é necessário definir homolog: true na entrada correspondente ao usuário recém-criado no RealTime Database:",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
     ]
@@ -124,7 +124,7 @@
     "href": "ambientes.html",
     "title": "1  Ambientes",
     "section": "",
-    "text": "1.1 R\nOs painéis do CIGA-MPMG foram desenvolvidos utilizando a linguagem de programação R e a biblioteca Shiny.\nPara alteração do código-fonte, será necessário instalar o R na máquina de desenvolvimento. Também é recomendado a utilização de alguma IDE amigável ao R, como o RStudio, o VSCode ou o Positron.",
+    "text": "1.1 R\nNesta seção, apresentamos os ambientes utilizados para a administração do Painel Gerencial CIGA.\nAs telas do Painel Gerencial CIGA foram desenvolvidas utilizando a linguagem de programação R e a biblioteca Shiny.\nPara alteração do código-fonte, será necessário instalar o R na máquina de desenvolvimento. Também é recomendado a utilização de alguma IDE amigável ao R, como o RStudio, o VSCode ou o Positron.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -134,7 +134,7 @@
     "href": "ambientes.html#github",
     "title": "1  Ambientes",
     "section": "1.2 GitHub",
-    "text": "1.2 GitHub\nO código-fonte dos painéis do CIGA-MPMG e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub.\nOs repositórios foram criados dentro da organização ciga-mpmg.\nAlguns repositórios possuem processos automatizados via Github Actions, como a atualização dos dados do SIGBM e o deploy dos painéis.\nNa Seção Seção 5 listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link. Na Seção Seção 6, descrevemos o que faz cada Action e como executá-los.",
+    "text": "1.2 GitHub\nO código-fonte das telas do Painel Gerencial CIGA e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub. Por sua vez, os repositórios foram criados dentro da organização ciga-mpmg.\nAlguns repositórios possuem processos automatizados (Actions) via Github Actions, como a atualização dos dados do SIGBM e o processo de atualização de versão dos painéis (deploy).\nNa Seção 5 listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link. Na Seção 6, descrevemos o que faz cada Action e como executá-los.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -144,7 +144,7 @@
     "href": "ambientes.html#gcp",
     "title": "1  Ambientes",
     "section": "1.3 GCP",
-    "text": "1.3 GCP\n(azeloc?)\nPara implantar o Painel CIGA-MPMG, foi necessário configurar uma máquina com as seguintes configurações:\n\nSistema operacional: Ubuntu 20.04\nCapacidade de disco: (azeloc?)\nMemória RAM: (azeloc?)\n\nTambém foi necessário instalar os seguintes softwares:\n\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nnginx (azeloc?)\n\nE configurar as seguintes variáveis de ambiente no arquivo /home/shiny-admin/.Renviron:\n\nCIGA_SQL_HOST: endereço de acesso ao banco de dados\nCIGA_SQL_DATABASE: banco de dados\nCIGA_SQL_USER: usuário do banco\nCIGA_SQL_PORT: porta do banco\nCIGA_SQL_PASSWORD: senha\nAMBIENTE: string que deve ser “homolog” ou “prod”\nCIGA_OUTLOOK_TENANT: tenant do outlook\nCIGA_OUTLOOK_APP: id do aplicativo do outlook\nCIGA_OUTLOOK_PASSWORD: senha do outlook\nCIGA_FIREBASE_PASSWORD: senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br\nCIGA_FIREBASE_PROJECT_API: projeto do firebase",
+    "text": "1.3 GCP\n(azeloc?)\nPara implantar o Painel Gerencial CIGA, foi necessário configurar uma máquina com as seguintes configurações:\n\nSistema operacional: Ubuntu 24.04\nCapacidade de disco: (azeloc?)\nMemória RAM: (azeloc?)\n\nTambém foi necessário instalar os seguintes softwares:\n\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nnginx (azeloc?)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -154,7 +154,7 @@
     "href": "ambientes.html#shiny-server",
     "title": "1  Ambientes",
     "section": "1.4 Shiny Server",
-    "text": "1.4 Shiny Server\nOs painéis do CIGA-MPMG foram implantados utilizando o Shiny Server.\nEste ambiente deverá ser acessado para… (azeloc?)\nApresentamos as configurações aplicadas ao Shiny Server para implantar o Painel CIGA-MPMG na Seção 7.",
+    "text": "1.4 Shiny Server\nAs telas do Painel Gerencial CIGA foram implantadas utilizando o Shiny Server.\nEste ambiente deverá ser acessado para… (azeloc?)\nApresentamos as configurações aplicadas ao Shiny Server para implantar o Painel Gerencial CIGA na Seção 7.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -164,7 +164,7 @@
     "href": "ambientes.html#firebase",
     "title": "1  Ambientes",
     "section": "1.5 Firebase",
-    "text": "1.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja Seção 2). (azeloc?)",
+    "text": "1.5 Firebase\nO serviço Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a Seção 2). (azeloc?)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
@@ -224,7 +224,7 @@
     "href": "repositorios.html",
     "title": "5  Repositórios",
     "section": "",
-    "text": "5.1 painelMain",
+    "text": "5.1 painelMain\nNesta seção, listamos e descrevemos todos os repositórios utilizados pelo Painel Gerencial CIGA-MPMG.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
     ]
@@ -394,7 +394,7 @@
     "href": "shiny_server.html",
     "title": "7  Shiny Server",
     "section": "",
-    "text": "7.1 nginx\nA compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de location do nginx são:\nJá as configurações de redirecionamento são:",
+    "text": "7.1 nginx\nNesta seção, apresentamos as configurações aplicadas ao Shiny Server para implantar o Painel CIGA-MPMG.\nA compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de location do nginx são:\nJá as configurações de redirecionamento são:",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Shiny Server</span>"
     ]
@@ -424,7 +424,7 @@
     "href": "actions.html",
     "title": "6  Actions",
     "section": "",
-    "text": "6.1 Credenciais (repository secrets)\nCada workflow pode necessitar de diferentes credenciais. Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.",
+    "text": "6.1 Credenciais (repository secrets)\nPara executar a obtenção e a preparação dos utilizados nos painéis e outros produtos relacionados ao CIGA, existem diversos workflows que são executados pelo GitHub Actions.\nWorkflows são arquivos de configuração que definem um conjunto de ações que são executadas em um ambiente de execução. Em alguns casos, o ambiente de execução são máquinas virtuais pertencentes à GitHub, em outros, o servidor do próprio CIGA.\nNesta seção, descrevemos todos os workflows utilizados na manutenção do Painel Gerencial do CIGA-MPMG.\nCada workflow pode necessitar de diferentes credenciais. Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Actions</span>"
     ]
@@ -474,9 +474,29 @@
     "href": "relatorio.html",
     "title": "4  Relatório Gerencial",
     "section": "",
-    "text": "4.1 Gerar relatórios gerenciais\nPara gerar os relatórios gerenciais atualizados e disponibilizá-los para download na plataforma, você deve:\nPasso 1: Executar a rotina de geração dos relatórios “gerar_relatorios_gerenciais” clicando em “Run workflow” na página de Actions do repositório https://github.com/ciga-mpmg/painelMain\nAo final desse processo, novos relatórios referentes à data de execução da rotina serão criados.\nPasso 2: Executar a rotina de cadastros do relatórios no banco de dados interno da plataforma CIGA-MPMG.",
+    "text": "4.1 Gerar relatórios gerenciais\nNesta seção, descrevemos os processos que envolvem a geração dos relatórios gerenciais do Painel CIGA-MPMG.\nPara gerar os relatórios gerenciais atualizados e disponibilizá-los para download na plataforma, você deve:\nPasso 1: Executar a rotina de geração dos relatórios “gerar_relatorios_gerenciais” clicando em “Run workflow” na página de Actions do repositório https://github.com/ciga-mpmg/painelMain\nAo final desse processo, novos relatórios referentes à data de execução da rotina serão criados.\nPasso 2: Executar a rotina de cadastros do relatórios no banco de dados interno da plataforma CIGA-MPMG.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Relatório Gerencial</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#google-cloud-platform",
+    "href": "ambientes.html#google-cloud-platform",
+    "title": "1  Ambientes",
+    "section": "1.3 Google Cloud Platform",
+    "text": "1.3 Google Cloud Platform\n(azeloc?)\nPara implantar o Painel Gerencial CIGA, foi necessário configurar uma máquina com as seguintes configurações:\n\nSistema operacional: Ubuntu 24.04.1 LTS\nCapacidade de disco: 20 Gb\nMemória RAM: 4 Gb\n\nTambém foi necessário instalar os seguintes softwares:\n\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nnginx 1.26.2",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#google-firebase",
+    "href": "ambientes.html#google-firebase",
+    "title": "1  Ambientes",
+    "section": "1.5 Google Firebase",
+    "text": "1.5 Google Firebase\nO serviço Google Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a Seção 2). (azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
     ]
   }
 ]
