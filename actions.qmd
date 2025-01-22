@@ -1,18 +1,16 @@
 # Actions {#sec-actions}
 
-Para executar a obtenção e a preparação dos utilizados nos painéis e outros produtos relacionados ao CIGA, existem diversos workflows que são executados pelo GitHub Actions.
+Para executar a atualização e preparação dos dados utilizados nos painéis e no relatório gerencial do CIGA-MPMG, existem diversos *workflows* que são executados pelo GitHub Actions.
 
-Workflows são arquivos de configuração que definem um conjunto de ações que são executadas em um ambiente de execução. Em alguns casos, o ambiente de execução são máquinas virtuais pertencentes à GitHub, em outros, o servidor do próprio CIGA.
+Workflows são arquivos de configuração que definem um conjunto de ações executadas em uma máquina virtual disponibilizada pelo GitHub. 
 
-Nesta seção, descrevemos todos os workflows utilizados na manutenção do Painel Gerencial do CIGA-MPMG.
+Nesta seção, listamos as credenciais necessárias para executar esses processos e descrevemos todos os workflows criados no GitHub Actions para a manutenção do Painel Gerencial do CIGA-MPMG.
 
-## Credenciais (*repository secrets*)
+## Credenciais
 
-Cada workflow pode necessitar de diferentes credenciais. Abaixo estão
-listadas as credenciais necessárias para os workflows, segundo o serviço que
-ele utiliza.
+Cada workflow pode necessitar de diferentes credenciais (*repository secrets*). Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.
 
-### Banco de dados (GCP)
+#### **Banco de dados (GCP)** {.unnumbered}
 
 - CIGA_SQL_HOST
 - CIGA_SQL_DATABASE
@@ -20,18 +18,18 @@ ele utiliza.
 - CIGA_SQL_PORT
 - CIGA_SQL_PASSWORD
 
-### Outlook (Conta Microsoft)
+#### **Outlook (Conta Microsoft)** {.unnumbered}
 
 - CIGA_OUTLOOK_TENANT
 - CIGA_OUTLOOK_PASSWORD
 - CIGA_OUTLOOK_APP
 
-### Firebase (GCP)
+#### **Firebase (GCP)** {.unnumbered}
 
 - CIGA_FIREBASE_PASSWORD
 - CIGA_FIREBASE_PROJECT_API
 
-### SSH (acesso ao servidor) (GCP)
+#### **SSH (acesso ao servidor) (GCP)** {.unnumbered}
 
 - SSH_PRIVATE_KEY
 - SSH_HOST
@@ -39,172 +37,105 @@ ele utiliza.
 - SSH_PRIVATE_KEY_PROD
 - SSH_HOST_PROD
 
-### Google Cloud Storage (Bucket)
+#### **Google Cloud Storage (Bucket)** {.unnumbered}
 
 - CIGA_JSON_GOOGLE
 
-### GitHub
+#### **GitHub** {.unnumbered}
 
 - TOKEN
 
-## Workflows relacionados com ações/*side-effects*
+## Workflows
 
-### Enviar emails de atualizações do SIGBM
+A seguir, descrevemos cada um dos workflows criados para a manutenção do Painel Gerencial do CIGA-MPMG.
 
-- Nível de urgência: ALTO
-- Descrição: Envia email com atualizações do SIGBM. Emails com
-  periodicidade diária, semanal ou mensal.
-- Execução:
-  - Ativação manual
-  - Ativação automática: todos os dias, uma vez ao dia, às 7h30.
-- Repositório:
-  [ciga-mpmg/painelEmailsSIGBM](https://github.com/ciga-mpmg/painelEmailsSIGBM)
-- Link:
-  [workflow](https://github.com/ciga-mpmg/painelEmailsSIGBM/actions/workflows/send-email.yaml)
-- Resultados:
-  - Arquivos:
-    - [data/df_config_usuarios.rda](https://github.com/ciga-mpmg/painelEmailsSIGBM/blob/main/data/df_config_usuarios.rda) -
-      Dados dos usuários cadastrados no Firebase.
-    - [data/tabela_atualizacoes.rda](https://github.com/ciga-mpmg/painelEmailsSIGBM/blob/main/data/tabela_atualizacoes.rda) -
-      Tabela preparada com as atualizações do SIGBM.
-  - Tabelas no banco de dados: Nenhuma tabela é alterada.
-  - Ações: Os emails de atualizações são enviados.
-- Credenciais necessárias:
-  - CIGA_SQL_HOST
-  - CIGA_SQL_DATABASE
-  - CIGA_SQL_USER
-  - CIGA_SQL_PORT
-  - CIGA_SQL_PASSWORD
-  - CIGA_OUTLOOK_TENANT
-  - CIGA_OUTLOOK_PASSWORD
-  - CIGA_OUTLOOK_APP
-  - CIGA_FIREBASE_PASSWORD
-  - CIGA_FIREBASE_PROJECT_API
+### Gerar os relatórios gerenciais
 
-### Gerar relatórios gerenciais padronizados
-
-- Nível de urgência: Baixo
-- Descrição: Gera relatórios gerenciais padronizados - Alerta 7, Por
-  TAC, por empreendedor, e por complexo minerário.
-- Execução:
+- **Descrição**: Gera os relatórios gerenciais e faz o upload para o Google Cloud Storage.
+- **Link para o workflow**: [gerar-relatorios-gerenciais.yml](https://github.com/ciga-mpmg/painelMain/blob/main/.github/workflows/gerar-relatorios-gerenciais.yml)
+- **Execução**:
   - Ativação manual
   - Ativação automática: Dia 1 de cada mês, uma vez ao dia, às 00h00.
-  - Automaticamente quando há novas modificações no repositório
-    [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca)
-- Repositório:
-- Repositório com o código para gerar o relatório:
+  - Automaticamente quando há novas modificações no repositório [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca)
+- **Repositório**:
+  - Repositório com o código para gerar o relatório:
   [ciga-mpmg/relatorioGerencial](https://github.com/ciga-mpmg/relatorioGerencial)
-- Repositório onde o workflow é executado:
+  - Repositório onde o workflow é executado:
   [ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain)  
-- Link:
-  [workflow](https://github.com/ciga-mpmg/painelMain/blob/main/.github/workflows/gerar-relatorios-gerenciais.yml)
-- Resultados:
-  - Arquivos: relatórios em PDF, adicionados no Bucket, nas pastas
-    `bucket-aecom-ciga-homolog/relatorios_gerenciais_padronizados/TIPO_RELATORIO/YYYY-MM`
-    correspondente ao tipo de relatório e ao mês/ano.
-  - Tabelas no banco de dados: Nenhuma tabela é alterada.
-  - Ações: Relatórios são gerados no servidor e enviados para o Bucket.
-- Credenciais necessárias:
+- **Saídas da execução**:
+  - **Arquivos**: relatórios em PDF, enviado ao Google Cloud Storage, nas pastas `bucket-aecom-ciga-homolog/relatorios_gerenciais_padronizados/TIPO_RELATORIO/YYYY-MM` correspondente ao tipo de relatório e ao mês/ano.
+  - **Tabelas no banco de dados**: nenhuma tabela é alterada.
+  - **Ações**: nenhuma ação é realizada
+- **Credenciais necessárias**:
   - SSH_PRIVATE_KEY
   - SSH_HOST
   - SSH_USER
 
 ### Resuvafeca
 
-- Nível de urgência: Baixo
-- Descrição: Sempre que houver novas alterações na branch main do
-  repositório resuvafeca, ativa outros workflows:
+- **Descrição**: Sempre que houver novas alterações na branch main do repositório resuvafeca, ativa outros workflows:
   - [update-sigbm.yaml](https://github.com/ciga-mpmg/scraper_sigbm/actions/workflows/update-sigbm.yaml) -
     atualizar sigbm
   - [ciga-mpmg/relatorioGerencial](https://github.com/ciga-mpmg/relatorioGerencial) -
     gerar relatório gerencial.
-- Execução:
-  - Ativação automática: sempre que houver uma mudança na main do
-    repositório.
-- Repositório:
-  [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca)
-- Link:
-  [workflow-dispatch-sigbm.yaml](https://github.com/ciga-mpmg/resuvafeca/actions/workflows/workflow-dispatch-sigbm.yaml)
-- Resultados:
-  - Arquivos: Nenhum arquivo é gerado.
-  - Tabelas no banco de dados: Nenhuma tabela é alterada.
-  - Ações: Ativa outro workflows.
+- **Link para o workflow**: [workflow-dispatch-sigbm.yaml](https://github.com/ciga-mpmg/resuvafeca/actions/workflows/workflow-dispatch-sigbm.yaml)
+- **Execução**: ativação automática: sempre que houver uma mudança na main do repositório.
+- **Repositório**: [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca)
+- **Saídas da execução**:
+  - **Arquivos**: Nenhum arquivo é gerado.
+  - **Tabelas no banco de dados**: nenhuma tabela é alterada.
+  - **Ações**: Ativa outro workflows.
 - Credenciais necessárias:
   - TOKEN
 
-## Workflows de deploy
-
 ### Atualizar o painel - Produção
 
-- Nível de urgência: Baixo
-- Descrição: Workflow para atualizar o painel em produção. Atualiza
-  todos os paineis. Atualiza o servidor com o código que está na branch
-  `prod` de cada repositório dos painéis.
-- Execução:
-  - Ativação automática: todos os dias, uma vez ao dia, às 00h00.
-- Repositório:
-  [ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain/actions)
-- Links:
-  - [workflow](https://github.com/ciga-mpmg/painelMain/actions/workflows/deploy-prod-all.yml)
-- Resultados:
-  - Arquivos: Nenhum arquivo é gerado.
-  - Tabelas no banco de dados: Nenhuma tabela é alterada.
-  - Ações: Atualizações dos painéis em produção.
-- Credenciais necessárias:
+- **Descrição**: Workflow para atualizar o painel em produção. Atualiza todos os painéis. Atualiza o servidor com o código que está na branch `prod` de cada repositório dos painéis.
+- **Link para o workflow**: [deploy-prod-all.yml](https://github.com/ciga-mpmg/painelMain/actions/workflows/deploy-prod-all.yml)
+- **Execução**:
+  - **Ativação automática**: todos os dias, uma vez ao dia, às 00h00.
+- **Repositório**: [ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain/actions)
+- **Resultados**:
+  - **Arquivos**: nenhum arquivo é gerado.
+  - **Tabelas no banco de dados**: nenhuma tabela é alterada.
+  - **Ações**: atualizações dos painéis em ambiente de produção.
+- **Credenciais necessárias**:
   - SSH_PRIVATE_KEY_PROD
   - SSH_HOST_PROD
   - SSH_USER
 
 ### Atualizar o painel - Homologação
 
-- Nível de urgência: Baixo
-- Descrição: Workflow para o painel em homologação. Atualiza todos os
-  paineis. Atualiza o servidor com o código que está na branch `main` de
-  cada repositório dos painéis.
-- Execução:
-  - Ativação automática: todos os dias, uma vez ao dia, às 01h00.
-- Repositório:
-  [ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain/actions)
-- Links:
-  - [workflow](https://github.com/ciga-mpmg/painelMain/actions/workflows/deploy-homolog-all.yml)  
-- Resultados:
-  - Arquivos: Nenhum arquivo é gerado.
-  - Tabelas no banco de dados: Nenhuma tabela é alterada.
-  - Ações: Atualizações dos painéis em homologação.
-- Credenciais necessárias:
+- **Descrição**: Workflow para o painel em homologação. Atualiza todos os painéis. Atualiza o servidor com o código que está na branch `main` de cada repositório dos painéis.
+- **Link para o workflow**: [deploy-homolog-all.yml](https://github.com/ciga-mpmg/painelMain/actions/workflows/deploy-homolog-all.yml)  
+- **Execução**:
+  - **Ativação automática**: todos os dias, uma vez ao dia, às 01h00.
+- **Repositório**: [ciga-mpmg/painelMain](https://github.com/ciga-mpmg/painelMain/actions)
+- **Resultados**:
+  - **Arquivos**: nenhum arquivo é gerado.
+  - **Tabelas no banco de dados**: nenhuma tabela é alterada.
+  - **Ações**: atualizações dos painéis em homologação.
+- **Credenciais necessárias**:
   - SSH_PRIVATE_KEY
   - SSH_HOST
   - SSH_USER
 
-## Workflows de atualização de bases de dados
-
 ### Download SIGBM
 
-- Nível de urgência: ALTO
+@azeloc
 
-- Descrição: Faz download dos dados do portal
-  [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem).
-  Além disso, faz um join da base do SIGBM com a base de recomendações,
-  e outros tratamentos necessários para preparar tabelas para os
-  painéis.
+Esse workflow realiza diversas tarefas de ETL importantes para o painel, descritas no [README do repositório](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/README.md).
 
-- Execução:
-
-  - Ativação automática: todos os dias, duas vezes ao dia, às 11h30 e
-    23h30.
-
-- Repositório:
-  [ciga-mpmg/scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm)
-
-- Link:
-  [update-sigbm.yaml](https://github.com/ciga-mpmg/scraper_sigbm/actions/workflows/update-sigbm.yaml)
-
-- Resultados:
-
-  - Arquivos:
+- **Descrição**: Faz download dos dados do portal [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem). Além disso, faz um join da base do SIGBM com a base de recomendações, e outros tratamentos necessários para preparar tabelas para os painéis. @azeloc
+- **Link para o workflow**: [update-sigbm.yaml](https://github.com/ciga-mpmg/scraper_sigbm/actions/workflows/update-sigbm.yaml)
+- **Execução**:
+  - Ativação automática: todos os dias, duas vezes ao dia, às 11h30 e 23h30.
+- **Repositório**: [ciga-mpmg/scraper_sigbm](https://github.com/ciga-mpmg/scraper_sigbm)
+- **Resultados**:
+  - **Arquivos**:
     - [data-raw/sigbm_diff.csv](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/sigbm_diff.csv)
     - [data-raw/sigbm_mais_recente.csv](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/sigbm_mais_recente.csv)
-  - Tabelas no banco de dados:
+  - **Tabelas no banco de dados**:
     - [sigbm_atual](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/01-script_actions_download-clean.R)
     - [sigbm](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/01-script_actions_download-clean.R)  
     - [dados_recomendacoes_sigbm](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/02-script_actions_unir_recomendacoes.R)
@@ -213,68 +144,42 @@ ele utiliza.
     - [dados_sigbm_linha_do_tempo](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/04-script_actions_gerar_linha_do_tempo.R)
     - [dados_recomendacoes_sigbm_complexo_minerario](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/05-script_actions_gerar_complexo_minerario.R)
     - [sigbm_atual_com_comarcas](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/data-raw/06-script_actions_gerar_sigbm_com_comarcas.R)
-
-- Credenciais necessárias:
-
+- **Credenciais necessárias**:
   - CIGA_SQL_HOST
   - CIGA_SQL_DATABASE
   - CIGA_SQL_USER
   - CIGA_SQL_PORT
   - CIGA_SQL_PASSWORD
 
-- Importante: Executar sempre que uma nova atualização da base de
-  recomendações acontecer! Essa execução acontece automaticamente quando
-  há novas modificações no repositório
-  [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca)
+> **Importante!** Executar sempre que uma nova atualização da base de recomendações acontecer! Essa execução acontece automaticamente quando há novas modificações no repositório [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca).
 
-- Esse workflow realiza diversas tarefas de ETL importantes para o
-  painel, descritas no [README do
-  repositório](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/README.md).
+> **Observação.** Conforme feito [aqui](https://github.com/ciga-mpmg/scraper_sigbm/commit/fac25d574abab4f9f014fba31c9886bc8a5da383), a verificação de SSL foi desativada por um problema no site da ANM.  
 
-- Observações:
-  - Conforme feito [aqui](https://github.com/ciga-mpmg/scraper_sigbm/commit/fac25d574abab4f9f014fba31c9886bc8a5da383), a verificação de SSL foi desativada por um problema no site da ANM.  
+### Copiar metadados do Google Cloud Storage
 
-### Copiar metadados do bucket
-
-- Nível de urgência: ALTO
-- Descrição: Importa informações de uma série de arquivos que estão no
-  bucket, como: documentos dos TACs, relatórios gerenciais,
-  imagens de satélite e as máscaras das imagens de satélite.
-- Execução:
-  - Ativação automática: todos os dias, duas vezes ao dia, às 07h00 e
-    19h00.
-- Repositório:
-  [ciga-mpmg/googleStorageMetadata](https://github.com/ciga-mpmg/googleStorageMetadata)
-- Link:
-  [copia-metadados-bucket.yaml](https://github.com/ciga-mpmg/googleStorageMetadata/actions/workflows/copia-metadados-bucket.yaml)
-- Resultados:
-  - Arquivos: Nenhum arquivo é gerado.
-  - Tabelas no banco de dados:
+- **Descrição**: importa informações de arquivos que estão no Google Cloud Storage, como documentos dos TACs, relatórios gerenciais, imagens de satélite e as máscaras das imagens de satélite.
+- **Execução**:
+  - **Ativação automática**: todos os dias, duas vezes ao dia, às 07h00 e 19h00.
+- **Repositório**: [ciga-mpmg/googleStorageMetadata](https://github.com/ciga-mpmg/googleStorageMetadata)
+- **Link para o workflow**: [copia-metadados-bucket.yaml](https://github.com/ciga-mpmg/googleStorageMetadata/actions/workflows/copia-metadados-bucket.yaml)
+- **Resultados**:
+  - **Arquivos**: Nenhum arquivo é gerado.
+  - **Tabelas no banco de dados**:
     - [metadados_documentos_tacs](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)  
     - [metadados_relatorios_gerenciais](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)  
     - [metadados_imagens_satelite_bucket](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)
     - [metadados_imagens_satelite_bucket_local](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)  
     - [metadados_mascaras_imagens_satelite_bucket](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/actions-atualizar-bd.R)
-- Credenciais necessárias:
+- **Credenciais necessárias**:
   - CIGA_SQL_HOST
   - CIGA_SQL_DATABASE
   - CIGA_SQL_USER
   - CIGA_SQL_PORT
   - CIGA_SQL_PASSWORD
   - CIGA_JSON_GOOGLE
-- Importante:
-  - Sempre que fizer alguma mudança nos arquivos do bucket citados acima
-    e quiser que essas mudanças apareçam no app, execute manualmente
-    esse workflow.
-  - Caso adicione imagens de satélite novas, verifique se a mesma consta
-    na tabela `de-para` de imagens de satélite e barragens:
-    [local](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-local.csv)
-    e
-    [regional](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-regional.csv).
-- Consulte o
-  [README](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/README.md)
-  do repositório para mais informações sobre o quais informações são
-  extraídas.
+
+
+> **Importante**! Para manter os painéis atualizados, esse workflow deve ser executado manualmente sempre que alguma mudança for realizada nos arquivos do Google Cloud Storage listados acima. Caso adicione imagens de satélite novas, verifique se a mesma consta na tabela `de-para` de imagens de satélite e barragens: [local](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-local.csv) e [regional](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-regional.csv).
 
 ### Download IDE SISEMA
 
