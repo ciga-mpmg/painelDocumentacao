@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="R6 Consultoria">
 
-<title>Documentação do Painel CIGA-MPMG</title>
+<title>6&nbsp; Bancos de dados – Documentação do Painel CIGA-MPMG</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ambientes.html" rel="next">
+<link href="./actions.html" rel="next">
+<link href="./repositorios.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Sobre</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bancos_de_dados.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bancos de dados</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -108,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Sobre</span></a>
   </div>
 </li>
@@ -144,14 +144,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./bancos_de_dados.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bancos de dados</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./actions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Actions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GitHub Actions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./shiny_server.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Shiny Server</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shiny Server</span></span></a>
   </div>
 </li>
     </ul>
@@ -164,7 +170,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#sobre" id="toc-sobre" class="nav-link active" data-scroll-target="#sobre">Sobre</a></li>
+  <li><a href="#banco-de-dados-principal" id="toc-banco-de-dados-principal" class="nav-link active" data-scroll-target="#banco-de-dados-principal"><span class="header-section-number">6.1</span> Banco de dados principal</a></li>
+  <li><a href="#cadastro-de-tacs" id="toc-cadastro-de-tacs" class="nav-link" data-scroll-target="#cadastro-de-tacs"><span class="header-section-number">6.2</span> Cadastro de TACs</a></li>
   </ul>
 </nav>
     </div>
@@ -173,26 +180,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Documentação do Painel CIGA-MPMG</h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bancos de dados</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autoria</div>
-    <div class="quarto-title-meta-contents">
-             <p>R6 Consultoria </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Atualizado em</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">24 de maio de 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -202,9 +197,89 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="sobre" class="level1 unnumbered">
-<h1 class="unnumbered">Sobre</h1>
-<p>Este documento apresenta a documentação dos painéis de dados que compõem o CIGA-MPMG: Barragens, Informações sobre os Tacs, Descaracterização e Recomendações.</p>
+<p>Nesta seção, apresentamos quais são os bancos de dados utilizados no projeto, bem como as tabelas utilizadas em cada parte do projeto.</p>
+<section id="banco-de-dados-principal" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="banco-de-dados-principal"><span class="header-section-number">6.1</span> Banco de dados principal</h2>
+<p><span class="citation" data-cites="azeloc">(<a href="#ref-azeloc" role="doc-biblioref"><strong>azeloc?</strong></a>)</span></p>
+<p>O banco de dados <code>aecom_ciga_homolog</code> contém as principais tabelas utilizadas pelo Painel Gerencial CIGA-MPMG. Ele é utilizado para armazenar informações sobre recomendações, barragens, complexos minerários e metadados de diversos artefatos utilizados pelos painéis.</p>
+<p>Esse banco de dados é utilizado nos seguintes painéis:</p>
+<ul>
+<li>Barragens</li>
+<li>Informações dos TACs</li>
+<li>Recomendações</li>
+</ul>
+<p>Segue abaixo a lista de tabelas presentes no banco de dados <code>aecom_ciga_homolog</code>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<ul>
+<li>comarcasTJMG</li>
+<li>complexos_minerarios</li>
+<li>complexos_minerarios_sisvar</li>
+<li>dados_recomendacoes_sigbm</li>
+<li>dados_recomendacoes_sigbm_complexo_minerario</li>
+<li>dados_recomendacoes_sigbm_complexo_minerario_sisvar</li>
+<li>dados_recomendacoes_sigbm_sisvar</li>
+<li>dados_sigbm_atualizacao_mensal</li>
+<li>dados_sigbm_linha_do_tempo</li>
+<li>dados_sigbm_linha_do_tempo_parcial</li>
+<li>entrepreneurs</li>
+<li>full_recommendations</li>
+<li>geography_columns</li>
+<li>geometry_columns</li>
+<li>geotechnical_structures</li>
+<li>ide_sisema</li>
+<li>metadados_documentos_tacs</li>
+<li>metadados_imagens_satelite_bucket</li>
+<li>metadados_imagens_satelite_bucket_local</li>
+<li>metadados_mascaras_imagens_satelite_bucket</li>
+<li>metadados_relatorios_gerenciais</li>
+<li>pg_stat_statements</li>
+<li>pg_stat_statements_info</li>
+<li>recomendacoes_audit</li>
+<li>recommendations3</li>
+<li>sigbm</li>
+<li>sigbm_atual</li>
+<li>sigbm_atual_com_comarcas</li>
+<li>sigbm_dados_cadastrais</li>
+<li>sigbm_dados_cadastrais_atual</li>
+<li>spatial_ref_sys</li>
+<li>tac_decharacterisations</li>
+<li>tacs</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="cadastro-de-tacs" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="cadastro-de-tacs"><span class="header-section-number">6.2</span> Cadastro de TACs</h2>
+<p><span class="citation" data-cites="azeloc">(<a href="#ref-azeloc" role="doc-biblioref"><strong>azeloc?</strong></a>)</span></p>
+<p>O banco de dados <code>cadastro-tacs</code> tem origem no Sistema de Cadastro de TACs e contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.</p>
+<p>Esse banco de dados é utilizado nos seguintes painéis:</p>
+<ul>
+<li>Informações dos TACs</li>
+<li>Descaracterização</li>
+<li>Recomendações</li>
+</ul>
+<p>Segue abaixo a lista de tabelas presentes no banco de dados <code>aecom_ciga_homolog</code>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<ul>
+<li>active_storage_attachments</li>
+<li>active_storage_blobs</li>
+<li>active_storage_variant_records</li>
+<li>amendment_geotechnical_structures</li>
+<li>ar_internal_metadata</li>
+<li>entrepreneurs</li>
+<li>geotechnical_structures</li>
+<li>pg_search_documents</li>
+<li>schema_migrations</li>
+<li>tac_amendments</li>
+<li>tac_decharacterisations</li>
+<li>tacs</li>
+<li>tacs_view</li>
+<li>users</li>
+</ul>
+</div>
+</div>
 
 
 </section>
@@ -632,10 +707,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./repositorios.html" class="pagination-link" aria-label="Repositórios">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Repositórios</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ambientes.html" class="pagination-link" aria-label="Ambientes">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Ambientes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./actions.html" class="pagination-link" aria-label="GitHub Actions">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GitHub Actions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

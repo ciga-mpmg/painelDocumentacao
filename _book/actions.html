@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Actions – Documentação do Painel CIGA-MPMG</title>
+<title>7&nbsp; GitHub Actions – Documentação do Painel CIGA-MPMG</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./shiny_server.html" rel="next">
-<link href="./repositorios.html" rel="prev">
+<link href="./bancos_de_dados.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./actions.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Actions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./actions.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GitHub Actions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -144,14 +144,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./bancos_de_dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bancos de dados</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./actions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Actions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GitHub Actions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./shiny_server.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Shiny Server</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shiny Server</span></span></a>
   </div>
 </li>
     </ul>
@@ -164,20 +170,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#credenciais" id="toc-credenciais" class="nav-link active" data-scroll-target="#credenciais"><span class="header-section-number">6.1</span> Credenciais</a></li>
-  <li><a href="#workflows" id="toc-workflows" class="nav-link" data-scroll-target="#workflows"><span class="header-section-number">6.2</span> Workflows</a>
+  <li><a href="#ativando-um-workflow-manualmente" id="toc-ativando-um-workflow-manualmente" class="nav-link active" data-scroll-target="#ativando-um-workflow-manualmente"><span class="header-section-number">7.1</span> Ativando um workflow manualmente</a></li>
+  <li><a href="#credenciais" id="toc-credenciais" class="nav-link" data-scroll-target="#credenciais"><span class="header-section-number">7.2</span> Credenciais</a></li>
+  <li><a href="#workflows" id="toc-workflows" class="nav-link" data-scroll-target="#workflows"><span class="header-section-number">7.3</span> Workflows</a>
   <ul class="collapse">
-  <li><a href="#gerar-os-relatórios-gerenciais" id="toc-gerar-os-relatórios-gerenciais" class="nav-link" data-scroll-target="#gerar-os-relatórios-gerenciais"><span class="header-section-number">6.2.1</span> Gerar os relatórios gerenciais</a></li>
-  <li><a href="#resuvafeca" id="toc-resuvafeca" class="nav-link" data-scroll-target="#resuvafeca"><span class="header-section-number">6.2.2</span> Resuvafeca</a></li>
-  <li><a href="#atualizar-o-painel---produção" id="toc-atualizar-o-painel---produção" class="nav-link" data-scroll-target="#atualizar-o-painel---produção"><span class="header-section-number">6.2.3</span> Atualizar o painel - Produção</a></li>
-  <li><a href="#atualizar-o-painel---homologação" id="toc-atualizar-o-painel---homologação" class="nav-link" data-scroll-target="#atualizar-o-painel---homologação"><span class="header-section-number">6.2.4</span> Atualizar o painel - Homologação</a></li>
-  <li><a href="#download-sigbm" id="toc-download-sigbm" class="nav-link" data-scroll-target="#download-sigbm"><span class="header-section-number">6.2.5</span> Download SIGBM</a></li>
-  <li><a href="#copiar-metadados-do-google-cloud-storage" id="toc-copiar-metadados-do-google-cloud-storage" class="nav-link" data-scroll-target="#copiar-metadados-do-google-cloud-storage"><span class="header-section-number">6.2.6</span> Copiar metadados do Google Cloud Storage</a></li>
-  <li><a href="#download-ide-sisema" id="toc-download-ide-sisema" class="nav-link" data-scroll-target="#download-ide-sisema"><span class="header-section-number">6.2.7</span> Download IDE SISEMA</a></li>
-  <li><a href="#download-comarcas-tjmg" id="toc-download-comarcas-tjmg" class="nav-link" data-scroll-target="#download-comarcas-tjmg"><span class="header-section-number">6.2.8</span> Download Comarcas TJMG</a></li>
-  <li><a href="#download-sigbm-detalhado" id="toc-download-sigbm-detalhado" class="nav-link" data-scroll-target="#download-sigbm-detalhado"><span class="header-section-number">6.2.9</span> Download SIGBM detalhado</a></li>
-  <li><a href="#download-sigbm-detalhado---mapa-de-inundação---download" id="toc-download-sigbm-detalhado---mapa-de-inundação---download" class="nav-link" data-scroll-target="#download-sigbm-detalhado---mapa-de-inundação---download"><span class="header-section-number">6.2.10</span> Download SIGBM detalhado - Mapa de inundação - Download</a></li>
-  <li><a href="#download-sigbm-detalhado---mapa-de-inundação---upload" id="toc-download-sigbm-detalhado---mapa-de-inundação---upload" class="nav-link" data-scroll-target="#download-sigbm-detalhado---mapa-de-inundação---upload"><span class="header-section-number">6.2.11</span> Download SIGBM detalhado - Mapa de inundação - Upload</a></li>
+  <li><a href="#gerar-os-relatórios-gerenciais" id="toc-gerar-os-relatórios-gerenciais" class="nav-link" data-scroll-target="#gerar-os-relatórios-gerenciais"><span class="header-section-number">7.3.1</span> Gerar os relatórios gerenciais</a></li>
+  <li><a href="#resuvafeca" id="toc-resuvafeca" class="nav-link" data-scroll-target="#resuvafeca"><span class="header-section-number">7.3.2</span> Resuvafeca</a></li>
+  <li><a href="#atualizar-o-painel---produção" id="toc-atualizar-o-painel---produção" class="nav-link" data-scroll-target="#atualizar-o-painel---produção"><span class="header-section-number">7.3.3</span> Atualizar o painel - Produção</a></li>
+  <li><a href="#atualizar-o-painel---homologação" id="toc-atualizar-o-painel---homologação" class="nav-link" data-scroll-target="#atualizar-o-painel---homologação"><span class="header-section-number">7.3.4</span> Atualizar o painel - Homologação</a></li>
+  <li><a href="#download-sigbm" id="toc-download-sigbm" class="nav-link" data-scroll-target="#download-sigbm"><span class="header-section-number">7.3.5</span> Download SIGBM</a></li>
+  <li><a href="#copiar-metadados-do-google-cloud-storage" id="toc-copiar-metadados-do-google-cloud-storage" class="nav-link" data-scroll-target="#copiar-metadados-do-google-cloud-storage"><span class="header-section-number">7.3.6</span> Copiar metadados do Google Cloud Storage</a></li>
+  <li><a href="#download-ide-sisema" id="toc-download-ide-sisema" class="nav-link" data-scroll-target="#download-ide-sisema"><span class="header-section-number">7.3.7</span> Download IDE SISEMA</a></li>
+  <li><a href="#download-comarcas-tjmg" id="toc-download-comarcas-tjmg" class="nav-link" data-scroll-target="#download-comarcas-tjmg"><span class="header-section-number">7.3.8</span> Download Comarcas TJMG</a></li>
+  <li><a href="#download-sigbm-detalhado" id="toc-download-sigbm-detalhado" class="nav-link" data-scroll-target="#download-sigbm-detalhado"><span class="header-section-number">7.3.9</span> Download SIGBM detalhado</a></li>
+  <li><a href="#download-sigbm-detalhado---mapa-de-inundação---download" id="toc-download-sigbm-detalhado---mapa-de-inundação---download" class="nav-link" data-scroll-target="#download-sigbm-detalhado---mapa-de-inundação---download"><span class="header-section-number">7.3.10</span> Download SIGBM detalhado - Mapa de inundação - Download</a></li>
+  <li><a href="#download-sigbm-detalhado---mapa-de-inundação---upload" id="toc-download-sigbm-detalhado---mapa-de-inundação---upload" class="nav-link" data-scroll-target="#download-sigbm-detalhado---mapa-de-inundação---upload"><span class="header-section-number">7.3.11</span> Download SIGBM detalhado - Mapa de inundação - Upload</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -187,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-actions" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Actions</span></span></h1>
+<h1 class="title"><span id="sec-actions" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GitHub Actions</span></span></h1>
 </div>
 
 
@@ -206,9 +213,13 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Para executar a atualização e preparação dos dados utilizados nos painéis e no relatório gerencial do CIGA-MPMG, existem diversos <em>workflows</em> que são executados pelo GitHub Actions.</p>
 <p>Workflows são arquivos de configuração que definem um conjunto de ações executadas em uma máquina virtual disponibilizada pelo GitHub.</p>
-<p>Nesta seção, listamos as credenciais necessárias para executar esses processos e descrevemos todos os workflows criados no GitHub Actions para a manutenção do Painel Gerencial do CIGA-MPMG.</p>
-<section id="credenciais" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="credenciais"><span class="header-section-number">6.1</span> Credenciais</h2>
+<p>Nesta seção, mostramos com acionar manualmente um workflow, listamos as credenciais necessárias para executar esses processos e descrevemos todos os workflows criados no GitHub Actions para a manutenção do Painel Gerencial do CIGA-MPMG.</p>
+<section id="ativando-um-workflow-manualmente" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="ativando-um-workflow-manualmente"><span class="header-section-number">7.1</span> Ativando um workflow manualmente</h2>
+<p><span class="citation" data-cites="azeloc">(<a href="#ref-azeloc" role="doc-biblioref"><strong>azeloc?</strong></a>)</span></p>
+</section>
+<section id="credenciais" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="credenciais"><span class="header-section-number">7.2</span> Credenciais</h2>
 <p>Cada workflow pode necessitar de diferentes credenciais (<em>repository secrets</em>). Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.</p>
 <section id="banco-de-dados-gcp" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="banco-de-dados-gcp"><strong>Banco de dados (GCP)</strong></h4>
@@ -258,11 +269,11 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="workflows" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="workflows"><span class="header-section-number">6.2</span> Workflows</h2>
+<section id="workflows" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="workflows"><span class="header-section-number">7.3</span> Workflows</h2>
 <p>A seguir, descrevemos cada um dos workflows criados para a manutenção do Painel Gerencial do CIGA-MPMG.</p>
-<section id="gerar-os-relatórios-gerenciais" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="gerar-os-relatórios-gerenciais"><span class="header-section-number">6.2.1</span> Gerar os relatórios gerenciais</h3>
+<section id="gerar-os-relatórios-gerenciais" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="gerar-os-relatórios-gerenciais"><span class="header-section-number">7.3.1</span> Gerar os relatórios gerenciais</h3>
 <ul>
 <li><strong>Descrição</strong>: Gera os relatórios gerenciais e faz o upload para o Google Cloud Storage.</li>
 <li><strong>Link para o workflow</strong>: <a href="https://github.com/ciga-mpmg/painelMain/blob/main/.github/workflows/gerar-relatorios-gerenciais.yml">gerar-relatorios-gerenciais.yml</a></li>
@@ -292,8 +303,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="resuvafeca" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="resuvafeca"><span class="header-section-number">6.2.2</span> Resuvafeca</h3>
+<section id="resuvafeca" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="resuvafeca"><span class="header-section-number">7.3.2</span> Resuvafeca</h3>
 <ul>
 <li><strong>Descrição</strong>: Sempre que houver novas alterações na branch main do repositório resuvafeca, ativa outros workflows:
 <ul>
@@ -315,8 +326,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="atualizar-o-painel---produção" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="atualizar-o-painel---produção"><span class="header-section-number">6.2.3</span> Atualizar o painel - Produção</h3>
+<section id="atualizar-o-painel---produção" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="atualizar-o-painel---produção"><span class="header-section-number">7.3.3</span> Atualizar o painel - Produção</h3>
 <ul>
 <li><strong>Descrição</strong>: Workflow para atualizar o painel em produção. Atualiza todos os painéis. Atualiza o servidor com o código que está na branch <code>prod</code> de cada repositório dos painéis.</li>
 <li><strong>Link para o workflow</strong>: <a href="https://github.com/ciga-mpmg/painelMain/actions/workflows/deploy-prod-all.yml">deploy-prod-all.yml</a></li>
@@ -339,8 +350,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="atualizar-o-painel---homologação" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="atualizar-o-painel---homologação"><span class="header-section-number">6.2.4</span> Atualizar o painel - Homologação</h3>
+<section id="atualizar-o-painel---homologação" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="atualizar-o-painel---homologação"><span class="header-section-number">7.3.4</span> Atualizar o painel - Homologação</h3>
 <ul>
 <li><strong>Descrição</strong>: Workflow para o painel em homologação. Atualiza todos os painéis. Atualiza o servidor com o código que está na branch <code>main</code> de cada repositório dos painéis.</li>
 <li><strong>Link para o workflow</strong>: <a href="https://github.com/ciga-mpmg/painelMain/actions/workflows/deploy-homolog-all.yml">deploy-homolog-all.yml</a><br>
@@ -364,8 +375,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="download-sigbm" class="level3" data-number="6.2.5">
-<h3 data-number="6.2.5" class="anchored" data-anchor-id="download-sigbm"><span class="header-section-number">6.2.5</span> Download SIGBM</h3>
+<section id="download-sigbm" class="level3" data-number="7.3.5">
+<h3 data-number="7.3.5" class="anchored" data-anchor-id="download-sigbm"><span class="header-section-number">7.3.5</span> Download SIGBM</h3>
 <p><span class="citation" data-cites="azeloc">(<a href="#ref-azeloc" role="doc-biblioref"><strong>azeloc?</strong></a>)</span></p>
 <p>Esse workflow realiza diversas tarefas de ETL importantes para o painel, descritas no <a href="https://github.com/ciga-mpmg/scraper_sigbm/blob/main/README.md">README do repositório</a>.</p>
 <ul>
@@ -405,15 +416,35 @@ ul.task-list li input[type="checkbox"] {
 <li>CIGA_SQL_PASSWORD</li>
 </ul></li>
 </ul>
-<blockquote class="blockquote">
-<p><strong>Importante!</strong> Executar sempre que uma nova atualização da base de recomendações acontecer! Essa execução acontece automaticamente quando há novas modificações no repositório <a href="https://github.com/ciga-mpmg/resuvafeca">ciga-mpmg/resuvafeca</a>.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>Observação.</strong> Conforme feito <a href="https://github.com/ciga-mpmg/scraper_sigbm/commit/fac25d574abab4f9f014fba31c9886bc8a5da383">aqui</a>, a verificação de SSL foi desativada por um problema no site da ANM.</p>
-</blockquote>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Executar sempre que uma nova atualização da base de recomendações acontecer! Essa execução acontece automaticamente quando há novas modificações no repositório <a href="https://github.com/ciga-mpmg/resuvafeca">ciga-mpmg/resuvafeca</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Conforme feito <a href="https://github.com/ciga-mpmg/scraper_sigbm/commit/fac25d574abab4f9f014fba31c9886bc8a5da383">aqui</a>, a verificação de SSL foi desativada por um problema no site da ANM.</p>
+</div>
+</div>
 </section>
-<section id="copiar-metadados-do-google-cloud-storage" class="level3" data-number="6.2.6">
-<h3 data-number="6.2.6" class="anchored" data-anchor-id="copiar-metadados-do-google-cloud-storage"><span class="header-section-number">6.2.6</span> Copiar metadados do Google Cloud Storage</h3>
+<section id="copiar-metadados-do-google-cloud-storage" class="level3" data-number="7.3.6">
+<h3 data-number="7.3.6" class="anchored" data-anchor-id="copiar-metadados-do-google-cloud-storage"><span class="header-section-number">7.3.6</span> Copiar metadados do Google Cloud Storage</h3>
 <ul>
 <li><strong>Descrição</strong>: importa informações de arquivos que estão no Google Cloud Storage, como documentos dos TACs, relatórios gerenciais, imagens de satélite e as máscaras das imagens de satélite.</li>
 <li><strong>Execução</strong>:
@@ -447,12 +478,22 @@ ul.task-list li input[type="checkbox"] {
 <li>CIGA_JSON_GOOGLE</li>
 </ul></li>
 </ul>
-<blockquote class="blockquote">
-<p><strong>Importante</strong>! Para manter os painéis atualizados, esse workflow deve ser executado manualmente sempre que alguma mudança for realizada nos arquivos do Google Cloud Storage listados acima. Caso adicione imagens de satélite novas, verifique se a mesma consta na tabela <code>de-para</code> de imagens de satélite e barragens: <a href="https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-local.csv">local</a> e <a href="https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-regional.csv">regional</a>.</p>
-</blockquote>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para manter os painéis atualizados, esse workflow deve ser executado manualmente sempre que alguma mudança for realizada nos arquivos do Google Cloud Storage listados acima. Caso adicione imagens de satélite novas, verifique se a mesma consta na tabela <code>de-para</code> de imagens de satélite e barragens: <a href="https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-local.csv">local</a> e <a href="https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-regional.csv">regional</a>.</p>
+</div>
+</div>
 </section>
-<section id="download-ide-sisema" class="level3" data-number="6.2.7">
-<h3 data-number="6.2.7" class="anchored" data-anchor-id="download-ide-sisema"><span class="header-section-number">6.2.7</span> Download IDE SISEMA</h3>
+<section id="download-ide-sisema" class="level3" data-number="7.3.7">
+<h3 data-number="7.3.7" class="anchored" data-anchor-id="download-ide-sisema"><span class="header-section-number">7.3.7</span> Download IDE SISEMA</h3>
 <ul>
 <li>Nível de urgência: Baixo</li>
 <li>Descrição: Faz download dos dados do IDE Sisema acessando o seu Web Map Server (WMS) (código por <span class="citation" data-cites="rdornas">(<a href="#ref-rdornas" role="doc-biblioref"><strong>rdornas?</strong></a>)</span>).</li>
@@ -477,8 +518,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="download-comarcas-tjmg" class="level3" data-number="6.2.8">
-<h3 data-number="6.2.8" class="anchored" data-anchor-id="download-comarcas-tjmg"><span class="header-section-number">6.2.8</span> Download Comarcas TJMG</h3>
+<section id="download-comarcas-tjmg" class="level3" data-number="7.3.8">
+<h3 data-number="7.3.8" class="anchored" data-anchor-id="download-comarcas-tjmg"><span class="header-section-number">7.3.8</span> Download Comarcas TJMG</h3>
 <ul>
 <li>Nível de urgência: Baixo</li>
 <li>Descrição: Faz download do pdf dos municípios e comarcas do Tribunal de Justiça do estado de Minas Gerais, trata e disponibiliza (código por <span class="citation" data-cites="rdornas">(<a href="#ref-rdornas" role="doc-biblioref"><strong>rdornas?</strong></a>)</span> e <span class="citation" data-cites="mayaradaher">(<a href="#ref-mayaradaher" role="doc-biblioref"><strong>mayaradaher?</strong></a>)</span> utilizado está disponível no repositório <a href="https://github.com/ciga-mpmg/comarcasTJMG">ciga-mpmg/comarcasTJMG</a>).</li>
@@ -503,8 +544,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="download-sigbm-detalhado" class="level3" data-number="6.2.9">
-<h3 data-number="6.2.9" class="anchored" data-anchor-id="download-sigbm-detalhado"><span class="header-section-number">6.2.9</span> Download SIGBM detalhado</h3>
+<section id="download-sigbm-detalhado" class="level3" data-number="7.3.9">
+<h3 data-number="7.3.9" class="anchored" data-anchor-id="download-sigbm-detalhado"><span class="header-section-number">7.3.9</span> Download SIGBM detalhado</h3>
 <ul>
 <li>Nível de urgência: Médio</li>
 <li>Descrição: Faz o download dos dados detalhados do portal <a href="https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem">SIGBM</a>.</li>
@@ -544,8 +585,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="download-sigbm-detalhado---mapa-de-inundação---download" class="level3" data-number="6.2.10">
-<h3 data-number="6.2.10" class="anchored" data-anchor-id="download-sigbm-detalhado---mapa-de-inundação---download"><span class="header-section-number">6.2.10</span> Download SIGBM detalhado - Mapa de inundação - Download</h3>
+<section id="download-sigbm-detalhado---mapa-de-inundação---download" class="level3" data-number="7.3.10">
+<h3 data-number="7.3.10" class="anchored" data-anchor-id="download-sigbm-detalhado---mapa-de-inundação---download"><span class="header-section-number">7.3.10</span> Download SIGBM detalhado - Mapa de inundação - Download</h3>
 <ul>
 <li>Nível de urgência: baixo</li>
 <li>Descrição: Faz o download dos mapas de inundação disponibilizados no portal <a href="https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem">SIGBM</a>.</li>
@@ -572,8 +613,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="download-sigbm-detalhado---mapa-de-inundação---upload" class="level3" data-number="6.2.11">
-<h3 data-number="6.2.11" class="anchored" data-anchor-id="download-sigbm-detalhado---mapa-de-inundação---upload"><span class="header-section-number">6.2.11</span> Download SIGBM detalhado - Mapa de inundação - Upload</h3>
+<section id="download-sigbm-detalhado---mapa-de-inundação---upload" class="level3" data-number="7.3.11">
+<h3 data-number="7.3.11" class="anchored" data-anchor-id="download-sigbm-detalhado---mapa-de-inundação---upload"><span class="header-section-number">7.3.11</span> Download SIGBM detalhado - Mapa de inundação - Upload</h3>
 <ul>
 <li>Nível de urgência: baixo</li>
 <li>Descrição: Faz o upload dos mapas de inundação disponibilizados no portal <a href="https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem">SIGBM</a> para o Bucket.</li>
@@ -1028,13 +1069,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./repositorios.html" class="pagination-link" aria-label="Repositórios">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Repositórios</span></span>
+      <a href="./bancos_de_dados.html" class="pagination-link" aria-label="Bancos de dados">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bancos de dados</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./shiny_server.html" class="pagination-link" aria-label="Shiny Server">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Shiny Server</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Shiny Server</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

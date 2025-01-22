@@ -1,10 +1,14 @@
-# Actions {#sec-actions}
+# GitHub Actions {#sec-actions}
 
 Para executar a atualização e preparação dos dados utilizados nos painéis e no relatório gerencial do CIGA-MPMG, existem diversos *workflows* que são executados pelo GitHub Actions.
 
 Workflows são arquivos de configuração que definem um conjunto de ações executadas em uma máquina virtual disponibilizada pelo GitHub. 
 
-Nesta seção, listamos as credenciais necessárias para executar esses processos e descrevemos todos os workflows criados no GitHub Actions para a manutenção do Painel Gerencial do CIGA-MPMG.
+Nesta seção, mostramos com acionar manualmente um workflow, listamos as credenciais necessárias para executar esses processos e descrevemos todos os workflows criados no GitHub Actions para a manutenção do Painel Gerencial do CIGA-MPMG.
+
+## Ativando um workflow manualmente
+
+@azeloc
 
 ## Credenciais
 
@@ -151,9 +155,13 @@ Esse workflow realiza diversas tarefas de ETL importantes para o painel, descrit
   - CIGA_SQL_PORT
   - CIGA_SQL_PASSWORD
 
-> **Importante!** Executar sempre que uma nova atualização da base de recomendações acontecer! Essa execução acontece automaticamente quando há novas modificações no repositório [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca).
+::: callout-important
+Executar sempre que uma nova atualização da base de recomendações acontecer! Essa execução acontece automaticamente quando há novas modificações no repositório [ciga-mpmg/resuvafeca](https://github.com/ciga-mpmg/resuvafeca).
+:::
 
-> **Observação.** Conforme feito [aqui](https://github.com/ciga-mpmg/scraper_sigbm/commit/fac25d574abab4f9f014fba31c9886bc8a5da383), a verificação de SSL foi desativada por um problema no site da ANM.  
+::: callout-note
+Conforme feito [aqui](https://github.com/ciga-mpmg/scraper_sigbm/commit/fac25d574abab4f9f014fba31c9886bc8a5da383), a verificação de SSL foi desativada por um problema no site da ANM.  
+:::
 
 ### Copiar metadados do Google Cloud Storage
 
@@ -178,8 +186,9 @@ Esse workflow realiza diversas tarefas de ETL importantes para o painel, descrit
   - CIGA_SQL_PASSWORD
   - CIGA_JSON_GOOGLE
 
-
-> **Importante**! Para manter os painéis atualizados, esse workflow deve ser executado manualmente sempre que alguma mudança for realizada nos arquivos do Google Cloud Storage listados acima. Caso adicione imagens de satélite novas, verifique se a mesma consta na tabela `de-para` de imagens de satélite e barragens: [local](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-local.csv) e [regional](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-regional.csv).
+::: callout-important
+Para manter os painéis atualizados, esse workflow deve ser executado manualmente sempre que alguma mudança for realizada nos arquivos do Google Cloud Storage listados acima. Caso adicione imagens de satélite novas, verifique se a mesma consta na tabela `de-para` de imagens de satélite e barragens: [local](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-local.csv) e [regional](https://github.com/ciga-mpmg/googleStorageMetadata/blob/main/data-raw/de-para-barragens-imagens-regional.csv).
+:::
 
 ### Download IDE SISEMA
 

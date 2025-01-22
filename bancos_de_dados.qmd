@@ -1,0 +1,65 @@
+# Bancos de dados
+
+Nesta seção, apresentamos quais são os bancos de dados utilizados no projeto, bem como as tabelas utilizadas em cada parte do projeto.
+
+## Banco de dados principal
+
+@azeloc
+
+O banco de dados `aecom_ciga_homolog` contém as principais tabelas utilizadas pelo Painel Gerencial CIGA-MPMG. Ele é utilizado para armazenar informações sobre recomendações, barragens, complexos minerários e metadados de diversos artefatos utilizados pelos painéis.
+
+Esse banco de dados é utilizado nos seguintes painéis:
+
+- Barragens
+- Informações dos TACs
+- Recomendações
+
+Segue abaixo a lista de tabelas presentes no banco de dados `aecom_ciga_homolog`:
+
+```{r, echo = FALSE}
+con_recomendacoes <- DBI::dbConnect(
+  drv = RPostgres::Postgres(),
+  host = Sys.getenv("CIGA_SQL_HOST"),
+  dbname = "aecom_ciga_homolog",
+  user = Sys.getenv("CIGA_SQL_USER"),
+  port = Sys.getenv("CIGA_SQL_PORT"),
+  password = Sys.getenv("CIGA_SQL_PASSWORD"),
+)
+
+tabelas_no_bd_reco <- RSQLite::dbListTables(con_recomendacoes)
+
+htmltools::tags$ul(
+  purrr::map(sort(tabelas_no_bd_reco), htmltools::tags$li)
+)
+```
+
+## Cadastro de TACs
+
+@azeloc
+
+O banco de dados `cadastro-tacs` tem origem no Sistema de Cadastro de TACs e contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.
+
+Esse banco de dados é utilizado nos seguintes painéis:
+
+- Informações dos TACs
+- Descaracterização
+- Recomendações
+
+Segue abaixo a lista de tabelas presentes no banco de dados `aecom_ciga_homolog`:
+
+```{r, echo = FALSE}
+con_cadastro_tacs <- DBI::dbConnect(
+  drv = RPostgres::Postgres(),
+  host = Sys.getenv("CIGA_SQL_HOST"),
+  dbname = 'cadastro_tacs',
+  user = Sys.getenv("CIGA_SQL_USER"),
+  port = Sys.getenv("CIGA_SQL_PORT"),
+  password = Sys.getenv("CIGA_SQL_PASSWORD"),
+)
+
+tabelas_no_bd_tacs <- RSQLite::dbListTables(con_cadastro_tacs)
+
+htmltools::tags$ul(
+  purrr::map(sort(tabelas_no_bd_tacs), htmltools::tags$li)
+)
+```
