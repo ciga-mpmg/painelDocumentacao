@@ -1,0 +1,392 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Documentação do Painel Gerencial CIGA",
+    "section": "",
+    "text": "Sobre\nEste documento apresenta um resumo da construção interna do Painel Gerencial CIGA. Nesse sentido, são abordados diversos temas relacionados ao back-end do Painel, incluindo as automatizações, repositórios, acesso e ambientes. Todas as informações aqui disponibilizadas fazem parte da construção das telas “Barragens”, “Informações sobre os TACs” e “Recomendações”.",
+    "crumbs": [
+      "Sobre"
+    ]
+  },
+  {
+    "objectID": "ambientes.html",
+    "href": "ambientes.html",
+    "title": "1  Ambientes",
+    "section": "",
+    "text": "1.1 R\nAs telas do Painel Gerencial CIGA foram desenvolvidas utilizando a linguagem de programação R e a biblioteca Shiny.\nPara alteração do código-fonte, será necessário instalar o R na máquina de desenvolvimento. Também é recomendado a utilização de alguma IDE amigável ao R, como o RStudio, o VSCode ou o Positron.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#github",
+    "href": "ambientes.html#github",
+    "title": "1  Ambientes",
+    "section": "1.2 GitHub",
+    "text": "1.2 GitHub\nO código-fonte das telas do Painel Gerencial CIGA e de suas automações foram versionados utilizando o sistema de controle de versão Git e estão disponíveis em repositórios privados no GitHub. Por sua vez, os repositórios foram criados dentro da organização ciga-mpmg.\nAlguns repositórios possuem processos automatizados (Actions) via Github Actions, como a atualização dos dados do SIGBM e o processo de atualização de versão dos painéis (deploy).\nNa Seção 5 listamos a função de cada repositório, os Actions que eles possuem e fornecemos seu respectivo link. Na Seção 7, descrevemos o que faz cada Action e como executá-los.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#google-cloud-platform",
+    "href": "ambientes.html#google-cloud-platform",
+    "title": "1  Ambientes",
+    "section": "1.3 Google Cloud Platform",
+    "text": "1.3 Google Cloud Platform\nPara implantar o Painel Gerencial CIGA, foi necessário configurar uma máquina com as seguintes configurações:\n\nSistema operacional: Ubuntu 24.04.1 LTS\nCapacidade de disco: 20 Gb\nMemória RAM: 4 Gb\n\nTambém foi necessário instalar os seguintes softwares:\n\nR 4.2.1 ou superior\nShiny-Server em versão 1.5.19 ou superior\nnginx 1.26.2",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#shiny-server",
+    "href": "ambientes.html#shiny-server",
+    "title": "1  Ambientes",
+    "section": "1.4 Shiny Server",
+    "text": "1.4 Shiny Server\nAs telas do Painel Gerencial CIGA foram implantadas utilizando o Shiny Server.\nEste ambiente deverá ser acessado para analise dos logs do sistema ou para realizar algum processo de implantação manualmente. De toda forma, as automações em Github Actions foram projetadas para evitar esse processo. O acesso é feito através do link http://painel-homolog.ciga-mpmg.com.br:8787 e http://painel.ciga-mpmg.com.br:8787 e utiliza-se o login shiny-admin e senha de administrador.\nApresentamos as configurações aplicadas ao Shiny Server para implantar o Painel Gerencial CIGA na Seção 8.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "ambientes.html#google-firebase",
+    "href": "ambientes.html#google-firebase",
+    "title": "1  Ambientes",
+    "section": "1.5 Google Firebase",
+    "text": "1.5 Google Firebase\nO serviço Google Firebase é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.\nO painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a Seção 2). (azeloc?)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ambientes</span>"
+    ]
+  },
+  {
+    "objectID": "acesso.html",
+    "href": "acesso.html",
+    "title": "2  Acesso",
+    "section": "",
+    "text": "2.1 Login\nPara acessar a versão em produção do Painel Gerencial CIGA, utilize a URL https://painel.ciga-mpmg.com.br/. A versão de homologação se encontra na URL https://painel-homolog.ciga-mpmg.com.br/.\nAmbas as versões necessitam de autenticação, sendo necessário cadastrar cada novo usuário no painel de gerenciamento do Firebase (firebase.google.com).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
+    ]
+  },
+  {
+    "objectID": "acesso.html#cadastrar-novo-usuário",
+    "href": "acesso.html#cadastrar-novo-usuário",
+    "title": "2  Acesso",
+    "section": "2.2 Cadastrar novo usuário",
+    "text": "2.2 Cadastrar novo usuário\nO administrador do sistema CIGA pode cadastrar novos usuários interagindo com o painel de gerenciamento do Firebase:\n\nAo clicar em “Adicionar usuário”, basta incluir usuário e senha e o usuário estará criado com acesso ao Painel Gerencial, em sua versão de produção. Caso seja necessário fornecer acesso ao painel de homologação para teste de novas funcionalidades, é necessário definir homolog: true na entrada correspondente ao usuário recém-criado no RealTime Database:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
+    ]
+  },
+  {
+    "objectID": "acesso.html#alterar-senha-remover-usuário-ou-suspender-acesso",
+    "href": "acesso.html#alterar-senha-remover-usuário-ou-suspender-acesso",
+    "title": "2  Acesso",
+    "section": "2.3 Alterar senha, remover usuário ou suspender acesso",
+    "text": "2.3 Alterar senha, remover usuário ou suspender acesso\nCaso seja necessário alterar uma dessas três características, basta interagir com os detalhamentos de um usuário no painel de gerenciamento do Firebase.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Acesso</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html",
+    "href": "paineis.html",
+    "title": "3  Painéis",
+    "section": "",
+    "text": "3.1 Home\nA home do Painel Gerencial CIGA-MPMG é a página acessada logo após o login. Seu objetivo é encaminhar o usuário para um dos painéis de dados: Barragens, Informações sobre os TACs, Descaracterização e Recomendações.\nO código fonte desta página se encontra no repositório painelMain.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-home",
+    "href": "paineis.html#sec-painel-home",
+    "title": "3  Painéis",
+    "section": "",
+    "text": "Figura 3.1: Acesso aos painéis de dados do Painel Gerencial CIGA-MPMG",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-barragens",
+    "href": "paineis.html#sec-painel-barragens",
+    "title": "3  Painéis",
+    "section": "3.2 Barragens",
+    "text": "3.2 Barragens\nPossui visualizações e informações de barragens de rejeitos de mineração existentes no estado de Minas Gerais obtidas no Sistema de Gestão de Segurança de Barragem de Mineração (SIGBM), disponibilizado pela Agência Nacional de Mineração (ANM) e registradas na plataforma CIGA. As informações são atualizadas diariamente, de acordo com a base de dados do SIGBM.\nO código fonte desta página se encontra no repositório painelBarragens.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-infoTacs",
+    "href": "paineis.html#sec-painel-infoTacs",
+    "title": "3  Painéis",
+    "section": "3.3 Informações sobre os TACs",
+    "text": "3.3 Informações sobre os TACs\nPossui acesso a informações detalhadas extraídas dos documentos jurídicos que balizam o Programa de Auditoria Técnica Independente, além de documentos técnicos enviados pelas Auditorias Técnicas no escopo dos Termos firmados entre o MPMG, MPF e mineradoras. Destaca-se que o termo TACs é aqui utilizado como uma generalização para acordos extrajudiciais como Termos de Compromisso, Termos de Ajustamento de Conduta e Termos de Compromisso Preliminar.\nO código fonte desta página se encontra no repositório painelInfoTacs.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-descaracterizacao",
+    "href": "paineis.html#sec-painel-descaracterizacao",
+    "title": "3  Painéis",
+    "section": "3.4 Descaracterização",
+    "text": "3.4 Descaracterização\nPossui informações de acompanhamento dos TACs assinados pelos empreendedores responsáveis pelas barragens alteadas pelo método a montante ou desconhecido em Minas Gerais, com o objetivo de descaracterizar as barragens de mineração, que não atenderam ao prazo estipulado pela Lei “Mar de Lama Nunca Mais” (Lei Estadual nº 23.291/2019).\nO código fonte desta página se encontra no repositório painelDescaracterizacao.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "paineis.html#sec-painel-recomendacoes",
+    "href": "paineis.html#sec-painel-recomendacoes",
+    "title": "3  Painéis",
+    "section": "3.5 Recomendações",
+    "text": "3.5 Recomendações\nPossui visualizações e estatísticas de acompanhamento de recomendações emitidas pelas Auditorias Técnicas Independentes, no contexto do cumprimento dos Termos de Ajustamento de Conduta (TACs) pelos empreendedores. Tais recomendações são primordialmente associadas a estruturas geotécnicas, mas envolvem também temas ligados ao meio ambiente, como bem-estar e manejo da fauna evacuada, monitoramento das águas na bacia do Rio Paraopeba, segurança hídrica no contexto do alto curso da bacia do Rio das Velhas, manejo de rejeitos na Bacia do Rio Doce, dentre outros temas.\nO código fonte desta página se encontra no repositório painelRecomendacoes.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Painéis</span>"
+    ]
+  },
+  {
+    "objectID": "relatorio.html",
+    "href": "relatorio.html",
+    "title": "4  Relatório Gerencial",
+    "section": "",
+    "text": "4.1 Gerar relatórios gerenciais\nPara gerar os relatórios gerenciais atualizados e disponibilizá-los para download na plataforma, você deve:\nPasso 1: Executar a rotina de geração dos relatórios “gerar_relatorios_gerenciais” clicando em “Run workflow” na página de Actions do repositório https://github.com/ciga-mpmg/painelMain\nAo final desse processo, novos relatórios referentes à data de execução da rotina serão criados.\nPasso 2: Executar a rotina de cadastros do relatórios no banco de dados interno da plataforma CIGA-MPMG.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Relatório Gerencial</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html",
+    "href": "repositorios.html",
+    "title": "5  Repositórios",
+    "section": "",
+    "text": "5.1 painelMain",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelmain",
+    "href": "repositorios.html#painelmain",
+    "title": "5  Repositórios",
+    "section": "",
+    "text": "Descrição: contém o código-fonte da home do Painel Gerencial CIGA-MPMG (Seção 3.1), a página acessada logo após o login.\nLink: https://github.com/ciga-mpmg/painelMain\nActions: possui os Actions de deploy em homologação e produção de cada um dos painéis e para gerar os relatórios gerenciais.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelbarragens",
+    "href": "repositorios.html#painelbarragens",
+    "title": "5  Repositórios",
+    "section": "5.2 painelBarragens",
+    "text": "5.2 painelBarragens\n\nDescrição: contém o código-fonte do painel Barragens (Seção 3.2).\nLink: https://github.com/ciga-mpmg/painelBarragens\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelinfotacs",
+    "href": "repositorios.html#painelinfotacs",
+    "title": "5  Repositórios",
+    "section": "5.3 painelInfoTacs",
+    "text": "5.3 painelInfoTacs\n\nDescrição: contém o código-fonte do painel Informações sobre os TACs (Seção 3.3).\nLink: https://github.com/ciga-mpmg/painelInfoTacs\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#paineldescaracterizacao",
+    "href": "repositorios.html#paineldescaracterizacao",
+    "title": "5  Repositórios",
+    "section": "5.4 painelDescaracterizacao",
+    "text": "5.4 painelDescaracterizacao\n\nDescrição: contém o código-fonte do painel Descaracterização (Seção 3.4).\nLink: https://github.com/ciga-mpmg/painelDescaracterizacao\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelrecomendacoes",
+    "href": "repositorios.html#painelrecomendacoes",
+    "title": "5  Repositórios",
+    "section": "5.5 painelRecomendacoes",
+    "text": "5.5 painelRecomendacoes\n\nDescrição: contém o código-fonte do painel Recomendações (Seção 3.5).\nLink: https://github.com/ciga-mpmg/painelRecomendacoes\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelassets",
+    "href": "repositorios.html#painelassets",
+    "title": "5  Repositórios",
+    "section": "5.6 painelAssets",
+    "text": "5.6 painelAssets\n\nDescrição: contém o código-fonte de um pacote R com funções auxiliares utilizadas em todos os painéis.\nLink: https://github.com/ciga-mpmg/painelAssets\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painellogin",
+    "href": "repositorios.html#painellogin",
+    "title": "5  Repositórios",
+    "section": "5.7 painelLogin",
+    "text": "5.7 painelLogin\n\nDescrição: contém o código-fonte de um pacote R com funções utilizadas na construção da camada de login via Firebase de cada Painel. Também possui o front-end da tela de Login.\nLink: https://github.com/ciga-mpmg/painelLogin\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelrelatoriogerencial",
+    "href": "repositorios.html#painelrelatoriogerencial",
+    "title": "5  Repositórios",
+    "section": "5.8 painelRelatorioGerencial",
+    "text": "5.8 painelRelatorioGerencial\n\nDescrição: contém o código-fonte de todas as versões do Relatório Gerencial.\nLink: https://github.com/ciga-mpmg/painelRelatorioGerencial\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#painelactions",
+    "href": "repositorios.html#painelactions",
+    "title": "5  Repositórios",
+    "section": "5.9 painelActions",
+    "text": "5.9 painelActions\n\nDescrição: contém uma descrição de todas as automações em Github Actions, suas localizações e seus respectivos impactos no sistema. Nesse repositório também listamos os requisitos e criticidades de cada automação.\nLink: https://github.com/ciga-mpmg/painelActions\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#paineldocumentacao",
+    "href": "repositorios.html#paineldocumentacao",
+    "title": "5  Repositórios",
+    "section": "5.10 painelDocumentacao",
+    "text": "5.10 painelDocumentacao\n\nDescrição: contém os arquivos que compõem esta documentação.\nLink: https://github.com/ciga-mpmg/painelDocumentacao\nActions: não possui.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "repositorios.html#scraper_sigbm",
+    "href": "repositorios.html#scraper_sigbm",
+    "title": "5  Repositórios",
+    "section": "5.11 scraper_sigbm",
+    "text": "5.11 scraper_sigbm\n\nDescrição: contém os códigos fonte de acesso ao SIGBM e atualização dos bancos de dados de homologação e produção com os seus conteúdos e consolidações de informação de recomendações.\nLink: https://github.com/ciga-mpmg/scraper_sigbm\nActions: download_sigbm. Essa automação é responsável por atualizar as informações do SIGBM nos bancos de dados, além de consolidar informações oriundas do Sistema de Cadastro de TACs e do SISVAR.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Repositórios</span>"
+    ]
+  },
+  {
+    "objectID": "bancos_de_dados.html",
+    "href": "bancos_de_dados.html",
+    "title": "6  Bancos de dados",
+    "section": "",
+    "text": "6.1 Banco de dados principal\nOs bancos aecom_ciga_homolog e painel_production contém as principais tabelas utilizadas pelo Painel Gerencial CIGA. Informações de outros bancos de dados são copiadas e consolidadas em tabelas destes bancos para posterior utilização. Eles são utilizados para armazenar informações sobre recomendações, barragens, complexos minerários e metadados de diversos artefatos utilizados pelos painéis.\nEsses bancos de dados são utilizados nos seguintes painéis:\nSegue abaixo a lista de tabelas presentes no banco de dados aecom_ciga_homolog:\ncomarcasTJMG\ncomplexos_minerarios\ncomplexos_minerarios_sisvar\ndados_recomendacoes_sigbm\ndados_recomendacoes_sigbm_complexo_minerario\ndados_recomendacoes_sigbm_complexo_minerario_sisvar\ndados_recomendacoes_sigbm_sisvar\ndados_sigbm_atualizacao_mensal\ndados_sigbm_linha_do_tempo\ndados_sigbm_linha_do_tempo_parcial\nentrepreneurs\nfull_recommendations\ngeography_columns\ngeometry_columns\ngeotechnical_structures\nide_sisema\nmetadados_documentos_tacs\nmetadados_imagens_satelite_bucket\nmetadados_imagens_satelite_bucket_local\nmetadados_mascaras_imagens_satelite_bucket\nmetadados_relatorios_gerenciais\npg_stat_statements\npg_stat_statements_info\nrecomendacoes_audit\nrecommendations3\nsigbm\nsigbm_atual\nsigbm_atual_com_comarcas\nsigbm_dados_cadastrais\nsigbm_dados_cadastrais_atual\nspatial_ref_sys\ntac_decharacterisations\ntacs",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bancos de dados</span>"
+    ]
+  },
+  {
+    "objectID": "bancos_de_dados.html#banco-de-dados-principal",
+    "href": "bancos_de_dados.html#banco-de-dados-principal",
+    "title": "6  Bancos de dados",
+    "section": "",
+    "text": "Barragens\nInformações dos TACs\nRecomendações",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bancos de dados</span>"
+    ]
+  },
+  {
+    "objectID": "bancos_de_dados.html#cadastro-de-tacs",
+    "href": "bancos_de_dados.html#cadastro-de-tacs",
+    "title": "6  Bancos de dados",
+    "section": "6.2 Cadastro de TACs",
+    "text": "6.2 Cadastro de TACs\nO banco de dados cadastro-tacs tem origem no Sistema de Cadastro de TACs e contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.\nEsse banco de dados é utilizado nos seguintes painéis:\n\nInformações dos TACs\nDescaracterização\nRecomendações\n\nSegue abaixo a lista de tabelas presentes no banco de dados cadastro_tacs que o usuário do Painel tem acesso:\n\n\n\nactive_storage_attachments\nactive_storage_blobs\nactive_storage_variant_records\namendment_geotechnical_structures\nar_internal_metadata\nentrepreneurs\ngeotechnical_structures\npg_search_documents\nschema_migrations\ntac_amendments\ntac_decharacterisations\ntacs\ntacs_view\nusers",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bancos de dados</span>"
+    ]
+  },
+  {
+    "objectID": "bancos_de_dados.html#sistema-de-validação-e-atualização-de-recomendações-sisvar",
+    "href": "bancos_de_dados.html#sistema-de-validação-e-atualização-de-recomendações-sisvar",
+    "title": "6  Bancos de dados",
+    "section": "6.3 Sistema de Validação e Atualização de Recomendações (Sisvar)",
+    "text": "6.3 Sistema de Validação e Atualização de Recomendações (Sisvar)\nOs bancos de dados sisvar_production e sisvar_homolog armazenam infomações sobre as recomendações nos dois ambientes do SISVAR. Periodicamente as automações do Painel Gerencial realizam cópias de informações sobre recomendações, complexos e TACs que estejam registrads no SISVAR, com posterior processamento e consolidação em função de informações do SIGBM.\nEsse banco de dados é utilizado nos seguintes painéis:\n\nInformações dos TACs\nRecomendações\nBarragens",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bancos de dados</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html",
+    "href": "actions.html",
+    "title": "7  GitHub Actions",
+    "section": "",
+    "text": "7.1 Ativando um workflow manualmente\nUm workflow pode ser ativado manualmente em 2 passos:\nknitr::include_graphics(\"img/geracao_manual_de_actions.png\")\nknitr::include_graphics(\"img/execucao_manual_actions.png\")",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>GitHub Actions</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#ativando-um-workflow-manualmente",
+    "href": "actions.html#ativando-um-workflow-manualmente",
+    "title": "7  GitHub Actions",
+    "section": "",
+    "text": "Selecione o workflow desejado na lista de workflow disponíveis no repositório. A imagem abaixo exibe a lista de workflow do repositório painelMain.\n\n\n\nAcione o actions apertando o botão “Run workflow”. A imagem abaixo exibe o botão “Run Workflow” no workflow de implantação do código fonte do Painel de Recomendações no servidor de homologação.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>GitHub Actions</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#credenciais",
+    "href": "actions.html#credenciais",
+    "title": "7  GitHub Actions",
+    "section": "7.2 Credenciais",
+    "text": "7.2 Credenciais\nCada workflow pode necessitar de diferentes credenciais (repository secrets). Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.\n\nBanco de dados (GCP)\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\nOutlook (Conta Microsoft)\n\nCIGA_OUTLOOK_TENANT\nCIGA_OUTLOOK_PASSWORD\nCIGA_OUTLOOK_APP\n\n\n\nFirebase (GCP)\n\nCIGA_FIREBASE_PASSWORD\nCIGA_FIREBASE_PROJECT_API\n\n\n\nSSH (acesso ao servidor) (GCP)\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER\nSSH_PRIVATE_KEY_PROD\nSSH_HOST_PROD\n\n\n\nGoogle Cloud Storage (Bucket)\n\nCIGA_JSON_GOOGLE\n\n\n\nGitHub\n\nTOKEN",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>GitHub Actions</span>"
+    ]
+  },
+  {
+    "objectID": "actions.html#workflows",
+    "href": "actions.html#workflows",
+    "title": "7  GitHub Actions",
+    "section": "7.3 Workflows",
+    "text": "7.3 Workflows\nA seguir, descrevemos cada um dos workflows criados para a manutenção do Painel Gerencial do CIGA-MPMG.\n\n7.3.1 Gerar os relatórios gerenciais\n\nDescrição: Gera os relatórios gerenciais e faz o upload para o Google Cloud Storage.\nLink para o workflow: gerar-relatorios-gerenciais.yml\nExecução:\n\nAtivação manual\nAtivação automática: Dia 1 de cada mês, uma vez ao dia, às 00h00.\nAutomaticamente quando há novas modificações no repositório ciga-mpmg/resuvafeca\n\nRepositório:\n\nRepositório com o código para gerar o relatório: ciga-mpmg/relatorioGerencial\nRepositório onde o workflow é executado: ciga-mpmg/painelMain\n\n\nSaídas da execução:\n\nArquivos: relatórios em PDF, enviado ao Google Cloud Storage, nas pastas bucket-aecom-ciga-homolog/relatorios_gerenciais_padronizados/TIPO_RELATORIO/YYYY-MM correspondente ao tipo de relatório e ao mês/ano.\nTabelas no banco de dados: nenhuma tabela é alterada.\nAções: nenhuma ação é realizada\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER\n\n\n\n\n7.3.2 Resuvafeca\n\nDescrição: Sempre que houver novas alterações na branch main do repositório resuvafeca, ativa outros workflows:\n\nupdate-sigbm.yaml - atualizar sigbm\nciga-mpmg/relatorioGerencial - gerar relatório gerencial.\n\nLink para o workflow: workflow-dispatch-sigbm.yaml\nExecução: ativação automática: sempre que houver uma mudança na main do repositório.\nRepositório: ciga-mpmg/resuvafeca\nSaídas da execução:\n\nArquivos: Nenhum arquivo é gerado.\nTabelas no banco de dados: nenhuma tabela é alterada.\nAções: Ativa outro workflows.\n\nCredenciais necessárias:\n\nTOKEN\n\n\n\n\n7.3.3 Atualizar o painel - Produção\n\nDescrição: Workflow para atualizar o painel em produção. Atualiza todos os painéis. Atualiza o servidor com o código que está na branch prod de cada repositório dos painéis.\nLink para o workflow: deploy-prod-all.yml\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 00h00.\n\nRepositório: ciga-mpmg/painelMain\nResultados:\n\nArquivos: nenhum arquivo é gerado.\nTabelas no banco de dados: nenhuma tabela é alterada.\nAções: atualizações dos painéis em ambiente de produção.\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY_PROD\nSSH_HOST_PROD\nSSH_USER\n\n\n\n\n7.3.4 Atualizar o painel - Homologação\n\nDescrição: Workflow para o painel em homologação. Atualiza todos os painéis. Atualiza o servidor com o código que está na branch main de cada repositório dos painéis.\nLink para o workflow: deploy-homolog-all.yml\n\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 01h00.\n\nRepositório: ciga-mpmg/painelMain\nResultados:\n\nArquivos: nenhum arquivo é gerado.\nTabelas no banco de dados: nenhuma tabela é alterada.\nAções: atualizações dos painéis em homologação.\n\nCredenciais necessárias:\n\nSSH_PRIVATE_KEY\nSSH_HOST\nSSH_USER\n\n\n\n\n7.3.5 Download SIGBM\n(azeloc?)\nEsse workflow realiza diversas tarefas de ETL importantes para o painel, descritas no README do repositório.\n\nDescrição: Faz download dos dados do portal SIGBM. Além disso, faz um join da base do SIGBM com a base de recomendações, e outros tratamentos necessários para preparar tabelas para os painéis. (azeloc?)\nLink para o workflow: update-sigbm.yaml\nExecução:\n\nAtivação automática: todos os dias, duas vezes ao dia, às 11h30 e 23h30.\n\nRepositório: ciga-mpmg/scraper_sigbm\nResultados:\n\nArquivos:\n\ndata-raw/sigbm_diff.csv\ndata-raw/sigbm_mais_recente.csv\n\nTabelas no banco de dados:\n\nsigbm_atual\nsigbm\n\ndados_recomendacoes_sigbm\ndados_sigbm_atualizacao_mensal\ndados_sigbm_linha_do_tempo_parcial\ndados_sigbm_linha_do_tempo\ndados_recomendacoes_sigbm_complexo_minerario\nsigbm_atual_com_comarcas\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\n\n\n\n\n\nImportante\n\n\n\nExecutar sempre que uma nova atualização da base de recomendações acontecer! Essa execução acontece automaticamente quando há novas modificações no repositório ciga-mpmg/resuvafeca.\n\n\n\n\n\n\n\n\nNota\n\n\n\nConforme feito aqui, a verificação de SSL foi desativada por um problema no site da ANM.\n\n\n\n\n7.3.6 Copiar metadados do Google Cloud Storage\n\nDescrição: importa informações de arquivos que estão no Google Cloud Storage, como documentos dos TACs, relatórios gerenciais, imagens de satélite e as máscaras das imagens de satélite.\nExecução:\n\nAtivação automática: todos os dias, duas vezes ao dia, às 07h00 e 19h00.\n\nRepositório: ciga-mpmg/googleStorageMetadata\nLink para o workflow: copia-metadados-bucket.yaml\nResultados:\n\nArquivos: Nenhum arquivo é gerado.\nTabelas no banco de dados:\n\nmetadados_documentos_tacs\n\nmetadados_relatorios_gerenciais\n\nmetadados_imagens_satelite_bucket\nmetadados_imagens_satelite_bucket_local\n\nmetadados_mascaras_imagens_satelite_bucket\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\nCIGA_JSON_GOOGLE\n\n\n\n\n\n\n\n\nImportante\n\n\n\nPara manter os painéis atualizados, esse workflow deve ser executado manualmente sempre que alguma mudança for realizada nos arquivos do Google Cloud Storage listados acima. Caso adicione imagens de satélite novas, verifique se a mesma consta na tabela de-para de imagens de satélite e barragens: local e regional.\n\n\n\n\n7.3.7 Download IDE SISEMA\n\nNível de urgência: Baixo\nDescrição: Faz download dos dados do IDE Sisema acessando o seu Web Map Server (WMS) (código por (rdornas?)).\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 07h00.\n\nRepositório: ciga-mpmg/download_IDE_SISEMA\nLink: update-data.yaml\nResultados:\n\nArquivos: data-raw/ide_sisema.csv\nTabelas no banco de dados: ide_sisema\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\n\n7.3.8 Download Comarcas TJMG\n\nNível de urgência: Baixo\nDescrição: Faz download do pdf dos municípios e comarcas do Tribunal de Justiça do estado de Minas Gerais, trata e disponibiliza (código por (rdornas?) e (mayaradaher?) utilizado está disponível no repositório ciga-mpmg/comarcasTJMG).\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 07h00.\n\nRepositório: ciga-mpmg/download_comarcas_TJMG\nLink: download-comarcas-TJMG\nResultados:\n\nArquivos: data-raw/comarcas_TJMG.csv\nTabelas no banco de dados: comarcasTJMG\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\n\n\n\n7.3.9 Download SIGBM detalhado\n\nNível de urgência: Médio\nDescrição: Faz o download dos dados detalhados do portal SIGBM.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 19h00.\n\nRepositório: ciga-monitoramento-info-barragens/sigbm-dados-cadastrais\nLink: update-sigbm-dados-cadastrais.yaml\nResultados:\n\nArquivos:\n\ndata-raw/chaves_mg.csv\ndata-raw/dados_brutos_mais_recente.csv\ndata-raw/dados_tratados_mais_recente.csv\ndata-raw/dados_tratados_diff.csv\ndata-raw/dados_tratados_descaracterizacao.csv\n\nTabelas no banco de dados:\n\nsigbm_dados_cadastrais_atual\nsigbm_dados_cadastrais\n\n\nCredenciais necessárias:\n\nCIGA_SQL_HOST\nCIGA_SQL_DATABASE\nCIGA_SQL_USER\nCIGA_SQL_PORT\nCIGA_SQL_PASSWORD\n\nObservações:\n\nConforme feito aqui, a verificação de SSL foi desativada por um problema no site da ANM.\n\n\n\n\n7.3.10 Download SIGBM detalhado - Mapa de inundação - Download\n\nNível de urgência: baixo\nDescrição: Faz o download dos mapas de inundação disponibilizados no portal SIGBM.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 20h00.\n\nRepositório: https://github.com/ciga-mpmg/sigbm-mapa-inundacao\nLink: 01-download-sigbm-mapa-inundacao-dados.yaml\nResultados:\n\nArquivos:\n\ndata-raw/chaves_mg.csv\ndata-raw/dados_mapa_inundacao.csv\ndata/dados_mapa_inundacao.rda\ndata-raw/arquivos_para_baixar.csv\n\nTabelas no banco de dados: Nenhuma tabela é alterada.\n\nCredenciais necessárias:\n\nCIGA_JSON_GOOGLE\n\n\n\n\n7.3.11 Download SIGBM detalhado - Mapa de inundação - Upload\n\nNível de urgência: baixo\nDescrição: Faz o upload dos mapas de inundação disponibilizados no portal SIGBM para o Bucket.\nExecução:\n\nAtivação automática: todos os dias, uma vez ao dia, às 20h30.\n\nRepositório: https://github.com/ciga-mpmg/sigbm-mapa-inundacao\nLink:\n\n02-upload-sigbm-mapa-inundacao-bucket.yaml\n\nResultados:\n\nArquivos:\n\ndata-raw/arquivos_para_baixar.csv\n\n\nTabelas no banco de dados: Nenhuma tabela é alterada.\n\nCredenciais necessárias:\n\nCIGA_JSON_GOOGLE",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>GitHub Actions</span>"
+    ]
+  },
+  {
+    "objectID": "shiny_server.html",
+    "href": "shiny_server.html",
+    "title": "8  Shiny Server",
+    "section": "",
+    "text": "8.1 nginx\nA compatibilização de todos os apps como uma única aplicação é feita com direcionamento via nginx. As configurações de location do nginx são:\nJá as configurações de redirecionamento são:",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shiny Server</span>"
+    ]
+  },
+  {
+    "objectID": "shiny_server.html#nginx",
+    "href": "shiny_server.html#nginx",
+    "title": "8  Shiny Server",
+    "section": "",
+    "text": "location / {\n  proxy_pass http://localhost:3838;\n  proxy_redirect / $scheme://$http_host/;\n  proxy_http_version 1.1;\n  proxy_set_header Upgrade $http_upgrade;\n  proxy_set_header Connection $connection_upgrade;\n  proxy_read_timeout 20d;\n  proxy_buffering off;\n}\n\nserver {\n  listen 80;\n  server_name painel-homolog.ciga-mpmg.com.br;\n  rewrite     ^   https://$server_name$request_uri? redirect;\n\n  location ^~ /.well-known/acme-challenge/ {\n        alias /var/www/html/.well-known/acme-challenge/;\n  }\n\n  location / {\n    proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n  }\n\n  location /recomendacoes {\n    proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n  }\n}\n\nserver {\n  listen 443 ssl;\n  server_name painel-homolog.ciga-mpmg.com.br;\n\n  ssl on;\n  ssl_certificate       /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/fullchain.pem;\n  ssl_certificate_key   /etc/letsencrypt/live/painel-homolog.ciga-mpmg.com.br/privkey.pem;\n\n  proxy_headers_hash_max_size 2048;\n  proxy_headers_hash_bucket_size 128;\n\n  location ^~ /.well-known/acme-challenge/ {\n        alias /var/www/html/.well-known/acme-challenge/;\n  }\n\n  location / {\n    proxy_pass http://127.0.0.1:3838/painelMain$request_uri;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n\n    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n\n  }\n\n  location /recomendacoes/ {\n    proxy_pass http://127.0.0.1:3838/painelRecomendacoes/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n\n  }\n\n  location /tacs/ {\n    proxy_pass http://127.0.0.1:3838/painelInfoTacs/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n  }\n\n  location /barragens/ {\n    proxy_pass http://127.0.0.1:3838/painelBarragens/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n  }\n\n  location /descaracterizacao/ {\n    proxy_pass http://127.0.0.1:3838/painelDescaracterizacao/;\n    proxy_redirect / $scheme://$http_host$request_uri;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection $connection_upgrade;\n    proxy_read_timeout 20d;\n    proxy_buffering off;\n    error_page 404 500 502 /usr/share/nginx/html/custom_404.html;\n  }\n}",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shiny Server</span>"
+    ]
+  },
+  {
+    "objectID": "shiny_server.html#variáveis-de-sistema",
+    "href": "shiny_server.html#variáveis-de-sistema",
+    "title": "8  Shiny Server",
+    "section": "8.2 Variáveis de sistema",
+    "text": "8.2 Variáveis de sistema\nPara o Painel conseguir acessar os serviços externos (e.g., Firebase e banco de dados), é necessário configurar as seguintes variáveis de ambiente no arquivo /home/shiny-admin/.Renviron:\n\nCIGA_SQL_HOST: endereço de acesso ao banco de dados\nCIGA_SQL_DATABASE: banco de dados\nCIGA_SQL_USER: usuário do banco\nCIGA_SQL_PORT: porta do banco\nCIGA_SQL_PASSWORD: senha\nAMBIENTE: string que deve ser “homolog” ou “prod”\nCIGA_OUTLOOK_TENANT: tenant do outlook\nCIGA_OUTLOOK_APP: id do aplicativo do outlook\nCIGA_OUTLOOK_PASSWORD: senha do outlook\nCIGA_FIREBASE_PASSWORD: senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br\nCIGA_FIREBASE_PROJECT_API: projeto do firebase",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Shiny Server</span>"
+    ]
+  }
+]
