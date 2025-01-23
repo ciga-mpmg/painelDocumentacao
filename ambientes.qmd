@@ -18,8 +18,6 @@ Na @sec-repositorios listamos a função de cada repositório, os Actions que el
 
 ## Google Cloud Platform
 
-@azeloc
-
 Para implantar o Painel Gerencial CIGA, foi necessário configurar uma máquina com as seguintes configurações:
 
 -   **Sistema operacional**: Ubuntu 24.04.1 LTS
@@ -40,7 +38,7 @@ Também foi necessário instalar os seguintes softwares:
 
 As telas do Painel Gerencial CIGA foram implantadas utilizando o [Shiny Server](https://posit.co/products/open-source/shiny-server/).
 
-Este ambiente deverá ser acessado para... @azeloc
+Este ambiente deverá ser acessado para analise dos logs do sistema ou para realizar algum processo de implantação manualmente. De toda forma, as automações em Github Actions foram projetadas para evitar esse processo. O acesso é feito através do link http://painel-homolog.ciga-mpmg.com.br:8787 e http://painel.ciga-mpmg.com.br:8787 e utiliza-se o login `shiny-admin` e senha de administrador.
 
 Apresentamos as configurações aplicadas ao Shiny Server para implantar o Painel Gerencial CIGA na @sec-shiny-server.
 

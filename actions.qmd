@@ -8,8 +8,19 @@ Nesta seção, mostramos com acionar manualmente um workflow, listamos as creden
 
 ## Ativando um workflow manualmente
 
-@azeloc
+Um workflow pode ser ativado manualmente em 2 passos:
 
+1. Selecione o workflow desejado na lista de workflow disponíveis no repositório. A imagem abaixo exibe a lista de workflow do repositório `painelMain`.
+
+```{r}
+knitr::include_graphics("img/geracao_manual_de_actions.png")
+```
+
+2. Acione o actions apertando o botão "Run workflow". A imagem abaixo exibe o botão "Run Workflow" no workflow de implantação do código fonte do Painel de Recomendações no servidor de homologação.
+
+```{r}
+knitr::include_graphics("img/execucao_manual_actions.png")
+```
 ## Credenciais
 
 Cada workflow pode necessitar de diferentes credenciais (*repository secrets*). Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.

@@ -1,14 +1,14 @@
 # Bancos de dados
 
-Nesta seção, apresentamos quais são os bancos de dados utilizados no projeto, bem como as tabelas utilizadas em cada parte do projeto.
+Nesta seção, apresentamos quais são os bancos de dados utilizados no projeto, bem como as tabelas utilizadas em cada parte do projeto. 
+
+Os bancos estão organizados na estrutura de homologação e produção. Na mesma instância de banco de dados PostgreSQL o `database` `painel_production` destina-se ao armazenamento de dados de produção enquanto `aecom_ciga_homolog` destina-se ao armazenamento de dados de homologação.
 
 ## Banco de dados principal
 
-@azeloc
+Os bancos `aecom_ciga_homolog` e `painel_production` contém as principais tabelas utilizadas pelo Painel Gerencial CIGA. Informações de outros bancos de dados são copiadas e consolidadas em tabelas destes bancos para posterior utilização. Eles são utilizados para armazenar informações sobre recomendações, barragens, complexos minerários e metadados de diversos artefatos utilizados pelos painéis.
 
-O banco de dados `aecom_ciga_homolog` contém as principais tabelas utilizadas pelo Painel Gerencial CIGA. Ele é utilizado para armazenar informações sobre recomendações, barragens, complexos minerários e metadados de diversos artefatos utilizados pelos painéis.
-
-Esse banco de dados é utilizado nos seguintes painéis:
+Esses bancos de dados são utilizados nos seguintes painéis:
 
 -   Barragens
 -   Informações dos TACs
@@ -34,8 +34,6 @@ htmltools::tags$ul(
 ```
 
 ## Cadastro de TACs
-
-@azeloc
 
 O banco de dados `cadastro-tacs` tem origem no Sistema de Cadastro de TACs e contém informações sobre os TACs (Termos de Ajustamento de Conduta) firmados pelo Ministério Público com empresas privadas.
 
@@ -63,3 +61,14 @@ htmltools::tags$ul(
   purrr::map(sort(tabelas_no_bd_tacs), htmltools::tags$li)
 )
 ```
+
+## Sistema de Validação e Atualização de Recomendações (Sisvar)
+
+Os bancos de dados `sisvar_production` e `sisvar_homolog` armazenam infomações sobre as recomendações nos dois ambientes do SISVAR. Periodicamente as automações do Painel Gerencial realizam cópias de informações sobre recomendações, complexos e TACs que estejam registrads no SISVAR, com posterior processamento e consolidação em função de informações do SIGBM.
+
+Esse banco de dados é utilizado nos seguintes painéis:
+
+-   Informações dos TACs
+-   Recomendações
+-   Barragens
+

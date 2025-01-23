@@ -68,7 +68,11 @@ Nesta seção, listamos e descrevemos todos os repositórios utilizados pelo Pai
 
 ## painelActions
 
-@azeloc
+-   **Descrição**: contém uma descrição de todas as automações em Github Actions, suas localizações e seus respectivos impactos no sistema. Nesse repositório também listamos os requisitos e criticidades de cada automação.
+
+-   **Link**: <https://github.com/ciga-mpmg/painelActions>
+
+-   **Actions**: não possui.
 
 ## painelDocumentacao
 
@@ -80,8 +84,8 @@ Nesta seção, listamos e descrevemos todos os repositórios utilizados pelo Pai
 
 ## scraper_sigbm
 
-@azeloc
+-   **Descrição**: contém os códigos fonte de acesso ao SIGBM e atualização dos bancos de dados de homologação e produção com os seus conteúdos e consolidações de informação de recomendações.
 
-## resuvafeca
+-   **Link**: <https://github.com/ciga-mpmg/scraper_sigbm>
 
-@azeloc
+-   **Actions**: download_sigbm. Essa automação é responsável por atualizar as informações do SIGBM nos bancos de dados, além de consolidar informações oriundas do Sistema de Cadastro de TACs e do SISVAR. 
