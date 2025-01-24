@@ -18,7 +18,7 @@ Na @sec-repositorios listamos a função de cada repositório, os Actions que el
 
 ## Google Cloud Platform
 
-Para implantar o Painel Gerencial CIGA, foi necessário configurar uma máquina com as seguintes configurações:
+Para implantar o Painel Gerencial CIGA, foi necessário configurar uma máquina na Google Cloud com as seguintes configurações:
 
 -   **Sistema operacional**: Ubuntu 24.04.1 LTS
 
@@ -34,6 +34,8 @@ Também foi necessário instalar os seguintes softwares:
 
 -   nginx 1.26.2
 
+Nessa máquina, foi instalado o Shiny Server, programa responsável pela administração do deployment dos painéis.
+
 ## Shiny Server
 
 As telas do Painel Gerencial CIGA foram implantadas utilizando o [Shiny Server](https://posit.co/products/open-source/shiny-server/).
@@ -46,4 +48,4 @@ Apresentamos as configurações aplicadas ao Shiny Server para implantar o Paine
 
 O serviço [Google Firebase](https://firebase.google.com) é utilizado para a autenticação dos usuários do Painel CIGA-MPMG.
 
-O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a @sec-acesso). @azeloc
+O painel de gerenciamento do Firebase deverá ser utilizado para criar, alterar e rmover usuários do Painel CIGA-MPMG (veja a @sec-acesso).

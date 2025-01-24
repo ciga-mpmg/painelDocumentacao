@@ -2,6 +2,12 @@
 
 Nesta seção, descrevemos os processos que envolvem a geração dos relatórios gerenciais do Painel CIGA-MPMG.
 
+## Acessar os relatórios gerenciais
+
+Os relatórios gerenciais de TAC, Alerta 7 e Complexo Minerário (Minas) podem ser acessados por meio do painel Recomendações, na aba Explorar > Relatório Gerencial.
+
+![](img/relatorio_gerencial.png)
+
 ## Gerar relatórios gerenciais
 
 Para gerar os relatórios gerenciais atualizados e disponibilizá-los para download na plataforma, você deve:

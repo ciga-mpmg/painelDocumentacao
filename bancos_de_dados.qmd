@@ -64,9 +64,9 @@ htmltools::tags$ul(
 
 ## Sistema de Validação e Atualização de Recomendações (Sisvar)
 
-Os bancos de dados `sisvar_production` e `sisvar_homolog` armazenam infomações sobre as recomendações nos dois ambientes do SISVAR. Periodicamente as automações do Painel Gerencial realizam cópias de informações sobre recomendações, complexos e TACs que estejam registrads no SISVAR, com posterior processamento e consolidação em função de informações do SIGBM.
+Os bancos de dados `sisvar_production` e `sisvar_homolog` armazenam informações sobre as recomendações nos dois ambientes do SISVAR. Periodicamente, as informações desses bancos são processadas, enriquecidas com dados do SIGBM e gravadas no banco de dados principal. 
 
-Esse banco de dados é utilizado nos seguintes painéis:
+As informações provenientes desses bancos são utilizadas nos seguintes painéis:
 
 -   Informações dos TACs
 -   Recomendações

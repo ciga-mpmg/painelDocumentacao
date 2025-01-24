@@ -2,6 +2,26 @@
 
 Nesta seção, apresentamos as configurações aplicadas ao Shiny Server para implantar o Painel CIGA-MPMG.
 
+## Interromper, iniciar e reiniciar o serviço de hospedagem
+
+Para interromper o serviço de hospedagem, execute o comando no terminal do servidor de hospedagem:
+
+```bash
+sudo systemctl stop shiny-server
+```
+
+Para iniciar o serviço de hospedagem, execute o comando no terminal do servidor de hospedagem:
+
+```bash
+sudo systemctl start shiny-server
+```
+
+Para reiniciar o serviço de hospedagem, execute o comando no terminal do servidor de hospedagem:
+
+```bash
+sudo systemctl restart shiny-server
+```
+
 ## nginx
 
 A compatibilização de todos os apps como uma única aplicação é feita com direcionamento via [`nginx`](https://www.nginx.com/). As configurações de `location` do nginx são:
@@ -127,24 +147,24 @@ server {
 
 Para o Painel conseguir acessar os serviços externos (e.g., Firebase e banco de dados), é necessário configurar as seguintes variáveis de ambiente no arquivo `/home/shiny-admin/.Renviron`:
 
-- `CIGA_SQL_HOST`: endereço de acesso ao banco de dados
+-   `CIGA_SQL_HOST`: endereço de acesso ao banco de dados
 
-- `CIGA_SQL_DATABASE`: banco de dados
+-   `CIGA_SQL_DATABASE`: banco de dados
 
-- `CIGA_SQL_USER`: usuário do banco
+-   `CIGA_SQL_USER`: usuário do banco
 
-- `CIGA_SQL_PORT`: porta do banco
+-   `CIGA_SQL_PORT`: porta do banco
 
-- `CIGA_SQL_PASSWORD`: senha
+-   `CIGA_SQL_PASSWORD`: senha
 
-- `AMBIENTE`: string que deve ser "homolog" ou "prod"
+-   `AMBIENTE`: string que deve ser "homolog" ou "prod"
 
-- `CIGA_OUTLOOK_TENANT`: tenant do outlook
+-   `CIGA_OUTLOOK_TENANT`: tenant do outlook
 
-- `CIGA_OUTLOOK_APP`: id do aplicativo do outlook
+-   `CIGA_OUTLOOK_APP`: id do aplicativo do outlook
 
-- `CIGA_OUTLOOK_PASSWORD`: senha do outlook
+-   `CIGA_OUTLOOK_PASSWORD`: senha do outlook
 
-- `CIGA_FIREBASE_PASSWORD`: senha de acesso ao firebase no usuario contato@ciga-mpmg.com.br
+-   `CIGA_FIREBASE_PASSWORD`: senha de acesso ao firebase no usuario contato\@ciga-mpmg.com.br
 
-- `CIGA_FIREBASE_PROJECT_API`: projeto do firebase
+-   `CIGA_FIREBASE_PROJECT_API`: projeto do firebase
