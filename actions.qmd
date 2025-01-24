@@ -140,7 +140,7 @@ A seguir, descrevemos cada um dos workflows criados para a manutenção do Paine
 
 Esse workflow realiza diversas tarefas de ETL importantes para o painel, descritas no [README do repositório](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/README.md).
 
-- **Descrição**: Faz download dos dados do portal [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem). Além disso, faz um join da base do SIGBM com a base de recomendações, e outros tratamentos necessários para preparar tabelas para os painéis. @azeloc
+- **Descrição**: Faz download dos dados do portal [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem). Além disso, faz um join da base do SIGBM com a base de recomendações, e outros tratamentos necessários para preparar tabelas para os painéis.
 - **Link para o workflow**: [update-sigbm.yaml](https://github.com/ciga-mpmg/scraper_sigbm/actions/workflows/update-sigbm.yaml)
 - **Execução**:
   - Ativação automática: todos os dias, duas vezes ao dia, às 11h30 e 23h30.
