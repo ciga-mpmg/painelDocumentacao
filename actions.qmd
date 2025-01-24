@@ -12,15 +12,16 @@ Um workflow pode ser ativado manualmente em 2 passos:
 
 1. Selecione o workflow desejado na lista de workflow disponíveis no repositório. A imagem abaixo exibe a lista de workflow do repositório `painelMain`.
 
-```{r}
+```{r, echo = FALSE}
 knitr::include_graphics("img/geracao_manual_de_actions.png")
 ```
 
 2. Acione o actions apertando o botão "Run workflow". A imagem abaixo exibe o botão "Run Workflow" no workflow de implantação do código fonte do Painel de Recomendações no servidor de homologação.
 
-```{r}
+```{r, echo = FALSE}
 knitr::include_graphics("img/execucao_manual_actions.png")
 ```
+
 ## Credenciais
 
 Cada workflow pode necessitar de diferentes credenciais (*repository secrets*). Abaixo estão listadas as credenciais necessárias para os workflows, segundo o serviço que ele utiliza.
@@ -88,7 +89,7 @@ A seguir, descrevemos cada um dos workflows criados para a manutenção do Paine
 
 ### Resuvafeca
 
-- **Descrição**: Sempre que houver novas alterações na branch main do repositório resuvafeca, ativa outros workflows:
+- **Descrição**: Sempre que houver novas alterações na branch main do repositório resuvafeca, ativa os seguintes workflows:
   - [update-sigbm.yaml](https://github.com/ciga-mpmg/scraper_sigbm/actions/workflows/update-sigbm.yaml) -
     atualizar sigbm
   - [ciga-mpmg/relatorioGerencial](https://github.com/ciga-mpmg/relatorioGerencial) -
@@ -137,8 +138,6 @@ A seguir, descrevemos cada um dos workflows criados para a manutenção do Paine
 
 ### Download SIGBM
 
-@azeloc
-
 Esse workflow realiza diversas tarefas de ETL importantes para o painel, descritas no [README do repositório](https://github.com/ciga-mpmg/scraper_sigbm/blob/main/README.md).
 
 - **Descrição**: Faz download dos dados do portal [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem). Além disso, faz um join da base do SIGBM com a base de recomendações, e outros tratamentos necessários para preparar tabelas para os painéis. @azeloc
@@ -171,16 +170,16 @@ Executar sempre que uma nova atualização da base de recomendações acontecer!
 :::
 
 ::: callout-note
-Conforme feito [aqui](https://github.com/ciga-mpmg/scraper_sigbm/commit/fac25d574abab4f9f014fba31c9886bc8a5da383), a verificação de SSL foi desativada por um problema no site da ANM.  
+A verificação de SSL foi desativada por um problema no site da ANM.  
 :::
 
 ### Copiar metadados do Google Cloud Storage
 
 - **Descrição**: importa informações de arquivos que estão no Google Cloud Storage, como documentos dos TACs, relatórios gerenciais, imagens de satélite e as máscaras das imagens de satélite.
+- **Link para o workflow**: [copia-metadados-bucket.yaml](https://github.com/ciga-mpmg/googleStorageMetadata/actions/workflows/copia-metadados-bucket.yaml)
 - **Execução**:
   - **Ativação automática**: todos os dias, duas vezes ao dia, às 07h00 e 19h00.
 - **Repositório**: [ciga-mpmg/googleStorageMetadata](https://github.com/ciga-mpmg/googleStorageMetadata)
-- **Link para o workflow**: [copia-metadados-bucket.yaml](https://github.com/ciga-mpmg/googleStorageMetadata/actions/workflows/copia-metadados-bucket.yaml)
 - **Resultados**:
   - **Arquivos**: Nenhum arquivo é gerado.
   - **Tabelas no banco de dados**:
@@ -203,21 +202,17 @@ Para manter os painéis atualizados, esse workflow deve ser executado manualment
 
 ### Download IDE SISEMA
 
-- Nível de urgência: Baixo
-- Descrição: Faz download dos dados do IDE Sisema acessando o seu Web
-  Map Server (WMS) (código por @rdornas).
-- Execução:
-  - Ativação automática: todos os dias, uma vez ao dia, às 07h00.
-- Repositório:
-  [ciga-mpmg/download_IDE_SISEMA](https://github.com/ciga-mpmg/download_IDE_SISEMA)
-- Link:
-  [update-data.yaml](https://github.com/ciga-mpmg/download_IDE_SISEMA/actions/workflows/update-data.yaml)
-- Resultados:
-  - Arquivos:
-    [data-raw/ide_sisema.csv](https://github.com/ciga-mpmg/download_IDE_SISEMA/blob/main/data-raw/ide_sisema.csv)
-  - Tabelas no banco de dados:
-    [ide_sisema](https://github.com/ciga-mpmg/download_IDE_SISEMA/blob/main/data-raw/script_actions.R)
-- Credenciais necessárias:
+- **Descrição**: Faz download dos dados do IDE Sisema acessando o seu Web Map Server (WMS).
+- **Link para o workflow**: [update-data.yaml](https://github.com/ciga-mpmg/download_IDE_SISEMA/actions/workflows/update-data.yaml)
+- **Execução**:
+  - **Ativação automática**: todos os dias, uma vez ao dia, às 07h00.
+- **Repositório**: [ciga-mpmg/download_IDE_SISEMA](https://github.com/ciga-mpmg/download_IDE_SISEMA)
+- **Resultados**:
+  - **Arquivos**:
+    - [data-raw/ide_sisema.csv](https://github.com/ciga-mpmg/download_IDE_SISEMA/blob/main/data-raw/ide_sisema.csv)
+  - **Tabelas no banco de dados**:
+    - [ide_sisema](https://github.com/ciga-mpmg/download_IDE_SISEMA/blob/main/data-raw/script_actions.R)
+- **Credenciais necessárias**:
   - CIGA_SQL_HOST
   - CIGA_SQL_DATABASE
   - CIGA_SQL_USER
@@ -226,94 +221,54 @@ Para manter os painéis atualizados, esse workflow deve ser executado manualment
 
 ### Download Comarcas TJMG
 
-- Nível de urgência: Baixo
-- Descrição: Faz download do pdf dos municípios e comarcas do Tribunal de Justiça do estado de Minas Gerais, trata e disponibiliza (código por @rdornas e @mayaradaher utilizado está disponível no
-  repositório
-  [ciga-mpmg/comarcasTJMG](https://github.com/ciga-mpmg/comarcasTJMG)).
-- Execução:
-  - Ativação automática: todos os dias, uma vez ao dia, às 07h00.
-- Repositório:
-  [ciga-mpmg/download_comarcas_TJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/)
-- Link:
-  [download-comarcas-TJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml)
-- Resultados:
-  - Arquivos:
-    [data-raw/comarcas_TJMG.csv](https://github.com/ciga-mpmg/download_comarcas_TJMG/blob/main/data-raw/comarcas_TJMG.csv)
-  - Tabelas no banco de dados:
-    [comarcasTJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/blob/main/data-raw/script_actions.R)
-- Credenciais necessárias:
+- **Descrição**: Faz download do pdf dos municípios e comarcas do Tribunal de Justiça do estado de Minas Gerais
+- **Link para o workflow**: [download-comarcas-TJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/actions/workflows/update-data.yaml)
+- **Execução**:
+  - **Ativação automática**: todos os dias, uma vez ao dia, às 07h00.
+- **Repositório**: [ciga-mpmg/download_comarcas_TJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/)
+- **Resultados**:
+  - **Arquivos**:
+    - [data-raw/comarcas_TJMG.csv](https://github.com/ciga-mpmg/download_comarcas_TJMG/blob/main/data-raw/comarcas_TJMG.csv)
+  - **Tabelas no banco de dados**:
+    - [comarcasTJMG](https://github.com/ciga-mpmg/download_comarcas_TJMG/blob/main/data-raw/script_actions.R)
+- **Credenciais necessárias**:
   - CIGA_SQL_HOST
   - CIGA_SQL_DATABASE
   - CIGA_SQL_USER
   - CIGA_SQL_PORT
   - CIGA_SQL_PASSWORD
 
-### Download SIGBM detalhado
-
-- Nível de urgência: Médio
-- Descrição: Faz o download dos dados detalhados do portal
-  [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem).
-- Execução:
-  - Ativação automática: todos os dias, uma vez ao dia, às 19h00.
-- Repositório:
-  [ciga-monitoramento-info-barragens/sigbm-dados-cadastrais](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais)
-- Link:
-  [update-sigbm-dados-cadastrais.yaml](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/actions/workflows/update-sigbm-dados-cadastrais.yaml)
-- Resultados:
-  - Arquivos:
-    - [data-raw/chaves_mg.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/chaves_mg.csv)
-    - [data-raw/dados_brutos_mais_recente.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/dados_brutos_mais_recente.csv)
-    - [data-raw/dados_tratados_mais_recente.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/dados_tratados_mais_recente.csv)
-    - [data-raw/dados_tratados_diff.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/dados_tratados_diff.csv)
-    - [data-raw/dados_tratados_descaracterizacao.csv](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/dados_tratados_descaracterizacao.csv)
-  - Tabelas no banco de dados:
-    - [sigbm_dados_cadastrais_atual](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/script_actions_2.R)
-    - [sigbm_dados_cadastrais](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/blob/main/data-raw/script_actions_2.R)
-- Credenciais necessárias:
-  - CIGA_SQL_HOST
-  - CIGA_SQL_DATABASE
-  - CIGA_SQL_USER
-  - CIGA_SQL_PORT
-  - CIGA_SQL_PASSWORD
-- Observações:
-  - Conforme feito [aqui](https://github.com/ciga-monitoramento-info-barragens/sigbm-dados-cadastrais/commit/5b4009c9646a33018030bbd29cf0e7b71d073319), a verificação de SSL foi desativada por um problema no site da ANM.  
+::: callout-note
+Este workflow utiliza o código disponível em <https://github.com/tech-legado/comarcasTJMG>.
+:::
 
 ### Download SIGBM detalhado - Mapa de inundação - Download
 
-- Nível de urgência: baixo
-- Descrição: Faz o download dos mapas de inundação disponibilizados no
-  portal
-  [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem).
-- Execução:
-  - Ativação automática: todos os dias, uma vez ao dia, às 20h00.
-- Repositório: <https://github.com/ciga-mpmg/sigbm-mapa-inundacao>
-- Link:
-  [01-download-sigbm-mapa-inundacao-dados.yaml](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/actions/workflows/01-download-sigbm-mapa-inundacao-dados.yaml)
-- Resultados:
-  - Arquivos:
+- **Descrição**: Faz o download dos mapas de inundação disponibilizados no portal [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem).
+- **Link**: [01-download-sigbm-mapa-inundacao-dados.yaml](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/actions/workflows/01-download-sigbm-mapa-inundacao-dados.yaml)
+- **Execução**:
+  - **Ativação automática**: todos os dias, uma vez ao dia, às 20h00.
+- **Repositório**: <https://github.com/ciga-mpmg/sigbm-mapa-inundacao>
+- **Resultados**:
+  - **Arquivos**:
     - [data-raw/chaves_mg.csv](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data-raw/chaves_mg.csv)
     - [data-raw/dados_mapa_inundacao.csv](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data-raw/dados_mapa_inundacao.csv)
     - [data/dados_mapa_inundacao.rda](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data/dados_mapa_inundacao.rda)
     - [data-raw/arquivos_para_baixar.csv](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data-raw/arquivos_para_baixar.csv)
-  - Tabelas no banco de dados: Nenhuma tabela é alterada.
-- Credenciais necessárias:
+  - **Tabelas no banco de dados**: Nenhuma tabela é alterada.
+- **Credenciais necessárias**:
   - CIGA_JSON_GOOGLE
 
 ### Download SIGBM detalhado - Mapa de inundação - Upload
 
-- Nível de urgência: baixo
-- Descrição: Faz o upload dos mapas de inundação disponibilizados no
-  portal
-  [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem)
-  para o Bucket.
-- Execução:
-  - Ativação automática: todos os dias, uma vez ao dia, às 20h30.
-- Repositório: <https://github.com/ciga-mpmg/sigbm-mapa-inundacao>
-- Link:
-  - [02-upload-sigbm-mapa-inundacao-bucket.yaml](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/actions/workflows/02-upload-sigbm-mapa-inundacao-bucket.yaml)
-- Resultados:
-  - Arquivos:
+- **Descrição**: Faz o upload dos mapas de inundação disponibilizados no portal [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem) para o Bucket.
+- **Link**: [02-upload-sigbm-mapa-inundacao-bucket.yaml](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/actions/workflows/02-upload-sigbm-mapa-inundacao-bucket.yaml)
+- **Execução**:
+  - **Ativação automática**: todos os dias, uma vez ao dia, às 20h30.
+- **Repositório**: <https://github.com/ciga-mpmg/sigbm-mapa-inundacao>
+- **Resultados**:
+  - **Arquivos**:
     - [data-raw/arquivos_para_baixar.csv](https://github.com/ciga-mpmg/sigbm-mapa-inundacao/blob/main/data-raw/arquivos_para_baixar.csv)  
-  - Tabelas no banco de dados: Nenhuma tabela é alterada.
-- Credenciais necessárias:
+  - **Tabelas no banco de dados**: Nenhuma tabela é alterada.
+- **Credenciais necessárias**:
   - CIGA_JSON_GOOGLE

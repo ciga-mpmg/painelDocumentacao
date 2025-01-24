@@ -88,4 +88,60 @@ Nesta seção, listamos e descrevemos todos os repositórios utilizados pelo Pai
 
 -   **Link**: <https://github.com/ciga-mpmg/scraper_sigbm>
 
--   **Actions**: download_sigbm. Essa automação é responsável por atualizar as informações do SIGBM nos bancos de dados, além de consolidar informações oriundas do Sistema de Cadastro de TACs e do SISVAR. 
+-   **Actions**: download_sigbm. Essa automação é responsável por atualizar as informações do SIGBM nos bancos de dados, além de consolidar informações oriundas do Sistema de Cadastro de TACs e do SISVAR.
+
+## download_IDE_SISEMA
+
+-   **Descrição**: faz download dos dados do IDE SISEMA.
+
+-   **Link**: <https://github.com/ciga-mpmg/download_IDE_SISEMA>
+
+-   **Actions**: download dos dados do IDE Sisema acessando o seu Web Map Server (WMS).
+
+
+## googleStorageMetadata
+
+-   **Descrição**: importa informações de arquivos que estão no Google Cloud Storage.
+
+-   **Link**: <https://github.com/ciga-mpmg/googleStorageMetadata>
+
+-   **Actions**: importa informações de arquivos que estão no Google Cloud Storage, como documentos dos TACs, relatórios gerenciais, imagens de satélite e as máscaras das imagens de satélite.
+
+
+## resuvafeca
+
+-   **Descrição**: Repositório do código do programa de processo cíclico do CIGA referente à REquisição-SUbmissão-VAlidação-FEedback-CArga.
+
+-   **Link**: <https://github.com/ciga-mpmg/resuvafeca>
+
+- **Actions**: sempre que houver novas alterações na branch main do repositório resuvafeca, ativa os seguintes workflows:
+   - [update-sigbm.yaml](https://github.com/ciga-mpmg/scraper_sigbm/actions/workflows/update-sigbm.yaml) –
+    atualizar sigbm
+   - [ciga-mpmg/relatorioGerencial](https://github.com/ciga-mpmg/relatorioGerencial) –
+    gerar relatório gerencial.
+
+## comarcasTJMG
+
+-   **Descrição**: pacote que visa facilitar a obtenção de informação relacionada às comarcas do TJMG em relação aos municípios do estado de Minas Gerais.
+
+-   **Link**: <https://github.com/tech-legado/comarcasTJMG>
+
+-   **Actions**: não possui.
+
+
+## download_comarcas_TJMG
+
+-   **Descrição**: web scraper responsável por raspar dados das comarcas do TJMG disponíveis em pdf no site do Tribunal.
+
+-   **Link**: <https://github.com/ciga-mpmg/download_comarcas_TJMG/>
+
+-   **Actions**: faz download do pdf dos municípios e comarcas do Tribunal de Justiça do estado de Minas Gerais
+
+
+## sigbm-mapa-inundacao
+
+-   **Descrição**: executa a raspagem do [mapa de inundação de barragens cadastradas no  SIGBM](https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico).
+
+-   **Link**: <https://github.com/ciga-mpmg/sigbm-mapa-inundacao>
+
+-   **Actions**: faz o download dos mapas de inundação disponibilizados no portal [SIGBM](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem) e o upload para o Google Cloud Storage.
