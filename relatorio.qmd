@@ -16,8 +16,8 @@ Para gerar os relatórios gerenciais atualizados e disponibilizá-los para downl
 
 ![](img/actions_geracao_de_relatorio.png)
 
-Ao final desse processo, novos relatórios referentes à data de execução da rotina serão criados.
+Ao final desse processo, novos relatórios referentes à data de execução da rotina serão criados na plataforma GCP.
 
-**Passo 2**: Executar a rotina de cadastros do relatórios no banco de dados interno da plataforma CIGA-MPMG.
+**Passo 2**: Executar a rotina de atualização da lista de relatórios disponíveis para consulta plataforma CIGA-MPMG clicando em "Run workflow" na página de Actions do repositório https://github.com/ciga-mpmg/painelMain. 
 
 ![](img/actions_atualizacao_bucket.png)
